@@ -1,12 +1,12 @@
 package com.rslakra.iws.businessservice.account.controller;
 
-import com.devamatre.framework.core.BeanUtils;
-import com.devamatre.framework.core.Payload;
-import com.devamatre.framework.spring.controller.rest.AbstractRestController;
-import com.devamatre.framework.spring.filter.Filter;
-import com.devamatre.framework.spring.parser.Parser;
-import com.devamatre.framework.spring.parser.csv.CsvParser;
-import com.devamatre.framework.spring.parser.excel.ExcelParser;
+import com.devamatre.appsuite.core.BeanUtils;
+import com.devamatre.appsuite.core.Payload;
+import com.devamatre.appsuite.spring.controller.rest.AbstractRestController;
+import com.devamatre.appsuite.spring.filter.Filter;
+import com.devamatre.appsuite.spring.parser.Parser;
+import com.devamatre.appsuite.spring.parser.csv.CsvParser;
+import com.devamatre.appsuite.spring.parser.excel.ExcelParser;
 import com.rslakra.iws.businessservice.account.filter.UserFilter;
 import com.rslakra.iws.businessservice.account.parser.UserParser;
 import com.rslakra.iws.businessservice.account.persistence.entity.User;
@@ -156,7 +156,7 @@ public class UserController extends AbstractRestController<User, Long> {
     @Override
     public ResponseEntity<User> create(
 //        @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Create new user", content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class)), required = true)
-        @Validated @RequestBody User user) {
+            @Validated @RequestBody User user) {
         user = userService.create(user);
         return ResponseEntity.ok(user);
     }
@@ -218,8 +218,8 @@ public class UserController extends AbstractRestController<User, Long> {
         validate(idOptional);
         userService.delete(idOptional.get());
         Payload payload = Payload.newBuilder()
-            .withDeleted(Boolean.TRUE)
-            .withMessage("Record with id:%d deleted successfully!", idOptional.get());
+                .withDeleted(Boolean.TRUE)
+                .withMessage("Record with id:%d deleted successfully!", idOptional.get());
         return ResponseEntity.ok(payload);
     }
 

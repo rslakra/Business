@@ -1,23 +1,22 @@
 package com.rslakra.iws.businessservice.account.persistence.entity;
 
-import com.devamatre.framework.core.ToString;
-import com.devamatre.framework.core.enums.EntityStatus;
-import com.devamatre.framework.core.enums.RoleType;
-import com.devamatre.framework.spring.persistence.entity.NamedEntity;
+import com.devamatre.appsuite.core.ToString;
+import com.devamatre.appsuite.core.enums.EntityStatus;
+import com.devamatre.appsuite.core.enums.RoleType;
+import com.devamatre.appsuite.spring.persistence.entity.NamedEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.Collections;
-import java.util.Objects;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
+import java.util.Collections;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author Rohtash Lakra
@@ -49,10 +48,10 @@ public class Role extends NamedEntity<Long> {
     @Override
     public String toString() {
         return ToString.of(Role.class)
-            .add("id", getId())
-            .add("name", getName())
-            .add("status", getStatus())
-            .toString();
+                .add("id", getId())
+                .add("name", getName())
+                .add("status", getStatus())
+                .toString();
     }
 
 
@@ -64,8 +63,8 @@ public class Role extends NamedEntity<Long> {
      */
     public static Set<RoleType> ofRoles(final Set<Role> roles) {
         return (Objects.isNull(roles) ? Collections.EMPTY_SET
-                                      : roles.stream().map(role -> RoleType.ofString(role.getName()))
-                    .collect(Collectors.toSet()));
+                : roles.stream().map(role -> RoleType.ofString(role.getName()))
+                .collect(Collectors.toSet()));
     }
 
     /**
@@ -76,7 +75,7 @@ public class Role extends NamedEntity<Long> {
      */
     public static Set<Role> ofRoleTypes(final Set<RoleType> roleTypes) {
         return (Objects.isNull(roleTypes) ? Collections.EMPTY_SET
-                                          : roleTypes.stream().map(roleType -> new Role(roleType))
-                    .collect(Collectors.toSet()));
+                : roleTypes.stream().map(roleType -> new Role(roleType))
+                .collect(Collectors.toSet()));
     }
 }

@@ -1,12 +1,12 @@
 package com.rslakra.iws.businessservice.account.service.impl;
 
-import com.devamatre.framework.core.BeanUtils;
-import com.devamatre.framework.spring.exception.DuplicateRecordException;
-import com.devamatre.framework.spring.exception.InvalidRequestException;
-import com.devamatre.framework.spring.exception.NoRecordFoundException;
-import com.devamatre.framework.spring.filter.Filter;
-import com.devamatre.framework.spring.persistence.Operation;
-import com.devamatre.framework.spring.service.AbstractServiceImpl;
+import com.devamatre.appsuite.core.BeanUtils;
+import com.devamatre.appsuite.spring.exception.DuplicateRecordException;
+import com.devamatre.appsuite.spring.exception.InvalidRequestException;
+import com.devamatre.appsuite.spring.exception.NoRecordFoundException;
+import com.devamatre.appsuite.spring.filter.Filter;
+import com.devamatre.appsuite.spring.persistence.Operation;
+import com.devamatre.appsuite.spring.service.AbstractServiceImpl;
 import com.rslakra.iws.businessservice.account.persistence.entity.Role;
 import com.rslakra.iws.businessservice.account.persistence.repository.RoleRepository;
 import com.rslakra.iws.businessservice.account.service.RoleService;
@@ -146,7 +146,7 @@ public class RoleServiceImpl extends AbstractServiceImpl<Role, Long> implements 
     public Role getById(Long id) {
         LOGGER.debug("getById({})", id);
         return roleRepository.findById(id)
-            .orElseThrow(() -> new NoRecordFoundException("id:%d", id));
+                .orElseThrow(() -> new NoRecordFoundException("id:%d", id));
 
     }
 

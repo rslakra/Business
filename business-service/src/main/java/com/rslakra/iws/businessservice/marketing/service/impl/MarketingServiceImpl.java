@@ -1,12 +1,12 @@
 package com.rslakra.iws.businessservice.marketing.service.impl;
 
-import com.devamatre.framework.core.BeanUtils;
-import com.devamatre.framework.spring.exception.DuplicateRecordException;
-import com.devamatre.framework.spring.exception.InvalidRequestException;
-import com.devamatre.framework.spring.exception.NoRecordFoundException;
-import com.devamatre.framework.spring.filter.Filter;
-import com.devamatre.framework.spring.persistence.Operation;
-import com.devamatre.framework.spring.service.AbstractServiceImpl;
+import com.devamatre.appsuite.core.BeanUtils;
+import com.devamatre.appsuite.spring.exception.DuplicateRecordException;
+import com.devamatre.appsuite.spring.exception.InvalidRequestException;
+import com.devamatre.appsuite.spring.exception.NoRecordFoundException;
+import com.devamatre.appsuite.spring.filter.Filter;
+import com.devamatre.appsuite.spring.persistence.Operation;
+import com.devamatre.appsuite.spring.service.AbstractServiceImpl;
 import com.rslakra.iws.businessservice.account.persistence.entity.User;
 import com.rslakra.iws.businessservice.account.persistence.repository.UserRepository;
 import com.rslakra.iws.businessservice.marketing.persistence.entity.Marketing;
@@ -72,9 +72,9 @@ public class MarketingServiceImpl extends AbstractServiceImpl<Marketing, Long> i
                 // check task exists for this user
                 List<Marketing> marketingList = marketingRepository.findAllByUserId(marketing.getUserId());
                 if (marketingList.stream()
-                    .anyMatch(oldMarketing -> oldMarketing.getName().equals(marketing.getName()))) {
+                        .anyMatch(oldMarketing -> oldMarketing.getName().equals(marketing.getName()))) {
                     throw new DuplicateRecordException("marketing:%s for userId:%d", marketing.getName(),
-                                                       marketing.getUserId());
+                            marketing.getUserId());
                 }
             }
 
@@ -87,11 +87,11 @@ public class MarketingServiceImpl extends AbstractServiceImpl<Marketing, Long> i
 
                 if (BeanUtils.isNotEmpty(marketing.getUserId())) {
                     Optional<Marketing>
-                        marketingOptional =
-                        marketingRepository.findByIdAndUserId(marketing.getId(), marketing.getUserId());
+                            marketingOptional =
+                            marketingRepository.findByIdAndUserId(marketing.getId(), marketing.getUserId());
                     if (!marketingOptional.isPresent()) {
                         throw new InvalidRequestException("The marketing does not belong to user: %d",
-                                                          marketing.getUserId());
+                                marketing.getUserId());
                     }
                 }
             }

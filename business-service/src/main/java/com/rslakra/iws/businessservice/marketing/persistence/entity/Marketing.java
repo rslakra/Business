@@ -1,6 +1,6 @@
 package com.rslakra.iws.businessservice.marketing.persistence.entity;
 
-import com.devamatre.framework.spring.persistence.entity.AbstractEntity;
+import com.devamatre.appsuite.spring.persistence.entity.AbstractEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

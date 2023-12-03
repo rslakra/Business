@@ -1,13 +1,12 @@
 package com.rslakra.iws.businessservice.task.persistence.entity;
 
-import com.devamatre.framework.spring.persistence.entity.NamedEntity;
+import com.devamatre.appsuite.spring.persistence.entity.NamedEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 import javax.persistence.Transient;
+import java.util.List;
 
 /**
  * @author Rohtash Lakra

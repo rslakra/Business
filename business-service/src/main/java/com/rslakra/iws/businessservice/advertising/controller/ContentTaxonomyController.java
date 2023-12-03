@@ -1,8 +1,8 @@
 package com.rslakra.iws.businessservice.advertising.controller;
 
-import com.devamatre.framework.core.Payload;
-import com.devamatre.framework.spring.controller.rest.AbstractRestController;
-import com.devamatre.framework.spring.filter.Filter;
+import com.devamatre.appsuite.core.Payload;
+import com.devamatre.appsuite.spring.controller.rest.AbstractRestController;
+import com.devamatre.appsuite.spring.filter.Filter;
 import com.rslakra.iws.businessservice.advertising.filter.ContentTaxonomyFilter;
 import com.rslakra.iws.businessservice.advertising.persistence.entity.ContentTaxonomy;
 import com.rslakra.iws.businessservice.advertising.service.ContentTaxonomyService;
@@ -78,7 +78,7 @@ public class ContentTaxonomyController extends AbstractRestController<ContentTax
         if (contentTaxonomyFilter.hasKeys(ContentTaxonomyFilter.ID, ContentTaxonomyFilter.FIRST_NAME)) {
         } else if (contentTaxonomyFilter.hasKey(ContentTaxonomyFilter.ID)) {
             marketings = Arrays.asList(contentTaxonomyService.getById(
-                contentTaxonomyFilter.getLong(ContentTaxonomyFilter.ID)));
+                    contentTaxonomyFilter.getLong(ContentTaxonomyFilter.ID)));
         } else {
             marketings = contentTaxonomyService.getAll();
         }
@@ -168,7 +168,7 @@ public class ContentTaxonomyController extends AbstractRestController<ContentTax
     @PutMapping("/batch")
     @Override
     public ResponseEntity<List<ContentTaxonomy>> update(
-        @Validated @RequestBody List<ContentTaxonomy> contentTaxonomies) {
+            @Validated @RequestBody List<ContentTaxonomy> contentTaxonomies) {
         contentTaxonomies = contentTaxonomyService.update(contentTaxonomies);
         return ResponseEntity.ok(contentTaxonomies);
     }
@@ -185,8 +185,8 @@ public class ContentTaxonomyController extends AbstractRestController<ContentTax
         validate(idOptional);
         contentTaxonomyService.delete(idOptional.get());
         Payload payload = Payload.newBuilder()
-            .withDeleted(Boolean.TRUE)
-            .withMessage("Record with id:%d deleted successfully!", idOptional.get());
+                .withDeleted(Boolean.TRUE)
+                .withMessage("Record with id:%d deleted successfully!", idOptional.get());
         return ResponseEntity.ok(payload);
     }
 

@@ -1,16 +1,15 @@
 package com.rslakra.iws.businessservice.task.persistence.entity;
 
-import com.devamatre.framework.spring.persistence.entity.AbstractEntity;
+import com.devamatre.appsuite.spring.persistence.entity.AbstractEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.util.Date;
 
 /**
  * @author Rohtash Lakra (rlakra)

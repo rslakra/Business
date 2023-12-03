@@ -1,9 +1,9 @@
 package com.rslakra.iws.businessservice.task.controller.web;
 
-import com.devamatre.framework.core.BeanUtils;
-import com.devamatre.framework.spring.controller.web.AbstractWebController;
-import com.devamatre.framework.spring.filter.Filter;
-import com.devamatre.framework.spring.parser.Parser;
+import com.devamatre.appsuite.core.BeanUtils;
+import com.devamatre.appsuite.spring.controller.web.AbstractWebController;
+import com.devamatre.appsuite.spring.filter.Filter;
+import com.devamatre.appsuite.spring.parser.Parser;
 import com.rslakra.iws.businessservice.task.persistence.entity.Task;
 import com.rslakra.iws.businessservice.task.service.TaskService;
 import org.slf4j.Logger;

@@ -1,12 +1,12 @@
 package com.rslakra.iws.businessservice.account.controller.web;
 
-import com.devamatre.framework.core.BeanUtils;
-import com.devamatre.framework.core.Payload;
-import com.devamatre.framework.spring.controller.web.AbstractWebController;
-import com.devamatre.framework.spring.filter.Filter;
-import com.devamatre.framework.spring.parser.Parser;
-import com.devamatre.framework.spring.parser.csv.CsvParser;
-import com.devamatre.framework.spring.parser.excel.ExcelParser;
+import com.devamatre.appsuite.core.BeanUtils;
+import com.devamatre.appsuite.core.Payload;
+import com.devamatre.appsuite.spring.controller.web.AbstractWebController;
+import com.devamatre.appsuite.spring.filter.Filter;
+import com.devamatre.appsuite.spring.parser.Parser;
+import com.devamatre.appsuite.spring.parser.csv.CsvParser;
+import com.devamatre.appsuite.spring.parser.excel.ExcelParser;
 import com.rslakra.iws.businessservice.account.parser.UserParser;
 import com.rslakra.iws.businessservice.account.persistence.entity.User;
 import com.rslakra.iws.businessservice.account.service.UserService;

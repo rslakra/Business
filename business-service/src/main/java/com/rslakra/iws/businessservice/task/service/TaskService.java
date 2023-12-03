@@ -1,6 +1,6 @@
 package com.rslakra.iws.businessservice.task.service;
 
-import com.devamatre.framework.spring.service.AbstractService;
+import com.devamatre.appsuite.spring.service.AbstractService;
 import com.rslakra.iws.businessservice.task.persistence.entity.Task;
 
 /**

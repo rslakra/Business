@@ -1,7 +1,7 @@
 package com.rslakra.iws.businessservice.account.persistence.entity;
 
-import com.devamatre.framework.core.ToString;
-import com.devamatre.framework.spring.persistence.entity.AbstractEntity;
+import com.devamatre.appsuite.core.ToString;
+import com.devamatre.appsuite.spring.persistence.entity.AbstractEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -45,11 +45,11 @@ public class Person extends AbstractEntity<Long> {
     @Override
     public String toString() {
         return ToString.of(Person.class)
-            .add("email", getEmail())
-            .add("firstName", getFirstName())
-            .add("middleName", getMiddleName())
-            .add("lastName", getLastName())
-            .toString();
+                .add("email", getEmail())
+                .add("firstName", getFirstName())
+                .add("middleName", getMiddleName())
+                .add("lastName", getLastName())
+                .toString();
     }
 
 }

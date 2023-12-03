@@ -1,9 +1,9 @@
 package com.rslakra.iws.businessservice.marketing.controller.web;
 
-import com.devamatre.framework.core.BeanUtils;
-import com.devamatre.framework.spring.controller.web.AbstractWebController;
-import com.devamatre.framework.spring.filter.Filter;
-import com.devamatre.framework.spring.parser.Parser;
+import com.devamatre.appsuite.core.BeanUtils;
+import com.devamatre.appsuite.spring.controller.web.AbstractWebController;
+import com.devamatre.appsuite.spring.filter.Filter;
+import com.devamatre.appsuite.spring.parser.Parser;
 import com.rslakra.iws.businessservice.marketing.persistence.entity.Marketing;
 import com.rslakra.iws.businessservice.marketing.service.MarketingService;
 import org.springframework.beans.factory.annotation.Autowired;

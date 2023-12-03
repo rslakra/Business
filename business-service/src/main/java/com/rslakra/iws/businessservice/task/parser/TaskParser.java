@@ -1,10 +1,10 @@
 package com.rslakra.iws.businessservice.task.parser;
 
-import com.devamatre.framework.core.BeanUtils;
-import com.devamatre.framework.spring.parser.AbstractParser;
-import com.devamatre.framework.spring.parser.Parser;
-import com.devamatre.framework.spring.parser.csv.CsvParser;
-import com.devamatre.framework.spring.parser.excel.ExcelParser;
+import com.devamatre.appsuite.core.BeanUtils;
+import com.devamatre.appsuite.spring.parser.AbstractParser;
+import com.devamatre.appsuite.spring.parser.Parser;
+import com.devamatre.appsuite.spring.parser.csv.CsvParser;
+import com.devamatre.appsuite.spring.parser.excel.ExcelParser;
 import com.rslakra.iws.businessservice.task.persistence.entity.Task;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.poi.ss.usermodel.Cell;
@@ -27,7 +27,7 @@ public class TaskParser extends AbstractParser<Task> implements ExcelParser<Task
     public static final String CSV_DOWNLOAD_FILE_NAME = "tasks.csv";
     public static final String EXCEL_DOWNLOAD_FILE_NAME = "tasks.xlsx";
     public static final String[] HEADERS = {
-        "id", "taskId", "title", "priority", "startDate", "endDate", "status", "description"
+            "id", "taskId", "title", "priority", "startDate", "endDate", "status", "description"
     };
 
     /**

@@ -1,8 +1,8 @@
 package com.rslakra.iws.businessservice.marketing.controller;
 
-import com.devamatre.framework.core.Payload;
-import com.devamatre.framework.spring.controller.rest.AbstractRestController;
-import com.devamatre.framework.spring.filter.Filter;
+import com.devamatre.appsuite.core.Payload;
+import com.devamatre.appsuite.spring.controller.rest.AbstractRestController;
+import com.devamatre.appsuite.spring.filter.Filter;
 import com.rslakra.iws.businessservice.marketing.filter.MarketingFilter;
 import com.rslakra.iws.businessservice.marketing.persistence.entity.Marketing;
 import com.rslakra.iws.businessservice.marketing.service.MarketingService;
@@ -183,8 +183,8 @@ public class MarketingController extends AbstractRestController<Marketing, Long>
         validate(idOptional);
         marketingService.delete(idOptional.get());
         Payload payload = Payload.newBuilder()
-            .withDeleted(Boolean.TRUE)
-            .withMessage("Record with id:%d deleted successfully!", idOptional.get());
+                .withDeleted(Boolean.TRUE)
+                .withMessage("Record with id:%d deleted successfully!", idOptional.get());
         return ResponseEntity.ok(payload);
     }
 

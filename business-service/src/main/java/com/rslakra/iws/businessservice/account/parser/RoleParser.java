@@ -1,10 +1,10 @@
 package com.rslakra.iws.businessservice.account.parser;
 
-import com.devamatre.framework.core.BeanUtils;
-import com.devamatre.framework.core.enums.EntityStatus;
-import com.devamatre.framework.spring.parser.AbstractParser;
-import com.devamatre.framework.spring.parser.csv.CsvParser;
-import com.devamatre.framework.spring.parser.excel.ExcelParser;
+import com.devamatre.appsuite.core.BeanUtils;
+import com.devamatre.appsuite.core.enums.EntityStatus;
+import com.devamatre.appsuite.spring.parser.AbstractParser;
+import com.devamatre.appsuite.spring.parser.csv.CsvParser;
+import com.devamatre.appsuite.spring.parser.excel.ExcelParser;
 import com.rslakra.iws.businessservice.account.persistence.entity.Role;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.poi.ss.usermodel.Cell;
@@ -25,7 +25,7 @@ public class RoleParser extends AbstractParser<Role> implements ExcelParser<Role
     public static final String CSV_DOWNLOAD_FILE_NAME = "roles.csv";
     public static final String EXCEL_DOWNLOAD_FILE_NAME = "roles.xlsx";
     public static final String[] HEADERS = {
-        "id", "name", "status"
+            "id", "name", "status"
     };
 
     /**

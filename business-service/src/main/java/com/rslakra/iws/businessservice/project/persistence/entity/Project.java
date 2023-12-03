@@ -1,6 +1,6 @@
 package com.rslakra.iws.businessservice.project.persistence.entity;
 
-import com.devamatre.framework.spring.persistence.entity.NamedEntity;
+import com.devamatre.appsuite.spring.persistence.entity.NamedEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Getter
 @Setter
-public class Project extends NamedEntity {
+public class Project extends NamedEntity<Long> {
 
     List<Feature> features;
 

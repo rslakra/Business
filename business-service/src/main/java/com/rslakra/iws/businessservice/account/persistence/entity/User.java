@@ -1,15 +1,11 @@
 package com.rslakra.iws.businessservice.account.persistence.entity;
 
-import com.devamatre.framework.core.BeanUtils;
-import com.devamatre.framework.core.ToString;
-import com.devamatre.framework.core.enums.EntityStatus;
+import com.devamatre.appsuite.core.BeanUtils;
+import com.devamatre.appsuite.core.ToString;
+import com.devamatre.appsuite.core.enums.EntityStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +13,9 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Rohtash Lakra
@@ -73,14 +72,14 @@ public class User extends Person {
     @Override
     public String toString() {
         return ToString.of(User.class)
-            .add("id", getId())
-            .add("email", getEmail())
-            .add("password", getPassword())
-            .add("firstName", getFirstName())
-            .add("middleName", getMiddleName())
-            .add("lastName", getLastName())
-            .add("status", getStatus())
-            .add("roles", getRoles())
-            .toString();
+                .add("id", getId())
+                .add("email", getEmail())
+                .add("password", getPassword())
+                .add("firstName", getFirstName())
+                .add("middleName", getMiddleName())
+                .add("lastName", getLastName())
+                .add("status", getStatus())
+                .add("roles", getRoles())
+                .toString();
     }
 }

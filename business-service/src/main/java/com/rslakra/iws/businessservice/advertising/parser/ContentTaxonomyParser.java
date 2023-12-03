@@ -1,10 +1,10 @@
 package com.rslakra.iws.businessservice.advertising.parser;
 
-import com.devamatre.framework.core.BeanUtils;
-import com.devamatre.framework.spring.parser.AbstractParser;
-import com.devamatre.framework.spring.parser.Parser;
-import com.devamatre.framework.spring.parser.csv.CsvParser;
-import com.devamatre.framework.spring.parser.excel.ExcelParser;
+import com.devamatre.appsuite.core.BeanUtils;
+import com.devamatre.appsuite.spring.parser.AbstractParser;
+import com.devamatre.appsuite.spring.parser.Parser;
+import com.devamatre.appsuite.spring.parser.csv.CsvParser;
+import com.devamatre.appsuite.spring.parser.excel.ExcelParser;
 import com.rslakra.iws.businessservice.advertising.persistence.entity.ContentTaxonomy;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.poi.ss.usermodel.Cell;
@@ -21,14 +21,14 @@ import java.util.List;
  * @created 4/5/23 4:55 PM
  */
 public class ContentTaxonomyParser extends AbstractParser<ContentTaxonomy>
-    implements ExcelParser<ContentTaxonomy>, CsvParser<ContentTaxonomy> {
+        implements ExcelParser<ContentTaxonomy>, CsvParser<ContentTaxonomy> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ContentTaxonomyParser.class);
     public static final String CSV_DOWNLOAD_FILE_NAME = "contentTaxonomy.csv";
     public static final String EXCEL_DOWNLOAD_FILE_NAME = "contentTaxonomy.xlsx";
 
     public static final String[] HEADERS = {
-        "id", "parentId", "name", "tier1", "tier2", "tier13", "tier4", "extension", "score", "confident"
+            "id", "parentId", "name", "tier1", "tier2", "tier13", "tier4", "extension", "score", "confident"
     };
 
     /**
