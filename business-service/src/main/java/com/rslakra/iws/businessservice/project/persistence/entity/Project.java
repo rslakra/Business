@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Getter
 @Setter
-public class Project extends NamedEntity<Long> {
+public class Project extends NamedEntity {
 
     List<Feature> features;
 

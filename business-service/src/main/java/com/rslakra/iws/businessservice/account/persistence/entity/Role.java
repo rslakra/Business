@@ -8,15 +8,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Collections;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
-import java.util.Collections;
-import java.util.Objects;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * @author Rohtash Lakra

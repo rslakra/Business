@@ -1,10 +1,9 @@
-package com.rslakra.iws.businessservice.task.persistence.entity;
+package com.rslakra.iws.businessservice.marketing.persistence.entity;
 
 import com.devamatre.appsuite.spring.persistence.entity.AbstractEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -37,14 +36,12 @@ public class Task extends AbstractEntity<Long> {
 //    @JsonDeserialize(using = LocalDateDeserializer.class)
 ////    @JsonFormat(pattern = TimeUtils.LOCAL_DATE_TIME_FORMAT)
 //    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "start_date")
     private Date startDate;
 
     //    @JsonSerialize(using = LocalDateSerializer.class)
 //    @JsonDeserialize(using = LocalDateDeserializer.class)
 //    @JsonFormat(pattern = TimeUtils.LOCAL_DATE_TIME_FORMAT)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "end_date")
     private Date endDate;
 

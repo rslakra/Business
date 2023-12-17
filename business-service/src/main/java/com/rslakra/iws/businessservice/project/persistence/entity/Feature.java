@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Feature extends NamedEntity<Long> {
+public class Feature extends NamedEntity {
 
     List<Task> tasks;
 
