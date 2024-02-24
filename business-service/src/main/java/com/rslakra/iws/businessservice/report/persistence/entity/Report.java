@@ -1,4 +1,4 @@
-package com.rslakra.iws.businessservice.process.persistence.entity;
+package com.rslakra.iws.businessservice.report.persistence.entity;
 
 import com.devamatre.appsuite.spring.persistence.entity.NamedEntity;
 import lombok.Getter;
@@ -10,13 +10,13 @@ import javax.persistence.Table;
 
 /**
  * @author Rohtash Lakra
- * @created 7/24/23 12:11 PM
+ * @created 2/23/24 6:41 PM
  */
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "schemas")
-public class Schema extends NamedEntity<Long> {
+@Table(name = "reports")
+public class Report extends NamedEntity<Long> {
 
 }

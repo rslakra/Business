@@ -1,6 +1,6 @@
-package com.rslakra.iws.businessservice.project.persistence.entity;
+package com.rslakra.iws.businessservice.product.persistence.entity;
 
-import com.devamatre.appsuite.spring.persistence.entity.NamedEntity;
+import com.devamatre.appsuite.spring.persistence.entity.AbstractEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,9 +16,7 @@ import javax.persistence.Table;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "projects")
-public class Project extends NamedEntity<Long> {
-
-    // private List<Feature> features;
+@Table(name = "products")
+public class Product extends AbstractEntity<Long> {
 
 }

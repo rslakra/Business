@@ -8,6 +8,9 @@ import lombok.Setter;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * @author Rohtash Lakra
  * @created 7/24/23 12:04 PM
@@ -15,8 +18,10 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Feature extends NamedEntity {
+@Entity
+//@Table(name = "features")
+public class Feature extends NamedEntity<Long> {
 
-    List<Task> tasks;
+    // private List<Task> tasks;
 
 }

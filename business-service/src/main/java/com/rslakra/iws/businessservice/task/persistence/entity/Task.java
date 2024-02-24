@@ -13,10 +13,26 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
+ * Task Examples:
+ * <pre>
+ * [
+ *     {
+ *         "featureName": "Privacy",
+ *         "title": "Handle New Privacy Laws in US - Effective Date",
+ *         "priority": 1,
+ *         "startDate": "2023-04-01",
+ *         "endDate": "2023-04-30",
+ *         "status": "INACTIVE",
+ *         "description": "Add support for global privacy platform (GPP)",
+ *         "link": "JIRA-0001 - Design doc",
+ *         "notes": "Find dependencies and blockers"
+ *     }
+ * ]
+ * </pre>
+ *
  * @author Rohtash Lakra (rlakra)
  * @created 5/25/22 4:58 PM
  */
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -33,17 +49,17 @@ public class Task extends AbstractEntity<Long> {
     @Column(name = "priority")
     private Integer priority;
 
-    //    @JsonSerialize(using = LocalDateSerializer.class)
-//    @JsonDeserialize(using = LocalDateDeserializer.class)
-////    @JsonFormat(pattern = TimeUtils.LOCAL_DATE_TIME_FORMAT)
-//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    // @JsonSerialize(using = LocalDateSerializer.class)
+    // @JsonDeserialize(using = LocalDateDeserializer.class)
+    // @JsonFormat(pattern = TimeUtils.LOCAL_DATE_TIME_FORMAT)
+    // @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "start_date")
     private Date startDate;
 
-    //    @JsonSerialize(using = LocalDateSerializer.class)
-//    @JsonDeserialize(using = LocalDateDeserializer.class)
-//    @JsonFormat(pattern = TimeUtils.LOCAL_DATE_TIME_FORMAT)
+    // @JsonSerialize(using = LocalDateSerializer.class)
+    // @JsonDeserialize(using = LocalDateDeserializer.class)
+    // @JsonFormat(pattern = TimeUtils.LOCAL_DATE_TIME_FORMAT)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "end_date")
     private Date endDate;
@@ -53,5 +69,11 @@ public class Task extends AbstractEntity<Long> {
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "link")
+    private String link;
+
+    @Column(name = "notes")
+    private String notes;
 
 }
