@@ -1,6 +1,6 @@
 package com.rslakra.iws.businessservice.project.persistence.repository;
 
-import com.devamatre.appsuite.spring.persistence.repository.BaseRepository;
+import com.rslakra.appsuite.spring.persistence.repository.BaseRepository;
 import com.rslakra.iws.businessservice.project.persistence.entity.Project;
 import org.springframework.stereotype.Repository;
 

@@ -1,8 +1,8 @@
 package com.rslakra.iws.businessservice.marketing.controller;
 
-import com.devamatre.appsuite.core.Payload;
-import com.devamatre.appsuite.spring.controller.rest.AbstractRestController;
-import com.devamatre.appsuite.spring.filter.Filter;
+import com.rslakra.appsuite.core.Payload;
+import com.rslakra.appsuite.spring.controller.rest.AbstractRestController;
+import com.rslakra.appsuite.spring.filter.Filter;
 import com.rslakra.iws.businessservice.marketing.filter.MarketingFilter;
 import com.rslakra.iws.businessservice.marketing.persistence.entity.Marketing;
 import com.rslakra.iws.businessservice.marketing.service.MarketingService;

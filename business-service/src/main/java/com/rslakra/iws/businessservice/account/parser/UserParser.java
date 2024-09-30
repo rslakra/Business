@@ -1,8 +1,8 @@
 package com.rslakra.iws.businessservice.account.parser;
 
-import com.devamatre.appsuite.spring.parser.AbstractParser;
-import com.devamatre.appsuite.spring.parser.csv.CsvParser;
-import com.devamatre.appsuite.spring.parser.excel.ExcelParser;
+import com.rslakra.appsuite.spring.parser.AbstractParser;
+import com.rslakra.appsuite.spring.parser.csv.CsvParser;
+import com.rslakra.appsuite.spring.parser.excel.ExcelParser;
 import com.rslakra.iws.businessservice.account.persistence.entity.User;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.poi.ss.usermodel.Cell;

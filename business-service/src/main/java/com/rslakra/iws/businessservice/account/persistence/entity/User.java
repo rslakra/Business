@@ -1,8 +1,8 @@
 package com.rslakra.iws.businessservice.account.persistence.entity;
 
-import com.devamatre.appsuite.core.BeanUtils;
-import com.devamatre.appsuite.core.ToString;
-import com.devamatre.appsuite.core.enums.EntityStatus;
+import com.rslakra.appsuite.core.BeanUtils;
+import com.rslakra.appsuite.core.ToString;
+import com.rslakra.appsuite.core.enums.EntityStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

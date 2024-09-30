@@ -1,12 +1,12 @@
 package com.rslakra.iws.businessservice.account.service.impl;
 
-import com.devamatre.appsuite.core.BeanUtils;
-import com.devamatre.appsuite.spring.exception.DuplicateRecordException;
-import com.devamatre.appsuite.spring.exception.InvalidRequestException;
-import com.devamatre.appsuite.spring.exception.NoRecordFoundException;
-import com.devamatre.appsuite.spring.filter.Filter;
-import com.devamatre.appsuite.spring.persistence.Operation;
-import com.devamatre.appsuite.spring.service.AbstractServiceImpl;
+import com.rslakra.appsuite.core.BeanUtils;
+import com.rslakra.appsuite.spring.exception.DuplicateRecordException;
+import com.rslakra.appsuite.spring.exception.InvalidRequestException;
+import com.rslakra.appsuite.spring.exception.NoRecordFoundException;
+import com.rslakra.appsuite.spring.filter.Filter;
+import com.rslakra.appsuite.spring.persistence.Operation;
+import com.rslakra.appsuite.spring.service.AbstractServiceImpl;
 import com.rslakra.iws.businessservice.account.persistence.entity.Role;
 import com.rslakra.iws.businessservice.account.persistence.repository.RoleRepository;
 import com.rslakra.iws.businessservice.account.service.RoleService;

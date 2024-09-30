@@ -1,6 +1,6 @@
 package com.rslakra.iws.businessservice.account.service;
 
-import com.devamatre.appsuite.spring.service.AbstractService;
+import com.rslakra.appsuite.spring.service.AbstractService;
 import com.rslakra.iws.businessservice.account.persistence.entity.Role;
 
 import java.util.List;

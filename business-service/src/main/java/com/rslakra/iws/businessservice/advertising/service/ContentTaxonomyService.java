@@ -1,6 +1,6 @@
 package com.rslakra.iws.businessservice.advertising.service;
 
-import com.devamatre.appsuite.spring.service.AbstractService;
+import com.rslakra.appsuite.spring.service.AbstractService;
 import com.rslakra.iws.businessservice.advertising.persistence.entity.ContentTaxonomy;
 
 /**

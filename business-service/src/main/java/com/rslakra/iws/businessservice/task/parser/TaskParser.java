@@ -1,10 +1,10 @@
 package com.rslakra.iws.businessservice.task.parser;
 
-import com.devamatre.appsuite.core.BeanUtils;
-import com.devamatre.appsuite.spring.parser.AbstractParser;
-import com.devamatre.appsuite.spring.parser.Parser;
-import com.devamatre.appsuite.spring.parser.csv.CsvParser;
-import com.devamatre.appsuite.spring.parser.excel.ExcelParser;
+import com.rslakra.appsuite.core.BeanUtils;
+import com.rslakra.appsuite.spring.parser.AbstractParser;
+import com.rslakra.appsuite.spring.parser.Parser;
+import com.rslakra.appsuite.spring.parser.csv.CsvParser;
+import com.rslakra.appsuite.spring.parser.excel.ExcelParser;
 import com.rslakra.iws.businessservice.task.persistence.entity.Task;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.poi.ss.usermodel.Cell;

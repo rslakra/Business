@@ -1,6 +1,6 @@
 package com.rslakra.iws.businessservice.advertising.filter;
 
-import com.devamatre.appsuite.spring.filter.AbstractFilterImpl;
+import com.rslakra.appsuite.spring.filter.AbstractFilterImpl;
 
 import java.util.Map;
 
