@@ -1,0 +1,3 @@
+[submodule "retail-suite"]
+	path = retail-suite
+	url = https://github.com/rslakra/retail-suite.git
