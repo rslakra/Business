@@ -47,7 +47,7 @@
         <appsuite-core.version>0.0.70</appsuite-core.version>
 
         <!-- appsuite-spring -->
-        <appsuite-spring.version>0.0.18</appsuite-spring.version>
+        <appsuite-spring.version>0.0.21</appsuite-spring.version>
 
         <!-- lombok -->
         <lombok.version>1.18.34</lombok.version>
@@ -55,12 +55,16 @@
         <!-- swagger -->
         <swagger.skip>false</swagger.skip>
 
-        <!-- csv parser version -->
-        <commons-csv.version>1.9.0</commons-csv.version>
-        <opencsv.version>5.7.0</opencsv.version>
-        <!-- excel parser version -->
-        <poi.version>5.4.0</poi.version>
-        <poi-ooxml.version>5.4.0</poi-ooxml.version>
+        <!-- guava -->
+        <guava.version>32.0.0-jre</guava.version>
+
+        <!-- csv-parser -->
+        <commons-csv.version>1.14.0</commons-csv.version>
+        <opencsv.version>5.10</opencsv.version>
+
+        <!-- excel-parser -->
+        <poi.version>5.4.1</poi.version>
+        <poi-ooxml.version>5.4.1</poi-ooxml.version>
 
         <!-- junit-jupiter-params -->
         <junit-jupiter-params.version>5.10.2</junit-jupiter-params.version>
@@ -212,18 +216,16 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>${maven-checkstyle-plugin.version}</version>
-                <configuration>
-                    <configLocation>${code-styles.dir}/checkstyle.xml</configLocation>
-                    <propertiesLocation>${code-styles.dir}/checkstyle.properties</propertiesLocation>
-                </configuration>
                 <executions>
                     <execution>
+                        <id>default</id>
                         <phase>process-classes</phase>
                         <goals>
                             <goal>check</goal>
                         </goals>
                         <configuration>
                             <configLocation>${code-styles.dir}/styles.xml</configLocation>
+                            <propertiesLocation>${code-styles.dir}/checkstyle.properties</propertiesLocation>
                             <logViolationsToConsole>true</logViolationsToConsole>
                             <maxAllowedViolations>${checkstyle.threshold}</maxAllowedViolations>
                         </configuration>

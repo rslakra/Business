@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * @author: Rohtash Lakra
@@ -103,15 +104,15 @@ public class TaskWebController extends AbstractWebController<Task, Long> {
 
     /**
      * @param model
-     * @param taskId
+     * @param idOptional
      * @return
      */
     @RequestMapping(path = {"/create", "/update/{taskId}"})
     @Override
-    public String editObject(Model model, @PathVariable(name = "taskId") Long taskId) {
+    public String editObject(Model model, @PathVariable(name = "taskId") Optional<Long> idOptional) {
         Task task = null;
-        if (BeanUtils.isNotNull(taskId)) {
-            task = taskService.getById(taskId);
+        if (idOptional.isPresent()) {
+            task = taskService.getById(idOptional.get());
         } else {
             task = new Task();
         }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * @author: Rohtash Lakra (rlakra)
@@ -96,15 +97,15 @@ public class MarketingWebController extends AbstractWebController<Marketing, Lon
      * Create the new object or Updates the object with <code>id</code>.
      *
      * @param model
-     * @param id
+     * @param idOptional
      * @return
      */
     @RequestMapping(path = {"/create", "/update/{id}"})
     @Override
-    public String editObject(Model model, @PathVariable(name = "id") Long id) {
+    public String editObject(Model model, @PathVariable(name = "id") Optional<Long> idOptional) {
         Marketing marketing = null;
-        if (BeanUtils.isNotNull(id)) {
-            marketing = marketingService.getById(id);
+        if (idOptional.isPresent()) {
+            marketing = marketingService.getById(idOptional.get());
         } else {
             marketing = new Marketing();
         }

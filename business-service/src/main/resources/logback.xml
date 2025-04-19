@@ -15,8 +15,6 @@
 
     <!-- slf4j -->
     <logger name="ch.qos.logback.core.joran" level="WARN"/>
-    <logger name="liquibase" level="WARN"/>
-
     <!-- rslakra -->
     <logger name="com.rslakra" level="DEBUG"/>
     <!-- zaxxer -->
@@ -28,6 +26,9 @@
 
     <!-- hibernate -->
     <logger name="org.hibernate" level="WARN"/>
+
+    <!-- liquibase -->
+    <logger name="liquibase" level="WARN"/>
 
     <!-- springframework -->
     <logger name="org.springframework" level="WARN"/>

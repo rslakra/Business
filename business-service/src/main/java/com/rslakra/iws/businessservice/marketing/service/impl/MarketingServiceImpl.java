@@ -5,7 +5,7 @@ import com.rslakra.appsuite.spring.exception.DuplicateRecordException;
 import com.rslakra.appsuite.spring.exception.InvalidRequestException;
 import com.rslakra.appsuite.spring.exception.NoRecordFoundException;
 import com.rslakra.appsuite.spring.filter.Filter;
-import com.rslakra.appsuite.spring.persistence.Operation;
+import com.rslakra.appsuite.spring.persistence.ServiceOperation;
 import com.rslakra.appsuite.spring.service.AbstractServiceImpl;
 import com.rslakra.iws.businessservice.account.persistence.entity.User;
 import com.rslakra.iws.businessservice.account.persistence.repository.UserRepository;
@@ -53,7 +53,7 @@ public class MarketingServiceImpl extends AbstractServiceImpl<Marketing, Long> i
      * @return
      */
     @Override
-    public Marketing validate(Operation operation, Marketing marketing) {
+    public Marketing validate(ServiceOperation operation, Marketing marketing) {
         LOGGER.debug("+validate({}, {})", operation, marketing);
         switch (operation) {
             case CREATE: {
@@ -115,7 +115,7 @@ public class MarketingServiceImpl extends AbstractServiceImpl<Marketing, Long> i
     @Override
     public Marketing create(Marketing marketing) {
         LOGGER.debug("+create({})", marketing);
-        marketing = validate(Operation.CREATE, marketing);
+        marketing = validate(ServiceOperation.CREATE, marketing);
         marketing = marketingRepository.save(marketing);
         LOGGER.debug("-create(), marketing: {}", marketing);
         return marketing;
@@ -134,7 +134,7 @@ public class MarketingServiceImpl extends AbstractServiceImpl<Marketing, Long> i
             throw new InvalidRequestException("The marketing should provide!");
         }
 
-        marketings.forEach(marketing -> validate(Operation.CREATE, marketing));
+        marketings.forEach(marketing -> validate(ServiceOperation.CREATE, marketing));
         marketings = marketingRepository.saveAll(marketings);
 
         LOGGER.debug("-create(), marketing: {}", marketings);
@@ -194,7 +194,7 @@ public class MarketingServiceImpl extends AbstractServiceImpl<Marketing, Long> i
     @Override
     public Marketing update(Marketing marketing) {
         LOGGER.debug("+update({})", marketing);
-        marketing = validate(Operation.UPDATE, marketing);
+        marketing = validate(ServiceOperation.UPDATE, marketing);
         marketing = marketingRepository.save(marketing);
         LOGGER.debug("-update(), marketing: {}", marketing);
         return marketing;
@@ -213,7 +213,7 @@ public class MarketingServiceImpl extends AbstractServiceImpl<Marketing, Long> i
             throw new InvalidRequestException("The marketing should provide!");
         }
 
-        marketings.forEach(marketing -> validate(Operation.UPDATE, marketing));
+        marketings.forEach(marketing -> validate(ServiceOperation.UPDATE, marketing));
         marketings = marketingRepository.saveAll(marketings);
 
         LOGGER.debug("-update(), marketing: {}", marketings);

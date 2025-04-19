@@ -20,16 +20,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * @author: Rohtash Lakra
@@ -116,14 +113,14 @@ public class ContentTaxonomyWebController extends AbstractWebController<ContentT
 
     /**
      * @param model
-     * @param contentTaxonomyId
+     * @param idOptional
      * @return
      */
     @RequestMapping(path = {"/create", "/update/{contentTaxonomyId}"})
-    public String editObject(Model model, @PathVariable(name = "contentTaxonomyId") Long contentTaxonomyId) {
+    public String editObject(Model model, @PathVariable(name = "contentTaxonomyId") Optional<Long> idOptional) {
         ContentTaxonomy contentTaxonomy = null;
-        if (BeanUtils.isNotNull(contentTaxonomyId)) {
-            contentTaxonomy = contentTaxonomyService.getById(contentTaxonomyId);
+        if (idOptional.isPresent()) {
+            contentTaxonomy = contentTaxonomyService.getById(idOptional.get());
         } else {
             contentTaxonomy = new ContentTaxonomy();
         }

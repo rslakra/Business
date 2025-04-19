@@ -4,7 +4,7 @@ import com.rslakra.appsuite.core.BeanUtils;
 import com.rslakra.appsuite.spring.exception.InvalidRequestException;
 import com.rslakra.appsuite.spring.exception.NoRecordFoundException;
 import com.rslakra.appsuite.spring.filter.Filter;
-import com.rslakra.appsuite.spring.persistence.Operation;
+import com.rslakra.appsuite.spring.persistence.ServiceOperation;
 import com.rslakra.appsuite.spring.service.AbstractServiceImpl;
 import com.rslakra.iws.businessservice.account.persistence.repository.UserRepository;
 import com.rslakra.iws.businessservice.advertising.persistence.entity.ContentTaxonomy;
@@ -52,7 +52,7 @@ public class ContentTaxonomyServiceImpl extends AbstractServiceImpl<ContentTaxon
      * @return
      */
     @Override
-    public ContentTaxonomy validate(Operation operation, ContentTaxonomy contentTaxonomy) {
+    public ContentTaxonomy validate(ServiceOperation operation, ContentTaxonomy contentTaxonomy) {
         LOGGER.debug("+validate({}, {})", operation, contentTaxonomy);
         switch (operation) {
             case CREATE: {
@@ -64,13 +64,13 @@ public class ContentTaxonomyServiceImpl extends AbstractServiceImpl<ContentTaxon
                     throw new InvalidRequestException("The contentTaxonomy's tier1 should provide!");
                 }
 
-//                // check task exists for this user
-//                List<ContentTaxonomy> contentTaxonomyList = contentTaxonomyRepository.findAllByUserId(contentTaxonomy.getUserId());
-//                if (contentTaxonomyList.stream()
-//                    .anyMatch(oldContentTaxonomy -> oldContentTaxonomy.getName().equals(contentTaxonomy.getName()))) {
-//                    throw new DuplicateRecordException("contentTaxonomy:%s for userId:%d", contentTaxonomy.getName(),
-//                                                       contentTaxonomy.getUserId());
-//                }
+                //                // check task exists for this user
+                //                List<ContentTaxonomy> contentTaxonomyList = contentTaxonomyRepository.findAllByUserId(contentTaxonomy.getUserId());
+                //                if (contentTaxonomyList.stream()
+                //                    .anyMatch(oldContentTaxonomy -> oldContentTaxonomy.getName().equals(contentTaxonomy.getName()))) {
+                //                    throw new DuplicateRecordException("contentTaxonomy:%s for userId:%d", contentTaxonomy.getName(),
+                //                                                       contentTaxonomy.getUserId());
+                //                }
             }
 
             break;
@@ -80,16 +80,16 @@ public class ContentTaxonomyServiceImpl extends AbstractServiceImpl<ContentTaxon
                     throw new InvalidRequestException("The contentTaxonomy's ID should provide!");
                 }
 
-//                if (BeanUtils.isNotEmpty(contentTaxonomy.getUserId())) {
-//                    Optional<ContentTaxonomy>
-//                        contentTaxonomyOptional =
-//                        contentTaxonomyRepository.findByIdAndUserId(contentTaxonomy.getId(),
-//                                                                    contentTaxonomy.getUserId());
-//                    if (!contentTaxonomyOptional.isPresent()) {
-//                        throw new InvalidRequestException("The contentTaxonomy does not belong to user: %d",
-//                                                          contentTaxonomy.getUserId());
-//                    }
-//                }
+                //                if (BeanUtils.isNotEmpty(contentTaxonomy.getUserId())) {
+                //                    Optional<ContentTaxonomy>
+                //                        contentTaxonomyOptional =
+                //                        contentTaxonomyRepository.findByIdAndUserId(contentTaxonomy.getId(),
+                //                                                                    contentTaxonomy.getUserId());
+                //                    if (!contentTaxonomyOptional.isPresent()) {
+                //                        throw new InvalidRequestException("The contentTaxonomy does not belong to user: %d",
+                //                                                          contentTaxonomy.getUserId());
+                //                    }
+                //                }
             }
 
             break;
@@ -111,7 +111,7 @@ public class ContentTaxonomyServiceImpl extends AbstractServiceImpl<ContentTaxon
     @Override
     public ContentTaxonomy create(ContentTaxonomy contentTaxonomy) {
         LOGGER.debug("+create({})", contentTaxonomy);
-        contentTaxonomy = validate(Operation.CREATE, contentTaxonomy);
+        contentTaxonomy = validate(ServiceOperation.CREATE, contentTaxonomy);
         contentTaxonomy = contentTaxonomyRepository.save(contentTaxonomy);
         LOGGER.debug("-create(), contentTaxonomy: {}", contentTaxonomy);
         return contentTaxonomy;
@@ -130,7 +130,7 @@ public class ContentTaxonomyServiceImpl extends AbstractServiceImpl<ContentTaxon
             throw new InvalidRequestException("The contentTaxonomy should provide!");
         }
 
-        contentTaxonomys.forEach(contentTaxonomy -> validate(Operation.CREATE, contentTaxonomy));
+        contentTaxonomys.forEach(contentTaxonomy -> validate(ServiceOperation.CREATE, contentTaxonomy));
         contentTaxonomys = contentTaxonomyRepository.saveAll(contentTaxonomys);
 
         LOGGER.debug("-create(), marketing: {}", contentTaxonomys);
@@ -190,7 +190,7 @@ public class ContentTaxonomyServiceImpl extends AbstractServiceImpl<ContentTaxon
     @Override
     public ContentTaxonomy update(ContentTaxonomy contentTaxonomy) {
         LOGGER.debug("+update({})", contentTaxonomy);
-        contentTaxonomy = validate(Operation.UPDATE, contentTaxonomy);
+        contentTaxonomy = validate(ServiceOperation.UPDATE, contentTaxonomy);
         contentTaxonomy = contentTaxonomyRepository.save(contentTaxonomy);
         LOGGER.debug("-update(), contentTaxonomy: {}", contentTaxonomy);
         return contentTaxonomy;
@@ -209,7 +209,7 @@ public class ContentTaxonomyServiceImpl extends AbstractServiceImpl<ContentTaxon
             throw new InvalidRequestException("The marketing should provide!");
         }
 
-        contentTaxonomys.forEach(contentTaxonomy -> validate(Operation.UPDATE, contentTaxonomy));
+        contentTaxonomys.forEach(contentTaxonomy -> validate(ServiceOperation.UPDATE, contentTaxonomy));
         contentTaxonomys = contentTaxonomyRepository.saveAll(contentTaxonomys);
 
         LOGGER.debug("-update(), marketing: {}", contentTaxonomys);
