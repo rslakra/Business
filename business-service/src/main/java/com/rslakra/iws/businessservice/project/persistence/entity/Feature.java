@@ -1,15 +1,11 @@
 package com.rslakra.iws.businessservice.project.persistence.entity;
 
 import com.rslakra.appsuite.spring.persistence.entity.NamedEntity;
-import com.rslakra.iws.businessservice.task.persistence.entity.Task;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 /**
  * @author Rohtash Lakra

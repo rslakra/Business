@@ -2,21 +2,11 @@ package com.rslakra.iws.parser.csv;
 
 import com.rslakra.appsuite.core.BeanUtils;
 import com.rslakra.iws.parser.Parser;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVPrinter;
-import org.apache.commons.csv.CSVRecord;
-import org.apache.commons.csv.QuoteMode;
+import org.apache.commons.csv.*;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,8 +21,8 @@ public interface CsvParser<T> extends Parser<T> {
     String CSV_MEDIA_TYPE = "application/csv";
 
     CSVFormat CSV_WRITER_FORMAT = CSVFormat.DEFAULT.builder()
-        .setQuoteMode(QuoteMode.MINIMAL)
-        .build();
+            .setQuoteMode(QuoteMode.MINIMAL)
+            .get();
 
 
     /**
@@ -57,12 +47,12 @@ public interface CsvParser<T> extends Parser<T> {
      */
     default CSVFormat getReaderFormat(final String... headers) {
         return CSVFormat.DEFAULT.builder()
-            .setHeader(headers)
-            .setSkipHeaderRecord(true)
-            .setIgnoreHeaderCase(true)
-            .setTrim(true)
-            .setQuoteMode(QuoteMode.ALL)
-            .build();
+                .setHeader(headers)
+                .setSkipHeaderRecord(true)
+                .setIgnoreHeaderCase(true)
+                .setTrim(true)
+                .setQuoteMode(QuoteMode.ALL)
+                .get();
     }
 
     /**
@@ -86,9 +76,9 @@ public interface CsvParser<T> extends Parser<T> {
      * @param inputStream
      * @return
      */
-    default List<T> readCSVStream(InputStream inputStream) {
+    default List<T> readCSVStream(InputStream inputStream) throws IOException {
         try (BufferedReader fileReader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
-             CSVParser csvParser = new CSVParser(fileReader, getReaderFormat(getReadHeaders()));) {
+             CSVParser csvParser = CSVParser.parse(fileReader, getReaderFormat(getReadHeaders()))) {
             final List<T> tList = new ArrayList<>();
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
             for (CSVRecord csvRecord : csvRecords) {

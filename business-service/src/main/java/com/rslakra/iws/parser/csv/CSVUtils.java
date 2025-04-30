@@ -19,7 +19,7 @@ public enum CSVUtils {
 
     // CSV_WRITER_FORMAT
     public static final CSVFormat CSV_WRITER_FORMAT = CSVFormat.DEFAULT.builder()
-        .setQuoteMode(QuoteMode.MINIMAL)
-        .build();
+            .setQuoteMode(QuoteMode.MINIMAL)
+            .get();
 
 }

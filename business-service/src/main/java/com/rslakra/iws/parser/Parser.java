@@ -13,6 +13,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -49,7 +51,11 @@ public interface Parser<T> {
             } else if (BeanUtils.isTypeOf(tClass, Byte.class)) {
                 return (T) Byte.valueOf(text);
             } else if (BeanUtils.isTypeOf(tClass, Date.class)) {
-                return (T) new Date(text);
+                try {
+                    return (T) DateFormat.getInstance().parse(text);
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
 
@@ -97,11 +103,11 @@ public interface Parser<T> {
     static ResponseEntity<Resource> buildOKResponse(String contentDisposition, MediaType mediaType,
                                                     InputStreamResource inputStreamResource) {
         if (BeanUtils.isNotEmpty(contentDisposition) && BeanUtils.isNotNull(mediaType) && BeanUtils.isNotNull(
-            inputStreamResource)) {
+                inputStreamResource)) {
             return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, contentDisposition)
-                .contentType(mediaType)
-                .body(inputStreamResource);
+                    .header(HttpHeaders.CONTENT_DISPOSITION, contentDisposition)
+                    .contentType(mediaType)
+                    .body(inputStreamResource);
         }
 
         return null;
