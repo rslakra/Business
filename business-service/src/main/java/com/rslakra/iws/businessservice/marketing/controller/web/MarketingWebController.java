@@ -19,8 +19,8 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * @author: Rohtash Lakra (rlakra)
- * @since: 9/30/19 5:38 PM
+ * @author: Rohtash Lakra
+  * @since 09/30/2019 05:38 PM
  */
 @Controller
 @RequestMapping("/marketing")

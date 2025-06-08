@@ -42,7 +42,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * @author Rohtash Lakra (rlakra)
+ * @author Rohtash Lakra
  * @created 5/25/22 5:08 PM
  */
 @RestController
