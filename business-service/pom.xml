@@ -17,7 +17,7 @@
     <version>${revision}</version>
     <packaging>jar</packaging>
     <name>${project.artifactId}</name>
-    <description>The ${project.artifactId} Application</description>
+    <description>The ${project.artifactId} Service</description>
 
     <!-- properties -->
     <properties>
@@ -51,6 +51,9 @@
 
         <!-- lombok -->
         <lombok.version>1.18.34</lombok.version>
+
+        <!-- liquibase -->
+        <liquibase.version>4.32.0</liquibase.version>
 
         <!-- swagger -->
         <swagger.skip>false</swagger.skip>
