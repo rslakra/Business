@@ -1,4 +1,4 @@
-package com.rslakra.iws.businessservice.api.persistence.entity;
+package com.rslakra.iws.businessservice.common;
 
 /**
  * @author Rohtash Lakra

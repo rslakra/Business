@@ -1,4 +1,4 @@
-package com.rslakra.iws.businessservice.api.controller.web;
+package com.rslakra.iws.businessservice.home.controller.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Controller
 public class HomeController {
-
+    
     /**
      * Index Page
      *
@@ -19,7 +19,7 @@ public class HomeController {
     public String indexPage() {
         return "index";
     }
-
+    
     /**
      * Home Page
      *
@@ -29,5 +29,5 @@ public class HomeController {
     public String homePage() {
         return "home";
     }
-
+    
 }
