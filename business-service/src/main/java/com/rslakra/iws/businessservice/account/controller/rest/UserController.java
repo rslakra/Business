@@ -1,4 +1,4 @@
-package com.rslakra.iws.businessservice.task.controller;
+package com.rslakra.iws.businessservice.account.controller.rest;
 
 import com.rslakra.appsuite.core.BeanUtils;
 import com.rslakra.appsuite.core.Payload;
@@ -7,10 +7,10 @@ import com.rslakra.appsuite.spring.filter.Filter;
 import com.rslakra.appsuite.spring.parser.Parser;
 import com.rslakra.appsuite.spring.parser.csv.CsvParser;
 import com.rslakra.appsuite.spring.parser.excel.ExcelParser;
-import com.rslakra.iws.businessservice.task.filter.TaskFilter;
-import com.rslakra.iws.businessservice.task.parser.TaskParser;
-import com.rslakra.iws.businessservice.task.persistence.entity.Task;
-import com.rslakra.iws.businessservice.task.service.TaskService;
+import com.rslakra.iws.businessservice.account.filter.UserFilter;
+import com.rslakra.iws.businessservice.account.parser.UserParser;
+import com.rslakra.iws.businessservice.account.persistence.entity.User;
+import com.rslakra.iws.businessservice.account.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,22 +43,24 @@ import java.util.Optional;
 
 /**
  * @author Rohtash Lakra
- * @created 5/25/22 5:08 PM
+ * @created 8/5/21 11:11 AM
  */
 @RestController
-@RequestMapping("${restPrefix}/tasks")
-public class TaskController extends AbstractRestController<Task, Long> {
+@RequestMapping("${restPrefix}/users")
+//@Tag(name = "User Service")
+public class UserController extends AbstractRestController<User, Long> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TaskController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
-    private final TaskService taskService;
+    // @Resource
+    private final UserService userService;
 
     /**
-     * @param taskService
+     * @param userService
      */
     @Autowired
-    public TaskController(final TaskService taskService) {
-        this.taskService = taskService;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     /**
@@ -67,9 +69,14 @@ public class TaskController extends AbstractRestController<Task, Long> {
      * @return
      */
     @GetMapping
+//    @Operation(summary = "Get all users", description = "Get all users",
+//        tags = {"User Service"},
+//        responses = {
+//            @ApiResponse(responseCode = "200", description = "Get the users successfully", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = User.class))))
+//        })
     @Override
-    public List<Task> getAll() {
-        return taskService.getAll();
+    public List<User> getAll() {
+        return userService.getAll();
     }
 
     /**
@@ -80,20 +87,26 @@ public class TaskController extends AbstractRestController<Task, Long> {
      */
     @GetMapping("/filter")
     @Override
-    public List<Task> getByFilter(@RequestParam Map<String, Object> allParams) {
+    public List<User> getByFilter(@RequestParam Map<String, Object> allParams) {
         LOGGER.debug("+getByFilter({})", allParams);
-        List<Task> tasks = Collections.emptyList();
-        TaskFilter taskFilter = new TaskFilter(allParams);
-        if (taskFilter.hasKeys(TaskFilter.ID, TaskFilter.FIRST_NAME)) {
-        } else if (taskFilter.hasKey(TaskFilter.ID)) {
-            tasks = Arrays.asList(taskService.getById(taskFilter.getLong(TaskFilter.ID)));
-        } else if (taskFilter.hasKey(TaskFilter.FIRST_NAME)) {
+        List<User> users = Collections.emptyList();
+        UserFilter userFilter = new UserFilter(allParams);
+        if (userFilter.hasKeys(UserFilter.EMAIL, UserFilter.FIRST_NAME, UserFilter.LAST_NAME)) {
+        } else if (userFilter.hasKeys(UserFilter.FIRST_NAME, UserFilter.LAST_NAME)) {
+        } else if (userFilter.hasKey(UserFilter.ID)) {
+            users = Arrays.asList(userService.getById(userFilter.getLong(UserFilter.ID)));
+        } else if (userFilter.hasKey(UserFilter.EMAIL)) {
+            users = Arrays.asList(userService.getByEmail(userFilter.getValue(UserFilter.EMAIL, String.class)));
+        } else if (userFilter.hasKey(UserFilter.FIRST_NAME)) {
+            users = userService.getByFirstName(userFilter.getValue(UserFilter.FIRST_NAME, String.class));
+        } else if (userFilter.hasKey(UserFilter.LAST_NAME)) {
+            users = userService.getByLastName(userFilter.getValue(UserFilter.LAST_NAME, String.class));
         } else {
-            tasks = taskService.getAll();
+            users = userService.getAll();
         }
 
-        LOGGER.debug("-getByFilter(), tasks: {}", tasks);
-        return tasks;
+        LOGGER.debug("-getByFilter(), users: {}", users);
+        return users;
     }
 
     /**
@@ -104,8 +117,8 @@ public class TaskController extends AbstractRestController<Task, Long> {
      */
     @GetMapping("/pageable")
     @Override
-    public Page<Task> getByFilter(Map<String, Object> allParams, Pageable pageable) {
-        return taskService.getByFilter(null, pageable);
+    public Page<User> getByFilter(Map<String, Object> allParams, Pageable pageable) {
+        return userService.getByFilter(null, pageable);
     }
 
     /**
@@ -113,7 +126,7 @@ public class TaskController extends AbstractRestController<Task, Long> {
      * @return
      */
     @Override
-    public List<Task> getByFilter(Filter filter) {
+    public List<User> getByFilter(Filter filter) {
         return null;
     }
 
@@ -123,62 +136,74 @@ public class TaskController extends AbstractRestController<Task, Long> {
      * @return
      */
     @Override
-    public Page<Task> getByFilter(Filter filter, Pageable pageable) {
+    public Page<User> getByFilter(Filter filter, Pageable pageable) {
         return null;
     }
 
     /**
      * Creates the <code>T</code> type object.
      *
-     * @param task
+     * @param user
      * @return
      */
     @PostMapping
     @ResponseBody
+//    @Operation(summary = "Create new user", description = "Create new user",
+//        tags = {"User Service"},
+//        responses = {
+//            @ApiResponse(responseCode = "200", description = "Creates the user successfully", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = User.class))))
+//        })
     @Override
-    public ResponseEntity<Task> create(@Validated @RequestBody Task task) {
-        task = taskService.create(task);
-        return ResponseEntity.ok(task);
+    public ResponseEntity<User> create(
+//        @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Create new user", content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class)), required = true)
+            @Validated @RequestBody User user) {
+        user = userService.create(user);
+        return ResponseEntity.ok(user);
     }
 
     /**
      * Creates the list of <code>T</code> type objects.
      *
-     * @param tasks
+     * @param users
      * @return
      */
     @PostMapping("/batch")
     @ResponseBody
+//    @Operation(summary = "Create new user", description = "Create new user",
+//        tags = {"User Service"},
+//        responses = {
+//            @ApiResponse(responseCode = "200", description = "Creates the user successfully", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = User.class))))
+//        })
     @Override
-    public ResponseEntity<List<Task>> create(@Validated @RequestBody List<Task> tasks) {
-        tasks = taskService.create(tasks);
-        return ResponseEntity.ok(tasks);
+    public ResponseEntity<List<User>> create(@Validated @RequestBody List<User> users) {
+        users = userService.create(users);
+        return ResponseEntity.ok(users);
     }
 
     /**
      * Updates the <code>T</code> type object.
      *
-     * @param task
+     * @param user
      * @return
      */
     @PutMapping
     @Override
-    public ResponseEntity<Task> update(@Validated @RequestBody Task task) {
-        task = taskService.update(task);
-        return ResponseEntity.ok(task);
+    public ResponseEntity<User> update(@Validated @RequestBody User user) {
+        user = userService.update(user);
+        return ResponseEntity.ok(user);
     }
 
     /**
      * Updates the list of <code>T</code> type objects.
      *
-     * @param tasks
+     * @param users
      * @return
      */
     @PutMapping("/batch")
     @Override
-    public ResponseEntity<List<Task>> update(@Validated @RequestBody List<Task> tasks) {
-        tasks = taskService.update(tasks);
-        return ResponseEntity.ok(tasks);
+    public ResponseEntity<List<User>> update(@Validated @RequestBody List<User> users) {
+        users = userService.update(users);
+        return ResponseEntity.ok(users);
     }
 
     /**
@@ -187,12 +212,12 @@ public class TaskController extends AbstractRestController<Task, Long> {
      * @param idOptional
      * @return
      */
-    @DeleteMapping("/{taskId}")
+    @DeleteMapping("/{userId}")
     @Override
-    public ResponseEntity<Payload> delete(@PathVariable(value = "taskId") Optional<Long> idOptional) {
+    public ResponseEntity<Payload> delete(@PathVariable(value = "userId") Optional<Long> idOptional) {
         validate(idOptional);
-        taskService.delete(idOptional.get());
-        Payload<String, Object> payload = Payload.newBuilder()
+        userService.delete(idOptional.get());
+        Payload payload = Payload.newBuilder()
                 .withDeleted(Boolean.TRUE)
                 .withMessage("Record with id:%d deleted successfully!", idOptional.get());
         return ResponseEntity.ok(payload);
@@ -209,18 +234,18 @@ public class TaskController extends AbstractRestController<Task, Long> {
     public ResponseEntity<Payload> upload(@RequestParam("file") MultipartFile file) {
         Payload payload = Payload.newBuilder();
         try {
-            List<Task> taskList = null;
-            TaskParser taskParser = new TaskParser();
+            List<User> userList = null;
+            UserParser userParser = new UserParser();
             if (CsvParser.isCSVFile(file)) {
-                taskList = taskParser.readCSVStream(file.getInputStream());
+                userList = userParser.readCSVStream(file.getInputStream());
             } else if (ExcelParser.isExcelFile(file)) {
-                taskList = taskParser.readStream(file.getInputStream());
+                userList = userParser.readStream(file.getInputStream());
             }
 
-            // check the task list is available
-            if (Objects.nonNull(taskList)) {
-                taskList = taskService.create(taskList);
-                LOGGER.debug("taskList: {}", taskList);
+            // check the user list is available
+            if (Objects.nonNull(userList)) {
+                userList = userService.create(userList);
+                LOGGER.debug("userList: {}", userList);
                 payload.withMessage("Uploaded the file '%s' successfully!", file.getOriginalFilename());
                 return ResponseEntity.status(HttpStatus.OK).body(payload);
             }
@@ -233,6 +258,7 @@ public class TaskController extends AbstractRestController<Task, Long> {
         payload.withMessage("Unsupported file type!");
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(payload);
     }
+
 
     /**
      * Downloads the object of <code>T</code> as <code>fileType</code> file.
@@ -248,15 +274,15 @@ public class TaskController extends AbstractRestController<Task, Long> {
         InputStreamResource inputStreamResource = null;
         String contentDisposition;
         MediaType mediaType;
-        TaskParser taskParser = new TaskParser();
+        UserParser userParser = new UserParser();
         if (CsvParser.isCSVFileType(fileType)) {
-            contentDisposition = Parser.getContentDisposition(TaskParser.CSV_DOWNLOAD_FILE_NAME);
+            contentDisposition = Parser.getContentDisposition(UserParser.CSV_DOWNLOAD_FILE_NAME);
             mediaType = Parser.getMediaType(CsvParser.CSV_MEDIA_TYPE);
-            inputStreamResource = taskParser.buildCSVResourceStream(taskService.getAll());
+            inputStreamResource = userParser.buildCSVResourceStream(userService.getAll());
         } else if (ExcelParser.isExcelFileType(fileType)) {
-            contentDisposition = Parser.getContentDisposition(TaskParser.EXCEL_DOWNLOAD_FILE_NAME);
+            contentDisposition = Parser.getContentDisposition(UserParser.EXCEL_DOWNLOAD_FILE_NAME);
             mediaType = Parser.getMediaType(ExcelParser.EXCEL_MEDIA_TYPE);
-            inputStreamResource = taskParser.buildStreamResources(taskService.getAll());
+            inputStreamResource = userParser.buildStreamResources(userService.getAll());
         } else {
             throw new UnsupportedOperationException("Unsupported fileType:" + fileType);
         }
@@ -268,4 +294,6 @@ public class TaskController extends AbstractRestController<Task, Long> {
 
         return responseEntity;
     }
+
+
 }

@@ -1,4 +1,4 @@
-package com.rslakra.iws.businessservice.marketing.controller.web;
+package com.rslakra.iws.businessservice.marketing.controller;
 
 import com.rslakra.appsuite.core.BeanUtils;
 import com.rslakra.appsuite.spring.controller.web.AbstractWebController;

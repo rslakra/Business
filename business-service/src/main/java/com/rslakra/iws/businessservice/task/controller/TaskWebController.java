@@ -1,4 +1,4 @@
-package com.rslakra.iws.businessservice.task.controller.web;
+package com.rslakra.iws.businessservice.task.controller;
 
 import com.rslakra.appsuite.core.BeanUtils;
 import com.rslakra.appsuite.spring.controller.web.AbstractWebController;

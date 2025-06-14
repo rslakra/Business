@@ -1,4 +1,4 @@
-package com.rslakra.iws.businessservice.account.controller.web;
+package com.rslakra.iws.businessservice.account.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

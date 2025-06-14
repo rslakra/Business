@@ -1,4 +1,4 @@
-package com.rslakra.iws.businessservice.advertising.controller.web;
+package com.rslakra.iws.businessservice.account.controller;
 
 import com.rslakra.appsuite.core.BeanUtils;
 import com.rslakra.appsuite.core.Payload;
@@ -7,9 +7,9 @@ import com.rslakra.appsuite.spring.filter.Filter;
 import com.rslakra.appsuite.spring.parser.Parser;
 import com.rslakra.appsuite.spring.parser.csv.CsvParser;
 import com.rslakra.appsuite.spring.parser.excel.ExcelParser;
-import com.rslakra.iws.businessservice.advertising.parser.ContentTaxonomyParser;
-import com.rslakra.iws.businessservice.advertising.persistence.entity.ContentTaxonomy;
-import com.rslakra.iws.businessservice.advertising.service.ContentTaxonomyService;
+import com.rslakra.iws.businessservice.account.parser.UserParser;
+import com.rslakra.iws.businessservice.account.persistence.entity.User;
+import com.rslakra.iws.businessservice.account.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,43 +33,43 @@ import java.util.Optional;
   * @since 09/30/2019 05:38 PM
  */
 @Controller
-@RequestMapping("/content-taxonomy")
-public class ContentTaxonomyWebController extends AbstractWebController<ContentTaxonomy, Long> {
+@RequestMapping("/users")
+public class UserWebController extends AbstractWebController<User, Long> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ContentTaxonomyWebController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserWebController.class);
 
-    private final ContentTaxonomyParser contentTaxonomyParser;
+    private final UserParser userParser;
 
-    // contentTaxonomyService
-    private final ContentTaxonomyService contentTaxonomyService;
+    // userService
+    private final UserService userService;
 
     /**
-     * @param contentTaxonomyService
+     * @param userService
      */
     @Autowired
-    public ContentTaxonomyWebController(ContentTaxonomyService contentTaxonomyService) {
-        this.contentTaxonomyParser = new ContentTaxonomyParser();
-        this.contentTaxonomyService = contentTaxonomyService;
+    public UserWebController(UserService userService) {
+        this.userParser = new UserParser();
+        this.userService = userService;
     }
 
     /**
      * Saves the <code>t</code> object.
      *
-     * @param contentTaxonomy
+     * @param user
      * @return
      */
     @PostMapping("/save")
     @Override
-    public String save(ContentTaxonomy contentTaxonomy) {
-        if (BeanUtils.isNotNull(contentTaxonomy.getId())) {
-            ContentTaxonomy oldContentTaxonomy = contentTaxonomyService.getById(contentTaxonomy.getId());
-            BeanUtils.copyProperties(contentTaxonomy, oldContentTaxonomy);
-            contentTaxonomy = contentTaxonomyService.update(oldContentTaxonomy);
+    public String save(User user) {
+        if (BeanUtils.isNotNull(user.getId())) {
+            User oldUser = userService.getById(user.getId());
+            BeanUtils.copyProperties(user, oldUser);
+            user = userService.update(oldUser);
         } else {
-            contentTaxonomy = contentTaxonomyService.create(contentTaxonomy);
+            user = userService.create(user);
         }
 
-        return "redirect:/content-taxonomy/list";
+        return "redirect:/users/list";
     }
 
     /**
@@ -81,9 +81,9 @@ public class ContentTaxonomyWebController extends AbstractWebController<ContentT
     @GetMapping("/list")
     @Override
     public String getAll(Model model) {
-        List<ContentTaxonomy> contentTaxonomies = contentTaxonomyService.getAll();
-        model.addAttribute("contentTaxonomies", contentTaxonomies);
-        return "views/advertising/content-taxonomy/listContentTaxonomies";
+        List<User> users = userService.getAll();
+        model.addAttribute("users", users);
+        return "views/account/user/listUsers";
     }
 
     /**
@@ -96,9 +96,9 @@ public class ContentTaxonomyWebController extends AbstractWebController<ContentT
     @GetMapping("/filter")
     @Override
     public String filter(Model model, Filter filter) {
-        List<ContentTaxonomy> contentTaxonomies = contentTaxonomyService.getAll();
-        model.addAttribute("contentTaxonomies", contentTaxonomies);
-        return "views/advertising/content-taxonomy/listContentTaxonomies";
+        List<User> users = userService.getAll();
+        model.addAttribute("users", users);
+        return "views/account/user/listUsers";
     }
 
     /**
@@ -116,17 +116,18 @@ public class ContentTaxonomyWebController extends AbstractWebController<ContentT
      * @param idOptional
      * @return
      */
-    @RequestMapping(path = {"/create", "/update/{contentTaxonomyId}"})
-    public String editObject(Model model, @PathVariable(name = "contentTaxonomyId") Optional<Long> idOptional) {
-        ContentTaxonomy contentTaxonomy = null;
+    @RequestMapping(path = {"/create", "/update/{userId}"})
+    @Override
+    public String editObject(Model model, @PathVariable(name = "userId") Optional<Long> idOptional) {
+        User user = null;
         if (idOptional.isPresent()) {
-            contentTaxonomy = contentTaxonomyService.getById(idOptional.get());
+            user = userService.getById(idOptional.get());
         } else {
-            contentTaxonomy = new ContentTaxonomy();
+            user = new User();
         }
-        model.addAttribute("contentTaxonomy", contentTaxonomy);
+        model.addAttribute("user", user);
 
-        return "views/advertising/content-taxonomy/editContentTaxonomy";
+        return "views/account/user/editUser";
     }
 
     /**
@@ -136,29 +137,29 @@ public class ContentTaxonomyWebController extends AbstractWebController<ContentT
      * @param id
      * @return
      */
-    @RequestMapping("/delete/{contentTaxonomyId}")
+    @RequestMapping("/delete/{userId}")
     @Override
-    public String delete(Model model, @PathVariable(name = "contentTaxonomyId") Long id) {
-        contentTaxonomyService.delete(id);
-        return "redirect:/content-taxonomy/list";
+    public String delete(Model model, @PathVariable(name = "userId") Long id) {
+        userService.delete(id);
+        return "redirect:/users/list";
     }
 
     /**
      * @return
      */
     @Override
-    public Parser<ContentTaxonomy> getParser() {
-        return contentTaxonomyParser;
+    public Parser<User> getParser() {
+        return userParser;
     }
 
     /**
-     * Displays the upload <code>ContentTaxonomys</code> UI.
+     * Displays the upload <code>Users</code> UI.
      *
      * @return
      */
     @GetMapping(path = {"/upload"})
     public String showUploadPage() {
-        return "views/advertising/content-taxonomy/uploadContentTaxonomies";
+        return "views/account/user/uploadUsers";
     }
 
     /**
@@ -171,18 +172,18 @@ public class ContentTaxonomyWebController extends AbstractWebController<ContentT
     public ResponseEntity<Payload> upload(@RequestParam("file") MultipartFile file) {
         Payload payload = Payload.newBuilder();
         try {
-            List<ContentTaxonomy> contentTaxonomies = null;
-            ContentTaxonomyParser contentTaxonomyParser = new ContentTaxonomyParser();
+            List<User> users = null;
+            UserParser userParser = new UserParser();
             if (CsvParser.isCSVFile(file)) {
-                contentTaxonomies = contentTaxonomyParser.readCSVStream(file.getInputStream());
+                users = userParser.readCSVStream(file.getInputStream());
             } else if (ExcelParser.isExcelFile(file)) {
-                contentTaxonomies = contentTaxonomyParser.readStream(file.getInputStream());
+                users = userParser.readStream(file.getInputStream());
             }
 
             // check the task list is available
-            if (Objects.nonNull(contentTaxonomies)) {
-                contentTaxonomies = contentTaxonomyService.create(contentTaxonomies);
-                LOGGER.debug("contentTaxonomies: {}", contentTaxonomies);
+            if (Objects.nonNull(users)) {
+                users = userService.create(users);
+                LOGGER.debug("users: {}", users);
                 payload.withMessage("Uploaded the file '%s' successfully!", file.getOriginalFilename());
                 return ResponseEntity.status(HttpStatus.OK).body(payload);
             }
@@ -217,15 +218,15 @@ public class ContentTaxonomyWebController extends AbstractWebController<ContentT
         InputStreamResource inputStreamResource = null;
         String contentDisposition;
         MediaType mediaType;
-        ContentTaxonomyParser taskParser = new ContentTaxonomyParser();
+        UserParser taskParser = new UserParser();
         if (CsvParser.isCSVFileType(fileType)) {
-            contentDisposition = Parser.getContentDisposition(ContentTaxonomyParser.CSV_DOWNLOAD_FILE_NAME);
+            contentDisposition = Parser.getContentDisposition(UserParser.CSV_DOWNLOAD_FILE_NAME);
             mediaType = Parser.getMediaType(CsvParser.CSV_MEDIA_TYPE);
-            inputStreamResource = taskParser.buildCSVResourceStream(contentTaxonomyService.getAll());
+            inputStreamResource = taskParser.buildCSVResourceStream(userService.getAll());
         } else if (ExcelParser.isExcelFileType(fileType)) {
-            contentDisposition = Parser.getContentDisposition(ContentTaxonomyParser.EXCEL_DOWNLOAD_FILE_NAME);
+            contentDisposition = Parser.getContentDisposition(UserParser.EXCEL_DOWNLOAD_FILE_NAME);
             mediaType = Parser.getMediaType(ExcelParser.EXCEL_MEDIA_TYPE);
-            inputStreamResource = taskParser.buildStreamResources(contentTaxonomyService.getAll());
+            inputStreamResource = taskParser.buildStreamResources(userService.getAll());
         } else {
             throw new UnsupportedOperationException("Unsupported fileType:" + fileType);
         }

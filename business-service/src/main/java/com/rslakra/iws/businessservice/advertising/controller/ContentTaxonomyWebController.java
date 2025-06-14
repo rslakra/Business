@@ -1,4 +1,4 @@
-package com.rslakra.iws.businessservice.account.controller.web;
+package com.rslakra.iws.businessservice.advertising.controller;
 
 import com.rslakra.appsuite.core.BeanUtils;
 import com.rslakra.appsuite.core.Payload;
@@ -7,9 +7,9 @@ import com.rslakra.appsuite.spring.filter.Filter;
 import com.rslakra.appsuite.spring.parser.Parser;
 import com.rslakra.appsuite.spring.parser.csv.CsvParser;
 import com.rslakra.appsuite.spring.parser.excel.ExcelParser;
-import com.rslakra.iws.businessservice.account.parser.RoleParser;
-import com.rslakra.iws.businessservice.account.persistence.entity.Role;
-import com.rslakra.iws.businessservice.account.service.RoleService;
+import com.rslakra.iws.businessservice.advertising.parser.ContentTaxonomyParser;
+import com.rslakra.iws.businessservice.advertising.persistence.entity.ContentTaxonomy;
+import com.rslakra.iws.businessservice.advertising.service.ContentTaxonomyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,42 +33,43 @@ import java.util.Optional;
   * @since 09/30/2019 05:38 PM
  */
 @Controller
-@RequestMapping("/roles")
-public class RoleWebController extends AbstractWebController<Role, Long> {
+@RequestMapping("/content-taxonomy")
+public class ContentTaxonomyWebController extends AbstractWebController<ContentTaxonomy, Long> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RoleWebController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ContentTaxonomyWebController.class);
 
-    private final RoleParser roleParser;
-    // roleService
-    private final RoleService roleService;
+    private final ContentTaxonomyParser contentTaxonomyParser;
+
+    // contentTaxonomyService
+    private final ContentTaxonomyService contentTaxonomyService;
 
     /**
-     * @param roleService
+     * @param contentTaxonomyService
      */
     @Autowired
-    public RoleWebController(RoleService roleService) {
-        this.roleParser = new RoleParser();
-        this.roleService = roleService;
+    public ContentTaxonomyWebController(ContentTaxonomyService contentTaxonomyService) {
+        this.contentTaxonomyParser = new ContentTaxonomyParser();
+        this.contentTaxonomyService = contentTaxonomyService;
     }
 
     /**
      * Saves the <code>t</code> object.
      *
-     * @param role
+     * @param contentTaxonomy
      * @return
      */
     @PostMapping("/save")
     @Override
-    public String save(Role role) {
-        if (BeanUtils.isNotNull(role.getId())) {
-            Role oldRole = roleService.getById(role.getId());
-            BeanUtils.copyProperties(role, oldRole);
-            role = roleService.update(oldRole);
+    public String save(ContentTaxonomy contentTaxonomy) {
+        if (BeanUtils.isNotNull(contentTaxonomy.getId())) {
+            ContentTaxonomy oldContentTaxonomy = contentTaxonomyService.getById(contentTaxonomy.getId());
+            BeanUtils.copyProperties(contentTaxonomy, oldContentTaxonomy);
+            contentTaxonomy = contentTaxonomyService.update(oldContentTaxonomy);
         } else {
-            role = roleService.create(role);
+            contentTaxonomy = contentTaxonomyService.create(contentTaxonomy);
         }
 
-        return "redirect:/roles/list";
+        return "redirect:/content-taxonomy/list";
     }
 
     /**
@@ -80,10 +81,9 @@ public class RoleWebController extends AbstractWebController<Role, Long> {
     @GetMapping("/list")
     @Override
     public String getAll(Model model) {
-        List<Role> roles = roleService.getAll();
-        model.addAttribute("roles", roles);
-
-        return "views/account/role/listRoles";
+        List<ContentTaxonomy> contentTaxonomies = contentTaxonomyService.getAll();
+        model.addAttribute("contentTaxonomies", contentTaxonomies);
+        return "views/advertising/content-taxonomy/listContentTaxonomies";
     }
 
     /**
@@ -93,9 +93,12 @@ public class RoleWebController extends AbstractWebController<Role, Long> {
      * @param filter
      * @return
      */
+    @GetMapping("/filter")
     @Override
     public String filter(Model model, Filter filter) {
-        return null;
+        List<ContentTaxonomy> contentTaxonomies = contentTaxonomyService.getAll();
+        model.addAttribute("contentTaxonomies", contentTaxonomies);
+        return "views/advertising/content-taxonomy/listContentTaxonomies";
     }
 
     /**
@@ -109,24 +112,21 @@ public class RoleWebController extends AbstractWebController<Role, Long> {
     }
 
     /**
-     * Create the new object or Updates the object with <code>id</code>.
-     *
      * @param model
      * @param idOptional
      * @return
      */
-    @RequestMapping(path = {"/create", "/update/{id}"})
-    @Override
-    public String editObject(Model model, @PathVariable(name = "id") Optional<Long> idOptional) {
-        Role role = null;
+    @RequestMapping(path = {"/create", "/update/{contentTaxonomyId}"})
+    public String editObject(Model model, @PathVariable(name = "contentTaxonomyId") Optional<Long> idOptional) {
+        ContentTaxonomy contentTaxonomy = null;
         if (idOptional.isPresent()) {
-            role = roleService.getById(idOptional.get());
+            contentTaxonomy = contentTaxonomyService.getById(idOptional.get());
         } else {
-            role = new Role();
+            contentTaxonomy = new ContentTaxonomy();
         }
-        model.addAttribute("role", role);
+        model.addAttribute("contentTaxonomy", contentTaxonomy);
 
-        return "views/account/role/editRole";
+        return "views/advertising/content-taxonomy/editContentTaxonomy";
     }
 
     /**
@@ -136,29 +136,29 @@ public class RoleWebController extends AbstractWebController<Role, Long> {
      * @param id
      * @return
      */
-    @RequestMapping("/delete/{id}")
+    @RequestMapping("/delete/{contentTaxonomyId}")
     @Override
-    public String delete(Model model, @PathVariable(name = "id") Long id) {
-        roleService.delete(id);
-        return "redirect:/roles/list";
+    public String delete(Model model, @PathVariable(name = "contentTaxonomyId") Long id) {
+        contentTaxonomyService.delete(id);
+        return "redirect:/content-taxonomy/list";
     }
 
     /**
      * @return
      */
     @Override
-    public Parser<Role> getParser() {
-        return roleParser;
+    public Parser<ContentTaxonomy> getParser() {
+        return contentTaxonomyParser;
     }
 
     /**
-     * Displays the upload <code>Roles</code> UI.
+     * Displays the upload <code>ContentTaxonomys</code> UI.
      *
      * @return
      */
     @GetMapping(path = {"/upload"})
     public String showUploadPage() {
-        return "views/account/role/uploadRoles";
+        return "views/advertising/content-taxonomy/uploadContentTaxonomies";
     }
 
     /**
@@ -171,18 +171,18 @@ public class RoleWebController extends AbstractWebController<Role, Long> {
     public ResponseEntity<Payload> upload(@RequestParam("file") MultipartFile file) {
         Payload payload = Payload.newBuilder();
         try {
-            List<Role> roles = null;
-            RoleParser roleParser = new RoleParser();
+            List<ContentTaxonomy> contentTaxonomies = null;
+            ContentTaxonomyParser contentTaxonomyParser = new ContentTaxonomyParser();
             if (CsvParser.isCSVFile(file)) {
-                roles = roleParser.readCSVStream(file.getInputStream());
+                contentTaxonomies = contentTaxonomyParser.readCSVStream(file.getInputStream());
             } else if (ExcelParser.isExcelFile(file)) {
-                roles = roleParser.readStream(file.getInputStream());
+                contentTaxonomies = contentTaxonomyParser.readStream(file.getInputStream());
             }
 
             // check the task list is available
-            if (Objects.nonNull(roles)) {
-                roles = roleService.create(roles);
-                LOGGER.debug("roles: {}", roles);
+            if (Objects.nonNull(contentTaxonomies)) {
+                contentTaxonomies = contentTaxonomyService.create(contentTaxonomies);
+                LOGGER.debug("contentTaxonomies: {}", contentTaxonomies);
                 payload.withMessage("Uploaded the file '%s' successfully!", file.getOriginalFilename());
                 return ResponseEntity.status(HttpStatus.OK).body(payload);
             }
@@ -194,6 +194,14 @@ public class RoleWebController extends AbstractWebController<Role, Long> {
 
         payload.withMessage("Unsupported file type!");
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(payload);
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public String showDownloadPage() {
+        return null;
     }
 
     /**
@@ -209,15 +217,15 @@ public class RoleWebController extends AbstractWebController<Role, Long> {
         InputStreamResource inputStreamResource = null;
         String contentDisposition;
         MediaType mediaType;
-        RoleParser taskParser = new RoleParser();
+        ContentTaxonomyParser taskParser = new ContentTaxonomyParser();
         if (CsvParser.isCSVFileType(fileType)) {
-            contentDisposition = Parser.getContentDisposition(RoleParser.CSV_DOWNLOAD_FILE_NAME);
+            contentDisposition = Parser.getContentDisposition(ContentTaxonomyParser.CSV_DOWNLOAD_FILE_NAME);
             mediaType = Parser.getMediaType(CsvParser.CSV_MEDIA_TYPE);
-            inputStreamResource = taskParser.buildCSVResourceStream(roleService.getAll());
+            inputStreamResource = taskParser.buildCSVResourceStream(contentTaxonomyService.getAll());
         } else if (ExcelParser.isExcelFileType(fileType)) {
-            contentDisposition = Parser.getContentDisposition(RoleParser.EXCEL_DOWNLOAD_FILE_NAME);
+            contentDisposition = Parser.getContentDisposition(ContentTaxonomyParser.EXCEL_DOWNLOAD_FILE_NAME);
             mediaType = Parser.getMediaType(ExcelParser.EXCEL_MEDIA_TYPE);
-            inputStreamResource = taskParser.buildStreamResources(roleService.getAll());
+            inputStreamResource = taskParser.buildStreamResources(contentTaxonomyService.getAll());
         } else {
             throw new UnsupportedOperationException("Unsupported fileType:" + fileType);
         }
@@ -229,5 +237,4 @@ public class RoleWebController extends AbstractWebController<Role, Long> {
 
         return responseEntity;
     }
-
 }

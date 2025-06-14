@@ -1,4 +1,4 @@
-package com.rslakra.iws.businessservice.advertising.controller;
+package com.rslakra.iws.businessservice.advertising.controller.rest;
 
 import com.rslakra.appsuite.core.Payload;
 import com.rslakra.appsuite.spring.controller.rest.AbstractRestController;

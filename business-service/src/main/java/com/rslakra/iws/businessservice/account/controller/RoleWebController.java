@@ -1,4 +1,4 @@
-package com.rslakra.iws.businessservice.account.controller.web;
+package com.rslakra.iws.businessservice.account.controller;
 
 import com.rslakra.appsuite.core.BeanUtils;
 import com.rslakra.appsuite.core.Payload;
@@ -7,9 +7,9 @@ import com.rslakra.appsuite.spring.filter.Filter;
 import com.rslakra.appsuite.spring.parser.Parser;
 import com.rslakra.appsuite.spring.parser.csv.CsvParser;
 import com.rslakra.appsuite.spring.parser.excel.ExcelParser;
-import com.rslakra.iws.businessservice.account.parser.UserParser;
-import com.rslakra.iws.businessservice.account.persistence.entity.User;
-import com.rslakra.iws.businessservice.account.service.UserService;
+import com.rslakra.iws.businessservice.account.parser.RoleParser;
+import com.rslakra.iws.businessservice.account.persistence.entity.Role;
+import com.rslakra.iws.businessservice.account.service.RoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,43 +33,42 @@ import java.util.Optional;
   * @since 09/30/2019 05:38 PM
  */
 @Controller
-@RequestMapping("/users")
-public class UserWebController extends AbstractWebController<User, Long> {
+@RequestMapping("/roles")
+public class RoleWebController extends AbstractWebController<Role, Long> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserWebController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RoleWebController.class);
 
-    private final UserParser userParser;
-
-    // userService
-    private final UserService userService;
+    private final RoleParser roleParser;
+    // roleService
+    private final RoleService roleService;
 
     /**
-     * @param userService
+     * @param roleService
      */
     @Autowired
-    public UserWebController(UserService userService) {
-        this.userParser = new UserParser();
-        this.userService = userService;
+    public RoleWebController(RoleService roleService) {
+        this.roleParser = new RoleParser();
+        this.roleService = roleService;
     }
 
     /**
      * Saves the <code>t</code> object.
      *
-     * @param user
+     * @param role
      * @return
      */
     @PostMapping("/save")
     @Override
-    public String save(User user) {
-        if (BeanUtils.isNotNull(user.getId())) {
-            User oldUser = userService.getById(user.getId());
-            BeanUtils.copyProperties(user, oldUser);
-            user = userService.update(oldUser);
+    public String save(Role role) {
+        if (BeanUtils.isNotNull(role.getId())) {
+            Role oldRole = roleService.getById(role.getId());
+            BeanUtils.copyProperties(role, oldRole);
+            role = roleService.update(oldRole);
         } else {
-            user = userService.create(user);
+            role = roleService.create(role);
         }
 
-        return "redirect:/users/list";
+        return "redirect:/roles/list";
     }
 
     /**
@@ -81,9 +80,10 @@ public class UserWebController extends AbstractWebController<User, Long> {
     @GetMapping("/list")
     @Override
     public String getAll(Model model) {
-        List<User> users = userService.getAll();
-        model.addAttribute("users", users);
-        return "views/account/user/listUsers";
+        List<Role> roles = roleService.getAll();
+        model.addAttribute("roles", roles);
+
+        return "views/account/role/listRoles";
     }
 
     /**
@@ -93,12 +93,9 @@ public class UserWebController extends AbstractWebController<User, Long> {
      * @param filter
      * @return
      */
-    @GetMapping("/filter")
     @Override
     public String filter(Model model, Filter filter) {
-        List<User> users = userService.getAll();
-        model.addAttribute("users", users);
-        return "views/account/user/listUsers";
+        return null;
     }
 
     /**
@@ -112,22 +109,24 @@ public class UserWebController extends AbstractWebController<User, Long> {
     }
 
     /**
+     * Create the new object or Updates the object with <code>id</code>.
+     *
      * @param model
      * @param idOptional
      * @return
      */
-    @RequestMapping(path = {"/create", "/update/{userId}"})
+    @RequestMapping(path = {"/create", "/update/{id}"})
     @Override
-    public String editObject(Model model, @PathVariable(name = "userId") Optional<Long> idOptional) {
-        User user = null;
+    public String editObject(Model model, @PathVariable(name = "id") Optional<Long> idOptional) {
+        Role role = null;
         if (idOptional.isPresent()) {
-            user = userService.getById(idOptional.get());
+            role = roleService.getById(idOptional.get());
         } else {
-            user = new User();
+            role = new Role();
         }
-        model.addAttribute("user", user);
+        model.addAttribute("role", role);
 
-        return "views/account/user/editUser";
+        return "views/account/role/editRole";
     }
 
     /**
@@ -137,29 +136,29 @@ public class UserWebController extends AbstractWebController<User, Long> {
      * @param id
      * @return
      */
-    @RequestMapping("/delete/{userId}")
+    @RequestMapping("/delete/{id}")
     @Override
-    public String delete(Model model, @PathVariable(name = "userId") Long id) {
-        userService.delete(id);
-        return "redirect:/users/list";
+    public String delete(Model model, @PathVariable(name = "id") Long id) {
+        roleService.delete(id);
+        return "redirect:/roles/list";
     }
 
     /**
      * @return
      */
     @Override
-    public Parser<User> getParser() {
-        return userParser;
+    public Parser<Role> getParser() {
+        return roleParser;
     }
 
     /**
-     * Displays the upload <code>Users</code> UI.
+     * Displays the upload <code>Roles</code> UI.
      *
      * @return
      */
     @GetMapping(path = {"/upload"})
     public String showUploadPage() {
-        return "views/account/user/uploadUsers";
+        return "views/account/role/uploadRoles";
     }
 
     /**
@@ -172,18 +171,18 @@ public class UserWebController extends AbstractWebController<User, Long> {
     public ResponseEntity<Payload> upload(@RequestParam("file") MultipartFile file) {
         Payload payload = Payload.newBuilder();
         try {
-            List<User> users = null;
-            UserParser userParser = new UserParser();
+            List<Role> roles = null;
+            RoleParser roleParser = new RoleParser();
             if (CsvParser.isCSVFile(file)) {
-                users = userParser.readCSVStream(file.getInputStream());
+                roles = roleParser.readCSVStream(file.getInputStream());
             } else if (ExcelParser.isExcelFile(file)) {
-                users = userParser.readStream(file.getInputStream());
+                roles = roleParser.readStream(file.getInputStream());
             }
 
             // check the task list is available
-            if (Objects.nonNull(users)) {
-                users = userService.create(users);
-                LOGGER.debug("users: {}", users);
+            if (Objects.nonNull(roles)) {
+                roles = roleService.create(roles);
+                LOGGER.debug("roles: {}", roles);
                 payload.withMessage("Uploaded the file '%s' successfully!", file.getOriginalFilename());
                 return ResponseEntity.status(HttpStatus.OK).body(payload);
             }
@@ -195,14 +194,6 @@ public class UserWebController extends AbstractWebController<User, Long> {
 
         payload.withMessage("Unsupported file type!");
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(payload);
-    }
-
-    /**
-     * @return
-     */
-    @Override
-    public String showDownloadPage() {
-        return null;
     }
 
     /**
@@ -218,15 +209,15 @@ public class UserWebController extends AbstractWebController<User, Long> {
         InputStreamResource inputStreamResource = null;
         String contentDisposition;
         MediaType mediaType;
-        UserParser taskParser = new UserParser();
+        RoleParser taskParser = new RoleParser();
         if (CsvParser.isCSVFileType(fileType)) {
-            contentDisposition = Parser.getContentDisposition(UserParser.CSV_DOWNLOAD_FILE_NAME);
+            contentDisposition = Parser.getContentDisposition(RoleParser.CSV_DOWNLOAD_FILE_NAME);
             mediaType = Parser.getMediaType(CsvParser.CSV_MEDIA_TYPE);
-            inputStreamResource = taskParser.buildCSVResourceStream(userService.getAll());
+            inputStreamResource = taskParser.buildCSVResourceStream(roleService.getAll());
         } else if (ExcelParser.isExcelFileType(fileType)) {
-            contentDisposition = Parser.getContentDisposition(UserParser.EXCEL_DOWNLOAD_FILE_NAME);
+            contentDisposition = Parser.getContentDisposition(RoleParser.EXCEL_DOWNLOAD_FILE_NAME);
             mediaType = Parser.getMediaType(ExcelParser.EXCEL_MEDIA_TYPE);
-            inputStreamResource = taskParser.buildStreamResources(userService.getAll());
+            inputStreamResource = taskParser.buildStreamResources(roleService.getAll());
         } else {
             throw new UnsupportedOperationException("Unsupported fileType:" + fileType);
         }
@@ -238,4 +229,5 @@ public class UserWebController extends AbstractWebController<User, Long> {
 
         return responseEntity;
     }
+
 }

@@ -1,4 +1,4 @@
-package com.rslakra.iws.businessservice.account.controller;
+package com.rslakra.iws.businessservice.account.controller.rest;
 
 import com.rslakra.appsuite.core.BeanUtils;
 import com.rslakra.appsuite.core.Payload;
