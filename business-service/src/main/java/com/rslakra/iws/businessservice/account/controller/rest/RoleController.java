@@ -22,24 +22,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.io.IOException;
+import java.util.*;
 
 /**
  * @author Rohtash Lakra
@@ -48,10 +35,10 @@ import java.util.Optional;
 @RestController
 @RequestMapping("${restPrefix}/roles")
 public class RoleController extends AbstractRestController<Role, Long> {
-
+    
     private static final Logger LOGGER = LoggerFactory.getLogger(RoleController.class);
     private final RoleService roleService;
-
+    
     /**
      * @param roleService
      */
@@ -59,7 +46,7 @@ public class RoleController extends AbstractRestController<Role, Long> {
     public RoleController(final RoleService roleService) {
         this.roleService = roleService;
     }
-
+    
     /**
      * Returns the list of <code>T</code> objects.
      *
@@ -70,7 +57,7 @@ public class RoleController extends AbstractRestController<Role, Long> {
     public List<Role> getAll() {
         return roleService.getAll();
     }
-
+    
     /**
      * Returns the list of <code>T</code> filters objects.
      *
@@ -91,11 +78,11 @@ public class RoleController extends AbstractRestController<Role, Long> {
         } else {
             roles = roleService.getAll();
         }
-
+        
         LOGGER.debug("-getByFilter(), roles: {}", roles);
         return roles;
     }
-
+    
     /**
      * Returns the <code>Page<T></code> list of objects filtered with <code>allParams</code>.
      *
@@ -107,7 +94,7 @@ public class RoleController extends AbstractRestController<Role, Long> {
     public Page<Role> getByFilter(Map<String, Object> allParams, Pageable pageable) {
         return roleService.getByFilter(null, pageable);
     }
-
+    
     /**
      * @param filter
      * @return
@@ -116,7 +103,7 @@ public class RoleController extends AbstractRestController<Role, Long> {
     public List<Role> getByFilter(Filter filter) {
         return null;
     }
-
+    
     /**
      * @param filter
      * @param pageable
@@ -126,7 +113,7 @@ public class RoleController extends AbstractRestController<Role, Long> {
     public Page<Role> getByFilter(Filter filter, Pageable pageable) {
         return null;
     }
-
+    
     /**
      * Creates the <code>T</code> type object.
      *
@@ -140,7 +127,7 @@ public class RoleController extends AbstractRestController<Role, Long> {
         role = roleService.create(role);
         return ResponseEntity.ok(role);
     }
-
+    
     /**
      * Creates the list of <code>T</code> type objects.
      *
@@ -154,7 +141,7 @@ public class RoleController extends AbstractRestController<Role, Long> {
         roles = roleService.create(roles);
         return ResponseEntity.ok(roles);
     }
-
+    
     /**
      * Updates the <code>T</code> type object.
      *
@@ -167,7 +154,7 @@ public class RoleController extends AbstractRestController<Role, Long> {
         role = roleService.update(role);
         return ResponseEntity.ok(role);
     }
-
+    
     /**
      * Updates the list of <code>T</code> type objects.
      *
@@ -180,7 +167,7 @@ public class RoleController extends AbstractRestController<Role, Long> {
         roles = roleService.update(roles);
         return ResponseEntity.ok(roles);
     }
-
+    
     /**
      * Deletes the <code>T</code> type object by <code>id</code>.
      *
@@ -197,7 +184,7 @@ public class RoleController extends AbstractRestController<Role, Long> {
                 .withMessage("Record with id:%d deleted successfully!", idOptional.get());
         return ResponseEntity.ok(payload);
     }
-
+    
     /**
      * Uploads the <code>file</code> of objects.
      *
@@ -216,7 +203,7 @@ public class RoleController extends AbstractRestController<Role, Long> {
             } else if (ExcelParser.isExcelFile(file)) {
                 roles = roleParser.readStream(file.getInputStream());
             }
-
+            
             // check the user list is available
             if (Objects.nonNull(roles)) {
                 roles = roleService.create(roles);
@@ -229,11 +216,11 @@ public class RoleController extends AbstractRestController<Role, Long> {
             payload.withMessage("Could not upload the file '%s'!", file.getOriginalFilename());
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(payload);
         }
-
+        
         payload.withMessage("Unsupported file type!");
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(payload);
     }
-
+    
     /**
      * Downloads the object of <code>T</code> as <code>fileType</code> file.
      *
@@ -249,24 +236,48 @@ public class RoleController extends AbstractRestController<Role, Long> {
         String contentDisposition;
         MediaType mediaType;
         RoleParser roleParser = new RoleParser();
-        if (CsvParser.isCSVFileType(fileType)) {
-            contentDisposition = Parser.getContentDisposition(RoleParser.CSV_DOWNLOAD_FILE_NAME);
-            mediaType = Parser.getMediaType(CsvParser.CSV_MEDIA_TYPE);
-            inputStreamResource = roleParser.buildCSVResourceStream(roleService.getAll());
-        } else if (ExcelParser.isExcelFileType(fileType)) {
-            contentDisposition = Parser.getContentDisposition(RoleParser.EXCEL_DOWNLOAD_FILE_NAME);
-            mediaType = Parser.getMediaType(ExcelParser.EXCEL_MEDIA_TYPE);
-            inputStreamResource = roleParser.buildStreamResources(roleService.getAll());
-        } else {
-            throw new UnsupportedOperationException("Unsupported fileType:" + fileType);
+        try {
+            if (CsvParser.isCSVFileType(fileType)) {
+                contentDisposition = Parser.getContentDisposition(RoleParser.CSV_DOWNLOAD_FILE_NAME);
+                mediaType = Parser.getMediaType(CsvParser.CSV_MEDIA_TYPE);
+                inputStreamResource = roleParser.buildCSVResourceStream(roleService.getAll());
+                
+            } else if (ExcelParser.isExcelFileType(fileType)) {
+                contentDisposition = Parser.getContentDisposition(RoleParser.EXCEL_DOWNLOAD_FILE_NAME);
+                mediaType = Parser.getMediaType(ExcelParser.EXCEL_MEDIA_TYPE);
+                inputStreamResource = roleParser.buildStreamResources(roleService.getAll());
+            } else {
+                throw new UnsupportedOperationException("Unsupported fileType:" + fileType);
+            }
+            
+            // check inputStreamResource is not null
+            if (Objects.nonNull(inputStreamResource)) {
+                responseEntity = Parser.buildOKResponse(contentDisposition, mediaType, inputStreamResource);
+            }
+            
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-
-        // check inputStreamResource is not null
-        if (Objects.nonNull(inputStreamResource)) {
-            responseEntity = Parser.buildOKResponse(contentDisposition, mediaType, inputStreamResource);
-        }
-
+        
         return responseEntity;
     }
 
+//
+//    /**
+//     * @param aLong
+//     */
+//    @Override
+//    public void validate(Optional<Long> aLong) {
+//        super.validate(aLong);
+//    }
+//
+//    /**
+//     * @param serviceOperation
+//     * @param role
+//     * @return
+//     */
+//    @Override
+//    public Role validate(ServiceOperation serviceOperation, Role role) {
+//        return super.validate(serviceOperation, role);
+//    }
 }

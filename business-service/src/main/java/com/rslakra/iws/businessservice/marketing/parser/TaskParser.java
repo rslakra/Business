@@ -1,11 +1,11 @@
 package com.rslakra.iws.businessservice.marketing.parser;
 
 import com.rslakra.appsuite.core.BeanUtils;
+import com.rslakra.appsuite.spring.parser.AbstractParser;
+import com.rslakra.appsuite.spring.parser.Parser;
+import com.rslakra.appsuite.spring.parser.csv.CsvParser;
+import com.rslakra.appsuite.spring.parser.excel.ExcelParser;
 import com.rslakra.iws.businessservice.task.persistence.entity.Task;
-import com.rslakra.iws.parser.AbstractParser;
-import com.rslakra.iws.parser.Parser;
-import com.rslakra.iws.parser.csv.CsvParser;
-import com.rslakra.iws.parser.excel.ExcelParser;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.poi.ss.usermodel.Cell;
 import org.slf4j.Logger;
@@ -21,15 +21,15 @@ import java.util.List;
  * @created 4/5/23 4:55 PM
  */
 public class TaskParser extends AbstractParser<Task> implements ExcelParser<Task>, CsvParser<Task> {
-
+    
     private static final Logger LOGGER = LoggerFactory.getLogger(TaskParser.class);
-
+    
     public static final String CSV_DOWNLOAD_FILE_NAME = "tasks.csv";
     public static final String EXCEL_DOWNLOAD_FILE_NAME = "tasks.xlsx";
     public static final String[] HEADERS = {
-        "id", "taskId", "title", "priority", "startDate", "endDate", "status", "description"
+            "id", "taskId", "title", "priority", "startDate", "endDate", "status", "description"
     };
-
+    
     /**
      * @return
      */
@@ -37,7 +37,7 @@ public class TaskParser extends AbstractParser<Task> implements ExcelParser<Task
     public String[] getReadHeaders() {
         return HEADERS;
     }
-
+    
     /**
      * @return
      */
@@ -45,7 +45,7 @@ public class TaskParser extends AbstractParser<Task> implements ExcelParser<Task
     public String[] getWriteHeaders() {
         return HEADERS;
     }
-
+    
     /**
      * @return
      */
@@ -53,7 +53,7 @@ public class TaskParser extends AbstractParser<Task> implements ExcelParser<Task
     public String getSheetName() {
         return Task.class.getSimpleName();
     }
-
+    
     /**
      * @param rowCells
      * @return
@@ -72,41 +72,41 @@ public class TaskParser extends AbstractParser<Task> implements ExcelParser<Task
                 case 1:
                     task.setUserId(Parser.asType(currentCell.getStringCellValue(), Long.class));
                     break;
-
+                
                 case 2:
                     task.setTitle(currentCell.getStringCellValue());
                     break;
-
+                
                 case 3:
                     task.setPriority(Parser.asType(currentCell.getStringCellValue(), Integer.class));
                     break;
-
+                
                 case 4:
                     task.setStartDate(currentCell.getDateCellValue());
                     break;
-
+                
                 case 5:
                     task.setEndDate(currentCell.getDateCellValue());
                     break;
-
+                
                 case 6:
                     task.setStatus(currentCell.getStringCellValue());
                     break;
-
+                
                 case 7:
                     task.setDescription(currentCell.getStringCellValue());
                     break;
-
+                
                 default:
                     break;
             }
-
+            
             cellIndex++;
         }
-
+        
         return task;
     }
-
+    
     /**
      * @param csvRecord
      * @return
@@ -126,7 +126,7 @@ public class TaskParser extends AbstractParser<Task> implements ExcelParser<Task
         LOGGER.debug("-readCSVRecord(), task:{}", task);
         return task;
     }
-
+    
     /**
      * @param task
      * @return
@@ -145,5 +145,20 @@ public class TaskParser extends AbstractParser<Task> implements ExcelParser<Task
         taskContents.add(task.getDescription());
         return taskContents;
     }
-
+    
+    /**
+     * @return
+     */
+    @Override
+    public String getUploadFileName() {
+        return "";
+    }
+    
+    /**
+     * @return
+     */
+    @Override
+    public String getDownloadFileName() {
+        return "";
+    }
 }

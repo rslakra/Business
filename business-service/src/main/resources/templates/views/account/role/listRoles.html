@@ -9,7 +9,6 @@
     <!-- css -->
     <link rel="stylesheet" type="text/css" media="all" href="../../../../static/css/styles.css"
           th:href="@{/css/styles.css}"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Title -->
     <title>The Roles</title>
@@ -17,9 +16,19 @@
 <body>
 <!-- Body Container -->
 <div class="body-container">
-    <!-- New Role -->
-    <div>
-        <a class="button" href="editRole.html" th:href="@{/roles/create}">New Role</a>
+
+    <!-- Top Buttons-Bar -->
+    <div class="navbar">
+        <!-- New Role -->
+        <a class="button" th:href="@{/roles/create}"><i class="fa-solid fa-file-lines"></i> New Role</a>
+        <!-- Upload Roles -->
+        <a class="button" th:href="@{/roles/upload}"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Roles</a>
+        <!-- Download Roles (.csv) -->
+        <a class="button" th:href="@{/roles/download?fileType=csv}"><i class="fa-solid fa-cloud-arrow-down"></i>
+            Download Roles (.csv)</a>
+        <!-- Download Roles (.xlsx) -->
+        <a class="button" th:href="@{/roles/download?fileType=excel}"><i class="fa-solid fa-cloud-arrow-down"></i>
+            Download Roles (.xlsx)</a>
     </div>
 
     <table>

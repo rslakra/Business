@@ -45,15 +45,15 @@
         </createTable>
     </changeSet>
 
-    <!-- create index -->
-    <changeSet author="rslakra" id="create_index_on_roles_table" context="v0.0.1">
-        <preConditions onFail="MARK_RAN" onFailMessage="Table [roles] doesn't exist">
-            <tableExists tableName="roles"/>
-        </preConditions>
-        <createIndex indexName="idx_roles_table_name" tableName="roles">
-            <column name="name"/>
-        </createIndex>
-    </changeSet>
+<!--    &lt;!&ndash; create index &ndash;&gt;-->
+<!--    <changeSet author="rslakra" id="create_index_on_roles_table" context="v0.0.1">-->
+<!--        <preConditions onFail="MARK_RAN" onFailMessage="Table [roles] doesn't exist">-->
+<!--            <tableExists tableName="roles"/>-->
+<!--        </preConditions>-->
+<!--        <createIndex indexName="idx_roles_table_name" tableName="roles">-->
+<!--            <column name="name"/>-->
+<!--        </createIndex>-->
+<!--    </changeSet>-->
 
     <!-- insert default roles -->
     <changeSet author="rslakra" id="insert_default_roles" context="v0.0.1">
