@@ -36,18 +36,21 @@
         <h1>Welcome to The Business Application!</h1>
     </div>
 
-    <div class="padding-default">
-        <p>Please select an option</p>
-        <div>
-            <a class="button" href="views/account/role/listRoles.html" th:href="@{/roles/list}">List Roles</a>
-            <a class="button" href="views/account/user/listUsers.html" th:href="@{/users/list}">List Users</a>
-            <a class="button" href="views/task/listTasks.html" th:href="@{/tasks/list}">List Tasks</a>
-            <a class="button" href="views/marketing/listMarketings.html" th:href="@{/marketing/list}">List
-                Marketing</a>
-            <a class="button" href="views/task/listTasks.html" th:href="@{/content-taxonomy/list}">List
-                Content-Taxonomies</a>
-        </div>
+    <!-- Top Buttons-Bar -->
+    <div class="navbar">
+        <!-- List Roles -->
+        <a class="button" th:href="@{/roles/list}"><i class="fa-brands fa-critical-role"></i> List Roles</a>
+        <!-- List Users -->
+        <a class="button" th:href="@{/users/list}"><i class="fa-solid fa-users"></i> List Users</a>
+        <!-- List Tasks -->
+        <a class="button" th:href="@{/tasks/list}"><i class="fa-solid fa-list-check"></i> List Tasks</a>
+        <!-- List Marketing -->
+        <a class="button" th:href="@{/marketing/list}"><i class="fa-solid fa-chart-simple"></i> List Marketing</a>
+        <!-- List Content-Taxonomies -->
+        <a class="button" th:href="@{/content-taxonomy/list}"><i class="fa-solid fa-arrows-to-circle"></i> List
+            Content-Taxonomies</a>
     </div>
+
 </div>
 
 </body>

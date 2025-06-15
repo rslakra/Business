@@ -15,13 +15,25 @@
     <title>The Users</title>
 </head>
 <body>
+
 <!-- Body Container -->
 <div class="body-container">
-    <!-- New User -->
-    <div>
-        <a class="button" href="editUser.html" th:href="@{/users/create}">New User</a>
+
+    <!-- Top Buttons-Bar -->
+    <div class="navbar">
+        <!-- New User -->
+        <a class="button" th:href="@{/users/create}"><i class="fa-solid fa-file-lines"></i> New User</a>
+        <!-- Upload Users -->
+        <a class="button" th:href="@{/users/upload}"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Users</a>
+        <!-- Download Users (.csv) -->
+        <a class="button" th:href="@{/users/download?fileType=csv}"><i class="fa-solid fa-cloud-arrow-down"></i>
+            Download Users (.csv)</a>
+        <!-- Download Roles (.xlsx) -->
+        <a class="button" th:href="@{/users/download?fileType=excel}"><i class="fa-solid fa-cloud-arrow-down"></i>
+            Download Users (.xlsx)</a>
     </div>
 
+    <!-- List of Users -->
     <table>
         <thead>
         <tr>

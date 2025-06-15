@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- css -->
-    <link rel="stylesheet" type="text/css" media="all" href="../../../static/css/styles.css" th:href="@{/css/styles.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" href="../../../static/css/styles.css"
+          th:href="@{/css/styles.css}"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Title -->
@@ -16,11 +17,22 @@
 <body>
 <!-- Body Container -->
 <div class="body-container">
-    <!-- New Marketing -->
-    <div>
-        <a class="button" href="editMarketing.html" th:href="@{/marketing/create}">New Marketing</a>
+
+    <!-- Top Buttons-Bar -->
+    <div class="navbar">
+        <!-- New User -->
+        <a class="button" th:href="@{/marketing/create}"><i class="fa-solid fa-file-lines"></i> New Marketing</a>
+        <!-- Upload Users -->
+        <a class="button" th:href="@{/marketing/upload}"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Marketing</a>
+        <!-- Download Users (.csv) -->
+        <a class="button" th:href="@{/marketing/download?fileType=csv}"><i
+                class="fa-solid fa-cloud-arrow-down"></i>Download Marketing (.csv)</a>
+        <!-- Download Roles (.xlsx) -->
+        <a class="button" th:href="@{/marketing/download?fileType=excel}"><i
+                class="fa-solid fa-cloud-arrow-down"></i>Download Marketing (.xlsx)</a>
     </div>
 
+    <!-- List of Marketing -->
     <table>
         <thead>
         <tr>

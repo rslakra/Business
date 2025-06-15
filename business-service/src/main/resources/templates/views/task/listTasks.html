@@ -17,11 +17,22 @@
 <body>
 <!-- Body Container -->
 <div class="body-container">
-    <!-- New Task -->
-    <div>
-        <a class="button" href="editTask.html" th:href="@{/tasks/create}">New Task</a>
+
+    <!-- Top Buttons-Bar -->
+    <div class="navbar">
+        <!-- New User -->
+        <a class="button" th:href="@{/tasks/create}"><i class="fa-solid fa-file-lines"></i> New Task</a>
+        <!-- Upload Users -->
+        <a class="button" th:href="@{/tasks/upload}"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Tasks</a>
+        <!-- Download Users (.csv) -->
+        <a class="button" th:href="@{/tasks/download?fileType=csv}"><i
+                class="fa-solid fa-cloud-arrow-down"></i>Download Tasks (.csv)</a>
+        <!-- Download Roles (.xlsx) -->
+        <a class="button" th:href="@{/tasks/download?fileType=excel}"><i
+                class="fa-solid fa-cloud-arrow-down"></i>Download Tasks (.xlsx)</a>
     </div>
 
+    <!-- List of Tasks -->
     <table>
         <thead>
         <tr>

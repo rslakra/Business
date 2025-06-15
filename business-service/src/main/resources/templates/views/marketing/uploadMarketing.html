@@ -14,7 +14,7 @@
           th:href="@{/css/form-styles.css}"/>
 
     <!-- Title -->
-    <title>Upload Roles</title>
+    <title>Upload Marketing</title>
 </head>
 <body>
 
@@ -22,17 +22,17 @@
 <div class="body-container">
 
     <!-- H2 -->
-    <h2>Upload Roles</h2>
+    <h2>Upload Marketing</h2>
 
     <div class="contents"> <!-- div:contents-start -->
         <!-- Form -->
         <div class="form-style">
-            <h2 class="center">Upload Roles</h2>
-            <form action="#" th:action="@{/roles/upload}" method="POST" enctype="multipart/form-data">
-                <div class="section"><span>*</span>Upload Roles</div>
+            <h2 class="center">Upload Marketing</h2>
+            <form action="#" th:action="@{/marketing/upload}" method="POST" enctype="multipart/form-data">
+                <div class="section"><span>*</span>Upload Marketing</div>
                 <div class="inner-wrap">
                     <label>Upload
-                        <input type="file" name="file" placeholder="Roles File"/>
+                        <input type="file" name="file" placeholder="Marketing File"/>
                     </label>
                 </div>
 
@@ -44,7 +44,7 @@
 
         <!--Back Button -->
         <div>
-            <a class="button" th:href="@{/roles/list}">Back</a>
+            <a class="button" th:href="@{/marketing/list}">Back</a>
         </div>
 
     </div> <!-- div:contents-end -->
