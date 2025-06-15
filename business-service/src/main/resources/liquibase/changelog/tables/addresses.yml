@@ -1,0 +1,128 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_addresses_table
+      author: Rohtash Lakra
+      context: v0.0.1
+      preConditions:
+        not:
+          tableExists:
+            tableName: addresses
+        onFail: MARK_RAN
+        onFailureMessage: "Table [addresses] already exists."
+      changes:
+        - createTable:
+            tableName: addresses
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_address_id
+                    unique: true
+                    uniqueConstraintName: uk_address_id
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: street1
+                  type: VARCHAR(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: street2
+                  type: VARCHAR(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: city
+                  type: VARCHAR(32)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: state
+                  type: VARCHAR(32)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: country
+                  type: VARCHAR(32)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: zip_code
+                  type: VARCHAR(16)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: VARCHAR(32)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: extra_info
+                  type: JSON
+              - column:
+                  name: created_on
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: DATETIME
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: VARCHAR(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_on
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: DATETIME
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_by
+                  type: VARCHAR(64)
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: addresses
+            baseColumnNames: user_id
+            constraintName: fk_user_addresses
+            referencedTableName: users
+            referencedColumnNames: id
+
+      rollback:
+        - noRollback: true
+
+  - changeSet:
+      id: create_index_on_addresses_table
+      author: Rohtash Lakra
+      context: v0.0.1
+      preConditions:
+        tableExists:
+          tableName: addresses
+      onFail: MARK_RAN
+      onFailureMessage: "Table [addresses] doesn't exist"
+      changes:
+        - createIndex:
+            tableName: addresses
+            indexName: idx_addresses_table_user_id
+            columns:
+              - column:
+                  name: user_id
+
+      rollback:
+        - noRollback: true
+

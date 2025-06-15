@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.32.xsd">
+
+    <!-- users -->
+    <changeSet author="rslakra" id="create_users_table" context="v0.0.1">
+        <preConditions onFail="MARK_RAN" onFailMessage="Table [users] already exists">
+            <not>
+                <tableExists tableName="users"/>
+            </not>
+        </preConditions>
+        <createTable tableName="users">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="pk_user_id"
+                             unique="true" uniqueConstraintName="uk_user_id"
+                             nullable="false"/>
+            </column>
+            <column name="email" type="varchar(64)">
+                <constraints unique="true" uniqueConstraintName="uk_user_email"
+                             nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="middle_name" type="varchar(64)"/>
+            <column name="last_name" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(16)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="test_user" type="TINYINT(1)" defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+            <column name="registered_on" type="java.sql.Timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="country_code" type="varchar(4)"/>
+            <column name="phone_number" type="varchar(16)"/>
+            <column name="dob" type="java.util.Date"/>
+            <column name="social_identity" type="JSON"/>
+            <column name="profile_urls" type="JSON"/>
+            <column name="referral_code" type="varchar(32)"/>
+            <column name="metadata" type="JSON"/>
+            <column name="created_on" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="java.sql.Timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_on" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="java.sql.Timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_by" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+    <!-- create index -->
+    <changeSet author="rslakra" id="create_index_on_users_table" context="v0.0.1">
+        <preConditions onFail="MARK_RAN" onFailMessage="Table [users] doesn't exist">
+            <tableExists tableName="users"/>
+        </preConditions>
+        <createIndex indexName="idx_users_table_email" tableName="users">
+            <column name="email"/>
+        </createIndex>
+    </changeSet>
+
+    <!-- insert default users -->
+    <changeSet author="rslakra" id="insert_default_users" context="v0.0.1">
+        <preConditions onFail="MARK_RAN" onFailMessage="Table [users] doesn't exist">
+            <tableExists tableName="users"/>
+        </preConditions>
+        <sqlFile dbms="h2, mysql, oracle"
+                 endDelimiter=";"
+                 path="liquibase/changelog/sqls/insert_users.sql"
+                 splitStatements="true"
+                 stripComments="true"/>
+    </changeSet>
+
+</databaseChangeLog>

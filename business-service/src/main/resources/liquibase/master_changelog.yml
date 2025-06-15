@@ -1,0 +1,59 @@
+databaseChangeLog:
+  - preConditions:
+      - or:
+          - dbms:
+              type: h2
+          - dbms:
+              type: mysql
+          - dbms:
+              type: oracle
+
+  - changeSet:
+      id: create_hibernate_sequence
+      author: Rohtash Lakra
+      context: v0.0.1
+      preConditions:
+        not:
+          sequenceExists:
+            sequenceName: hibernate_sequence
+        onFail: MARK_RAN
+        onFailureMessage: "Hibernate sequence already exists."
+      changes:
+        - createSequence:
+            sequenceName: hibernate_sequence
+            incrementBy: 1
+            startValue: 1
+
+      rollback:
+        - noRollback: true
+
+  - include:
+      file: liquibase/changelog/tables/audit_logs.yml
+  - include:
+      file: liquibase/changelog/tables/roles.yml
+  - include:
+      file: liquibase/changelog/tables/users.yml
+  - include:
+      file: liquibase/changelog/tables/users_roles.yml
+  - include:
+      file: liquibase/changelog/tables/addresses.yml
+  - include:
+      file: liquibase/changelog/tables/user_security.yml
+  - include:
+      file: liquibase/changelog/tables/sessions.yml
+  - include:
+      file: liquibase/changelog/tables/permissions.yml
+  - include:
+      file: liquibase/changelog/tables/documents.yml
+  - include:
+      file: liquibase/changelog/tables/documents_versions.yml
+  - include:
+      file: liquibase/changelog/tables/documents_permissions.yml
+  - include:
+      file: liquibase/changelog/tables/tasks.yml
+  - include:
+      file: liquibase/changelog/tables/marketing.yml
+  - include:
+      file: liquibase/changelog/tables/content_taxonomies.yml
+  - include:
+      file: liquibase/changelog/releases.yml

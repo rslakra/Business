@@ -6,17 +6,13 @@ import com.rslakra.appsuite.core.enums.EntityStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
 
+import javax.persistence.*;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Table;
-import javax.persistence.Transient;
 
 /**
  * @author Rohtash Lakra
@@ -28,19 +24,46 @@ import javax.persistence.Transient;
 @Entity
 @Table(name = "users")
 public class User extends Person {
-
-    @Column(name = "password")
-    private String password;
-
+    
     @Column(name = "status")
     @Enumerated(value = EnumType.STRING)
     private EntityStatus status = EntityStatus.INACTIVE;
-
-    //    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    
+    @Column(name = "test_user")
+    private Boolean testUser = Boolean.FALSE;
+    
+    @Column(name = "registered_on", nullable = false, updatable = false)
+    @CreatedDate
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date registeredOn;
+    
+    @Column(name = "country_code")
+    private String countryCode;
+    
+    @Column(name = "phone_number")
+    private String phoneNumber;
+    
+    @Column(name = "dob")
+    private String dob;
+    
+    @Column(name = "social_identity")
+    private String socialIdentity;
+    
+    @Column(name = "profile_urls")
+    private String profileUrls;
+    
+    @Column(name = "referral_code")
+    private String referralCode;
+    
+    @Column(name = "metadata")
+    private String metadata;
+    
+    // @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    // @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn
+    // (name = "role_id"))
     @Transient
     private Set<Role> roles = new HashSet<>();
-
+    
     /**
      * Adds the <code>Set<Role></code>.
      *
@@ -51,7 +74,7 @@ public class User extends Person {
             getRoles().addAll(userRoles);
         }
     }
-
+    
     /**
      * @param userRoles
      * @return
@@ -64,7 +87,7 @@ public class User extends Person {
         return ((BeanUtils.isNotEmpty(getRoles()) && BeanUtils.isNotEmpty(userRoles))
                 && Collections.disjoint(getRoles(), userRoles));
     }
-
+    
     /**
      * Returns the string representation of this object.
      *
@@ -73,14 +96,13 @@ public class User extends Person {
     @Override
     public String toString() {
         return ToString.of(User.class)
-            .add("id", getId())
-            .add("email", getEmail())
-            .add("password", getPassword())
-            .add("firstName", getFirstName())
-            .add("middleName", getMiddleName())
-            .add("lastName", getLastName())
-            .add("status", getStatus())
-            .add("roles", getRoles())
-            .toString();
+                .add("id", getId())
+                .add("email", getEmail())
+                .add("firstName", getFirstName())
+                .add("middleName", getMiddleName())
+                .add("lastName", getLastName())
+                .add("status", getStatus())
+                .add("roles", getRoles())
+                .toString();
     }
 }

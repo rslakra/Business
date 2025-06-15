@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.32.xsd">
+
+    <!-- documents -->
+    <changeSet author="rslakra" id="create_documents_table" context="v0.0.1">
+        <preConditions onFail="MARK_RAN" onFailMessage="Table [documents] already exists">
+            <not>
+                <tableExists tableName="documents"/>
+            </not>
+        </preConditions>
+        <createTable tableName="documents">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="pk_document_id"
+                             unique="true" uniqueConstraintName="uk_document_id"
+                             nullable="false"/>
+            </column>
+            <!--parent_id of the parent folder. For root-level files or folders, this field can be NULL. -->
+            <column name="parent_id" type="BIGINT">
+                <constraints foreignKeyName="fk_documents_document_versions"
+                             referencedTableName="documents" referencedColumnNames="id"/>
+            </column>
+            <!--Indicates whether the entry is a file, a folder, or potentially a shortcut or other type of file system object.
+            This can be a simple enum or a foreign key to a separate table defining file system types.-->
+            <column name="entry_type" type="varchar(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(64)">
+                <constraints unique="true" uniqueConstraintName="uk_document_name"
+                             nullable="false"/>
+            </column>
+            <column name="path" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="size" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="mime_type" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="checksum" type="varchar(128)"/>
+            <column name="created_on" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="java.sql.Timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_on" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="java.sql.Timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_by" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="deleted_on" type="BIGINT"/>
+            <column name="deleted_at" type="java.sql.Timestamp"/>
+            <column name="deleted_by" type="varchar(64)"/>
+        </createTable>
+    </changeSet>
+
+    <!-- create index -->
+    <changeSet author="rslakra" id="create_index_on_documents_table" context="v0.0.1">
+        <preConditions onFail="MARK_RAN" onFailMessage="Table [documents] doesn't exist">
+            <tableExists tableName="documents"/>
+        </preConditions>
+        <createIndex indexName="idx_documents_table_name" tableName="documents">
+            <column name="name"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>

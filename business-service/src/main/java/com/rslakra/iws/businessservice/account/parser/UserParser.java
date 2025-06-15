@@ -18,15 +18,15 @@ import java.util.List;
  * @created 4/5/23 4:55 PM
  */
 public class UserParser extends AbstractParser<User> implements ExcelParser<User>, CsvParser<User> {
-
+    
     private static final Logger LOGGER = LoggerFactory.getLogger(UserParser.class);
     public static final String CSV_DOWNLOAD_FILE_NAME = "users.csv";
     public static final String EXCEL_DOWNLOAD_FILE_NAME = "users.xlsx";
-
+    
     public static final String[] HEADERS = {
             "id", "email", "firstName", "middleName", "lastName"
     };
-
+    
     /**
      * @return
      */
@@ -34,7 +34,7 @@ public class UserParser extends AbstractParser<User> implements ExcelParser<User
     public String getUploadFileName() {
         return null;
     }
-
+    
     /**
      * @return
      */
@@ -42,7 +42,7 @@ public class UserParser extends AbstractParser<User> implements ExcelParser<User
     public String getDownloadFileName() {
         return null;
     }
-
+    
     /**
      * @return
      */
@@ -50,7 +50,7 @@ public class UserParser extends AbstractParser<User> implements ExcelParser<User
     public String[] getReadHeaders() {
         return HEADERS;
     }
-
+    
     /**
      * @return
      */
@@ -58,7 +58,7 @@ public class UserParser extends AbstractParser<User> implements ExcelParser<User
     public String[] getWriteHeaders() {
         return HEADERS;
     }
-
+    
     /**
      * Returns the name of the Excel sheet.
      *
@@ -68,7 +68,7 @@ public class UserParser extends AbstractParser<User> implements ExcelParser<User
     public String getSheetName() {
         return User.class.getSimpleName();
     }
-
+    
     /**
      * @param rowCells
      * @return
@@ -86,32 +86,29 @@ public class UserParser extends AbstractParser<User> implements ExcelParser<User
                 case 1:
                     user.setEmail(currentCell.getStringCellValue());
                     break;
-
+                
                 case 2:
                     user.setFirstName(currentCell.getStringCellValue());
                     break;
-
+                
                 case 3:
                     user.setMiddleName(currentCell.getStringCellValue());
                     break;
-
+                
                 case 4:
                     user.setLastName(currentCell.getStringCellValue());
                     break;
-
+                
                 default:
                     break;
             }
-
+            
             cellIndex++;
         }
-
-        //set username as password
-        user.setPassword(user.getEmail());
-
+        
         return user;
     }
-
+    
     /**
      * @param csvRecord
      * @return
@@ -124,11 +121,10 @@ public class UserParser extends AbstractParser<User> implements ExcelParser<User
         user.setFirstName(csvRecord.get(2)); // firstName
         user.setMiddleName(csvRecord.get(3)); // middleName
         user.setLastName(csvRecord.get(4)); // lastName
-        user.setPassword(user.getEmail());
         LOGGER.debug("-buildCSVRecord(), user:{}", user);
         return user;
     }
-
+    
     /**
      * @param user
      * @return
@@ -143,5 +139,5 @@ public class UserParser extends AbstractParser<User> implements ExcelParser<User
         userContents.add(user.getLastName());
         return userContents;
     }
-
+    
 }

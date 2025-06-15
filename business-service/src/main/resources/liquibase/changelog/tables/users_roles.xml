@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.32.xsd">
+
+    <!-- users_roles -->
+    <changeSet author="rslakra" id="create_users_roles_table" context="v0.0.1">
+        <preConditions onFail="MARK_RAN" onFailMessage="Table [users_roles] already exists">
+            <not>
+                <tableExists tableName="users_roles"/>
+            </not>
+        </preConditions>
+        <createTable tableName="users_roles">
+            <column name="role_id" type="bigint">
+                <constraints nullable="false" notNullConstraintName="nn_users_roles_role_id"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" notNullConstraintName="nn_users_roles_user_id"/>
+            </column>
+            <column name="created_on" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="java.sql.Timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_on" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="java.sql.Timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_by" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="users_roles" baseColumnNames="role_id"
+                                 constraintName="fk_users_roles_role_id"
+                                 referencedTableName="roles" referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="users_roles" baseColumnNames="user_id"
+                                 constraintName="fk_users_roles_user_id"
+                                 referencedTableName="users" referencedColumnNames="id"/>
+    </changeSet>
+
+    <!-- create index -->
+    <changeSet author="rslakra" id="create_index_on_users_roles_table" context="v0.0.1">
+        <preConditions onFail="MARK_RAN" onFailMessage="Table [users_roles] doesn't exist">
+            <tableExists tableName="users_roles"/>
+        </preConditions>
+        <createIndex indexName="idx_users_roles_table_role_id_user_id" tableName="users_roles">
+            <column name="role_id"/>
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>

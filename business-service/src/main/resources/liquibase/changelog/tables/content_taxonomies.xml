@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.32.xsd">
+
+    <!-- content_taxonomies -->
+    <changeSet author="rslakra" id="create_content_taxonomies_table">
+        <createTable tableName="content_taxonomies">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="pk_content_taxonomy_id"
+                             unique="true" uniqueConstraintName="uk_content_taxonomy_id"
+                             nullable="false"/>
+            </column>
+            <column name="parent_id" type="bigint">
+                <constraints foreignKeyName="fk_content_taxonomy_content_taxonomy"
+                             referencedTableName="content_taxonomies" referencedColumnNames="id"
+                             validateForeignKey="true" nullable="true"/>
+            </column>
+            <column name="name" type="varchar(64)">
+                <constraints unique="true" uniqueConstraintName="uk_content_taxonomy_name"
+                             nullable="false"/>
+            </column>
+            <column name="tier1" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tier2" type="varchar(64)"/>
+            <column name="tier3" type="varchar(64)"/>
+            <column name="tier4" type="varchar(64)"/>
+            <column name="extension" type="varchar(64)"/>
+            <column name="score" type="java.math.BigDecimal"/>
+            <column name="confident" type="java.lang.Boolean"/>
+            <column name="created_on" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_on" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_by" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

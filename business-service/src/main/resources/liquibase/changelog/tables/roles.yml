@@ -1,0 +1,112 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_roles_table
+      author: Rohtash Lakra
+      context: v0.0.1
+      preConditions:
+        not:
+          tableExists:
+            tableName: roles
+        onFail: MARK_RAN
+        onFailureMessage: "Table [users] already exists."
+      changes:
+        - createTable:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_role_id
+                    unique: true
+                    uniqueConstraintName: uk_role_id
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(32)
+                  constraints:
+                    unique: true
+                    uniqueConstraintName: uk_role_name
+                    nullable: false
+              - column:
+                  name: status
+                  type: VARCHAR(32)
+                  defaultValue: INACTIVE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_on
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: DATETIME
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: VARCHAR(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_on
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: DATETIME
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_by
+                  type: VARCHAR(64)
+                  constraints:
+                    nullable: false
+      rollback:
+        - noRollback: true
+
+
+  - changeSet:
+      id: create_index_on_roles_table
+      author: Rohtash Lakra
+      context: v0.0.1
+      preConditions:
+        tableExists:
+          tableName: roles
+      onFail: MARK_RAN
+      onFailureMessage: "Table [roles] doesn't exist"
+      changes:
+        - createIndex:
+            tableName: roles
+            indexName: idx_roles_table_name
+            columns:
+              - column:
+                  name: name
+      rollback:
+        - noRollback: true
+
+
+  - changeSet:
+      id: insert_default_roles
+      author: Rohtash Lakra
+      context: v0.0.1
+      preConditions:
+        tableExists:
+          tableName: roles
+      onFail: MARK_RAN
+      onFailureMessage: "Table [roles] doesn't exist"
+      changes:
+        - sqlFile:
+            dbms: "h2, oracle, mysql"
+            endDelimiter: ;
+            splitStatements: true
+            stripComments: true
+            comment: "Insert Default Roles"
+            path: liquibase/changelog/sqls/insert_roles.sql
+
+      rollback:
+        - noRollback: true
+

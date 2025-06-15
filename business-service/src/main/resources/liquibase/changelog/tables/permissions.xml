@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.32.xsd">
+
+    <!-- permissions -->
+    <changeSet author="rslakra" id="create_permissions_table" context="v0.0.1">
+        <preConditions onFail="MARK_RAN" onFailMessage="Table [permissions] already exists">
+            <not>
+                <tableExists tableName="permissions"/>
+            </not>
+        </preConditions>
+        <createTable tableName="permissions">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="pk_permission_id"
+                             unique="true" uniqueConstraintName="uk_permission_id"
+                             nullable="false"/>
+            </column>
+            <column name="name" type="varchar(32)">
+                <constraints unique="true" uniqueConstraintName="uk_permission_name"
+                             nullable="false"/>
+            </column>
+            <column name="status" type="varchar(32)" defaultValue="INACTIVE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_on" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="java.sql.Timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_on" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="java.sql.Timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_by" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- create index -->
+    <changeSet author="rslakra" id="create_index_on_permissions_table" context="v0.0.1">
+        <preConditions onFail="MARK_RAN" onFailMessage="Table [permissions] doesn't exist">
+            <tableExists tableName="permissions"/>
+        </preConditions>
+        <createIndex indexName="idx_permissions_table_name" tableName="permissions">
+            <column name="name"/>
+        </createIndex>
+    </changeSet>
+
+    <!-- insert default permissions -->
+    <changeSet author="rslakra" id="insert_default_permissions" context="v0.0.1">
+        <preConditions onFail="MARK_RAN" onFailMessage="Table [permissions] doesn't exist">
+            <tableExists tableName="permissions"/>
+        </preConditions>
+        <sqlFile dbms="h2, mysql, oracle"
+                 endDelimiter=";"
+                 path="liquibase/changelog/sqls/insert_permissions.sql"
+                 splitStatements="true"
+                 stripComments="true"/>
+    </changeSet>
+
+</databaseChangeLog>

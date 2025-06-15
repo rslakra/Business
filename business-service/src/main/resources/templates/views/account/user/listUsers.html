@@ -27,11 +27,17 @@
         <tr>
             <th>ID</th>
             <th>Email</th>
-            <th>Password</th>
             <th>First Name</th>
             <th>Middle Name</th>
             <th>Last Name</th>
             <th>Status</th>
+
+            <th>Test User</th>
+            <th>Registered On</th>
+            <th>Phone</th>
+            <th>DOB</th>
+            <th>Profile Urls</th>
+            <th>Referral Code</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -48,11 +54,17 @@
                 <tr th:each="user : ${users}">
                     <td th:text="${user.id}"/>
                     <td th:text="${user.email}"/>
-                    <td th:text="${user.password}" th:type="password"/>
                     <td th:text="${user.firstName}"/>
                     <td th:text="${user.middleName}"/>
                     <td th:text="${user.lastName}"/>
                     <td th:text="${user.status}"/>
+                    <td th:text="${user.testUser}"/>
+                    <td th:text="${user.registeredOn}"/>
+                    <td th:text="${user.phoneNumber}"/>
+                    <td th:text="${user.dob}"/>
+                    <td th:text="${user.profileUrls}"/>
+                    <td th:text="${user.referralCode}"/>
+
                     <td class="action-button">
                         <a class="action-button-padding" th:href="@{/users/update/{id}(id=${user.id})}">
                             <i class="fa fa-pencil" style="font-size:24px;color:red"></i>

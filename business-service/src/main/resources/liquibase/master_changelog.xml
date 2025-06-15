@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.32.xsd">
+
+    <!-- Global or changelog preconditions are defined at the top of the changelog, prior to any changesets. -->
+    <preConditions onError="HALT" onErrorMessage="Only Supports [H2, MysQL and Oracle] Databases"
+                   onFail="HALT" onFailMessage="Only Supports [H2, MysQL and Oracle] Databases">
+        <dbms type="h2, mysql, oracle"/>
+    </preConditions>
+
+    <!-- create hibernate sequence -->
+    <changeSet author="rslakra" id="create_hibernate_sequence">
+        <preConditions onFail="MARK_RAN" onFailMessage="Hibernate sequence already exists.">
+            <not>
+                <sequenceExists sequenceName="hibernate_sequence"/>
+            </not>
+        </preConditions>
+        <createSequence sequenceName="hibernate_sequence" incrementBy="1" startValue="1"/>
+    </changeSet>
+
+    <include file="liquibase/changelog/tables/audit_logs.xml"/>
+    <include file="liquibase/changelog/tables/roles.xml"/>
+    <include file="liquibase/changelog/tables/users.xml"/>
+    <include file="liquibase/changelog/tables/users_roles.xml"/>
+    <include file="liquibase/changelog/tables/addresses.xml"/>
+    <include file="liquibase/changelog/tables/user_security.xml"/>
+    <include file="liquibase/changelog/tables/sessions.xml"/>
+    <include file="liquibase/changelog/tables/permissions.xml"/>
+    <include file="liquibase/changelog/tables/documents.xml"/>
+    <include file="liquibase/changelog/tables/documents_versions.xml"/>
+    <include file="liquibase/changelog/tables/documents_permissions.xml"/>
+    <include file="liquibase/changelog/tables/tasks.xml"/>
+    <include file="liquibase/changelog/tables/marketing.xml"/>
+    <include file="liquibase/changelog/tables/content_taxonomies.xml"/>
+    <include file="liquibase/changelog/releases.xml"/>
+    <!--<includeAll path="liquibase/changelog/tables"/>-->
+    <!--<includeAll path="liquibase/changelog/views"/>-->
+</databaseChangeLog>
