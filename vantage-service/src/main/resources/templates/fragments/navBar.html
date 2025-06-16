@@ -1,0 +1,95 @@
+<nav class="navbar navbar-expand-sm navbar-light" xmlns:th="http://www.thymeleaf.org">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbar-collapse-menu">
+            <!--left side nav-bar-->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#navbar-collapse-menu" aria-expanded="false">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar" aria-hidden="true"></span>
+                    <span class="icon-bar" aria-hidden="true"></span>
+                    <span class="icon-bar" aria-hidden="true"></span>
+                </button>
+                <a class="navbar-brand" th:href="@{/}">eVantage</a>
+            </div>
+
+            <ul class="nav navbar-nav">
+                <li class="nav-item dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Roles <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/roles/create}">Add Role</a></li>
+                        <li role="separator" class="divider"></li>
+                        <!--<li><a th:href="@{/roles/edit}">Edit Role</a></li>-->
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Users <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/users/create}">Add User</a></li>
+                    </ul>
+                </li>
+                <!--                <li class="nav-item btn" id="ui-roles">-->
+                <!--                    <a class="nav-link text-dark" th:href="@{/roles/list}">Roles</a>-->
+                <!--                </li>-->
+                <!--                <li class="nav-item btn" id="ui-users">-->
+                <!--                    <a class="nav-link text-dark" th:href="@{/users/list}">Users</a>-->
+                <!--                </li>-->
+
+                <li class="nav-item dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Tasks <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/tasks/create}">Add Task</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Marketing <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/marketing/create}">Add Marketing</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Content-Taxonomy <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/content-taxonomy/create}">Add Content-Taxonomy</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Cities <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/cities}">Cities</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/cities/list}">Show Cities</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/cities/update}">Edit City</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/cities/delete}">Delete City</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!--right side nav-bar-->
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Roles <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/roles/create}">Profile</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/roles/create}">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>

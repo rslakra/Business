@@ -51,6 +51,10 @@
         <!-- lombok -->
         <lombok.version>1.18.34</lombok.version>
 
+        <!-- thymeleaf -->
+        <thymeleaf-layout-dialect.version>3.4.0</thymeleaf-layout-dialect.version>
+        <thymeleaf-with-dialect.version>3.0.1</thymeleaf-with-dialect.version>
+
         <!-- liquibase -->
         <liquibase.version>4.32.0</liquibase.version>
 
@@ -118,9 +122,17 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/nz.net.ultraq.thymeleaf/thymeleaf-layout-dialect -->
+        <dependency>
+            <groupId>nz.net.ultraq.thymeleaf</groupId>
+            <artifactId>thymeleaf-layout-dialect</artifactId>
+            <version>${thymeleaf-layout-dialect.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-core -->

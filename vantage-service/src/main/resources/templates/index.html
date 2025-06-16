@@ -1,54 +1,32 @@
 <!DOCTYPE html>
-<html lang="en"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/default}">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:with="http://www.thymeleaf.org/extras/with"
+      layout:decorate="~{layouts/layout}"
+      with:title="'eVantage'">
 
-<head> <!-- start:head -->
-    <title>Welcome to The Business Application</title>
-</head> <!-- end:head -->
+<!-- bodyContents:start-->
+<th:block layout:fragment="bodyContents"> <!-- bodyContents:start-->
+    <div class="page-body"> <!-- pageBody:start -->
+        <div>
+            <p>
+                Thymeleaf is a modern server-side Java template engine for both web and standalone environments.
+            </p>
 
-<!-- body -->
-<body> <!-- start:body -->
+            <p>
+                Thymeleaf's main goal is to bring elegant natural templates to your development workflow — HTML that can
+                be correctly displayed in browsers and also work as static prototypes, allowing for stronger
+                collaboration in development teams.
+            </p>
 
-<!-- contents -->
-<section layout:fragment="contents"> <!-- start:section:contents -->
-    <header class="box-block">  <!-- start:header -->
-        <!-- start:contents -->
-        <h1>Welcome to The Business Application!</h1>
-        <p class="item">
-            Much business software is developed to meet the needs of a specific business, and therefore is not easily
-            transferable to a different business environment, unless its nature and operation are identical. Due to the
-            unique requirements of each business, off-the-shelf software is unlikely to completely address a company's
-            needs. However, where an on-the-shelf solution is necessary, due to time or monetary considerations, some
-            level of customization is likely to be required. Exceptions do exist, depending on the business in question,
-            and thorough research is always required before committing to bespoke or off-the-shelf solutions.
-        </p>
-
-        <div class="action">
-            <a class="button" href="https://www.rslakra.com" title="Back to Learning">Back to Learning</a>
-            <a class="button" href="https://github.com/rslakra" title="View on GitHub">View on GitHub</a>
+            <p>
+                With modules for Spring Framework, a host of integrations with your favourite tools, and the ability to
+                plug in your own functionality, Thymeleaf is ideal for modern-day HTML5 JVM web development — although
+                there is much more it can do.
+            </p>
         </div>
-
-        <!-- start:contents -->
-    </header>  <!-- end:header -->
-
-    <div class="item">
-        ग्राहक बहुत महत्वपूर्ण है, ग्राहक का ग्राहक द्वारा अनुसरण किया जाएगा।
-        यह न तो शीर्षक है और न ही तत्व, बल्कि कभी-कभी एक संपत्ति है।
-        नाव और रियल एस्टेट डेवलपर।
-    </div>
-    <div class="item">
-        Some business applications are interactive, i.e., they have a graphical user interface or user interface and
-        users can query/modify/input data and view results instantaneously. They can also run reports instantaneously.
-        Some business applications run in batch mode: they are set up to run based on a predetermined event/time and a
-        business user does not need to initiate or monitor them.
-    </div>
-
-    <div>
-        <a class="button" th:href="@{/home}" title="Home"><img class="img-circle" src="images/logo.png"></a>
-    </div>
-
-</section> <!-- end:section:contents -->
-
-</body>
+        <div><a th:href="@{/login}">Log in</a></div>
+    </div> <!-- pageBody:end -->
+</th:block> <!-- bodyContents:end-->
 </html>
