@@ -1,0 +1,158 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_users_table
+      author: Rohtash Lakra
+      context: v0.0.1
+      preConditions:
+        not:
+          tableExists:
+            tableName: users
+        onFail: MARK_RAN
+        onFailureMessage: "Table [users] already exists."
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_user_id
+                    unique: true
+                    uniqueConstraintName: uk_user_id
+                    nullable: false
+              - column:
+                  name: email
+                  type: VARCHAR(64)
+                  constraints:
+                    unique: true
+                    uniqueConstraintName: uk_user_email
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: VARCHAR(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: middle_name
+                  type: VARCHAR(64)
+              - column:
+                  name: last_name
+                  type: VARCHAR(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: VARCHAR(16)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: test_user
+                  type: TINYINT(1)
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+              - column:
+                  name: registered_on
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: country_code
+                  type: VARCHAR(4)
+              - column:
+                  name: phone_number
+                  type: VARCHAR(16)
+              - column:
+                  name: dob
+                  type: DATE
+              - column:
+                  name: social_identity
+                  type: JSON
+              - column:
+                  name: profile_urls
+                  type: JSON
+              - column:
+                  name: referral_code
+                  type: VARCHAR(32)
+              - column:
+                  name: metadata
+                  type: JSON
+              - column:
+                  name: created_on
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: DATETIME
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: VARCHAR(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_on
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: DATETIME
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_by
+                  type: VARCHAR(64)
+                  constraints:
+                    nullable: false
+
+      rollback:
+        - noRollback: true
+
+  - changeSet:
+      id: create_index_on_users_table
+      author: Rohtash Lakra
+      context: v0.0.1
+      preConditions:
+        tableExists:
+          tableName: users
+      onFail: MARK_RAN
+      onFailureMessage: "Table [users] doesn't exist"
+      changes:
+        - createIndex:
+            tableName: users
+            indexName: idx_users_table_email
+            columns:
+              - column:
+                  name: email
+
+      rollback:
+        - noRollback: true
+
+
+  - changeSet:
+      id: insert_default_users
+      author: Rohtash Lakra
+      context: v0.0.1
+      preConditions:
+        tableExists:
+          tableName: users
+      onFail: MARK_RAN
+      onFailureMessage: "Table [users] doesn't exist"
+      changes:
+        - sqlFile:
+            dbms: "h2, oracle, mysql"
+            endDelimiter: ;
+            splitStatements: true
+            stripComments: true
+            comment: "Insert Default Users"
+            path: liquibase/changelog/sqls/insert_users.sql
+
+      rollback:
+        - noRollback: true
+

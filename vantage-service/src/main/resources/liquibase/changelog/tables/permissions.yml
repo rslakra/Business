@@ -1,0 +1,112 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_permissions_table
+      author: Rohtash Lakra
+      context: v0.0.1
+      preConditions:
+        not:
+          tableExists:
+            tableName: permissions
+        onFail: MARK_RAN
+        onFailureMessage: "Table [permissions] already exists."
+      changes:
+        - createTable:
+            tableName: permissions
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_permission_id
+                    unique: true
+                    uniqueConstraintName: uk_permission_id
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(64)
+                  constraints:
+                    unique: true
+                    uniqueConstraintName: uk_permission_name
+                    nullable: false
+              - column:
+                  name: status
+                  type: VARCHAR(32)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_on
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: DATETIME
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: VARCHAR(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_on
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: DATETIME
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_by
+                  type: VARCHAR(64)
+                  constraints:
+                    nullable: false
+
+      rollback:
+        - noRollback: true
+
+  - changeSet:
+      id: create_index_on_permissions_table
+      author: Rohtash Lakra
+      context: v0.0.1
+      preConditions:
+        tableExists:
+          tableName: permissions
+      onFail: MARK_RAN
+      onFailureMessage: "Table [permissions] doesn't exist"
+      changes:
+        - createIndex:
+            tableName: permissions
+            indexName: idx_permissions_table_name
+            columns:
+              - column:
+                  name: name
+
+      rollback:
+        - noRollback: true
+
+
+  - changeSet:
+      id: insert_default_permissions
+      author: Rohtash Lakra
+      context: v0.0.1
+      preConditions:
+        tableExists:
+          tableName: permissions
+      onFail: MARK_RAN
+      onFailureMessage: "Table [permissions] doesn't exist"
+      changes:
+        - sqlFile:
+            dbms: "h2, oracle, mysql"
+            endDelimiter: ;
+            splitStatements: true
+            stripComments: true
+            comment: "Insert Default Roles"
+            path: liquibase/changelog/sqls/insert_permissions.sql
+
+      rollback:
+        - noRollback: true
+

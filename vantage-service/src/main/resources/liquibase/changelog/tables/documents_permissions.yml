@@ -1,0 +1,104 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_documents_permissions_table
+      author: Rohtash Lakra
+      context: v0.0.1
+      preConditions:
+        not:
+          tableExists:
+            tableName: documents_permissions
+        onFail: MARK_RAN
+        onFailureMessage: "Table [documents_permissions] already exists."
+      changes:
+        - createTable:
+            tableName: documents_permissions
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_documents_permissions_id
+                    unique: true
+                    uniqueConstraintName: uk_documents_permissions_id
+                    nullable: false
+              - column:
+                  name: document_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: permission_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_on
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: java.sql.Timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: VARCHAR(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_on
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: java.sql.Timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_by
+                  type: VARCHAR(64)
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: documents_permissions
+            baseColumnNames: document_id
+            constraintName: fk_documents_permissions_document_id
+            referencedTableName: documents
+            referencedColumnNames: id
+
+        - addForeignKeyConstraint:
+            baseTableName: documents_permissions
+            baseColumnNames: permission_id
+            constraintName: fk_documents_permissions_permission_id
+            referencedTableName: permissions
+            referencedColumnNames: id
+
+      rollback:
+        - noRollback: true
+
+  - changeSet:
+      id: create_index_on_documents_permissions_table
+      author: Rohtash Lakra
+      context: v0.0.1
+      preConditions:
+        tableExists:
+          tableName: documents_permissions
+      onFail: MARK_RAN
+      onFailureMessage: "Table [documents_permissions] doesn't exist"
+      changes:
+        - createIndex:
+            tableName: documents_permissions
+            indexName: idx_documents_permissions_table_document_id_permission_id
+            columns:
+              - column:
+                  name: document_id
+              - column:
+                  name: permission_id
+
+      rollback:
+        - noRollback: true
+

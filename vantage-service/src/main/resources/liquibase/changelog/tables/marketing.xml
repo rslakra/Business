@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.32.xsd">
+
+    <!-- marketing -->
+    <changeSet author="rslakra" id="create_marketing_table">
+        <createTable tableName="marketing">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" primaryKeyName="pk_marketing_id"
+                             unique="true" uniqueConstraintName="uk_marketing_id"
+                             nullable="false"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints foreignKeyName="fk_user_marketing"
+                             referencedTableName="users" referencedColumnNames="id"
+                             validateForeignKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(64)">
+                <constraints unique="true" uniqueConstraintName="uk_marketing_name"
+                             nullable="false"/>
+            </column>
+            <column name="created_on" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_on" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_by" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- create index -->
+    <changeSet author="rslakra" id="create_index_on_marketing_table_user_id" context="v0.0.1">
+        <preConditions onFail="MARK_RAN" onFailMessage="Table [marketing] doesn't exist">
+            <tableExists tableName="marketing"/>
+        </preConditions>
+        <createIndex indexName="idx_marketing_table_user_id" tableName="marketing">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog>

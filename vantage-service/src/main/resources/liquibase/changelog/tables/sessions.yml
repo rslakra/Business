@@ -1,0 +1,109 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_sessions_table
+      author: Rohtash Lakra
+      context: v0.0.1
+      preConditions:
+        not:
+          tableExists:
+            tableName: sessions
+        onFail: MARK_RAN
+        onFailureMessage: "Table [sessions] already exists."
+      changes:
+        - createTable:
+            tableName: sessions
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_session_id
+                    unique: true
+                    uniqueConstraintName: uk_session_id
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: start_time
+                  type: java.sql.Timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: end_time
+                  type: java.sql.Timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: active
+                  type: TINYINT(1)
+                  defaultValueBoolean: false
+                  constraints:
+                    nullable: false
+              - column:
+                  name: metadata
+                  type: JSON
+              - column:
+                  name: created_on
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: DATETIME
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: VARCHAR(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_on
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: DATETIME
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_by
+                  type: VARCHAR(64)
+                  constraints:
+                    nullable: false
+
+        - addForeignKeyConstraint:
+            baseTableName: sessions
+            baseColumnNames: user_id
+            constraintName: fk_users_session
+            referencedTableName: users
+            referencedColumnNames: id
+
+      rollback:
+        - noRollback: true
+
+  - changeSet:
+      id: create_index_on_sessions_table
+      author: Rohtash Lakra
+      context: v0.0.1
+      preConditions:
+        tableExists:
+          tableName: sessions
+      onFail: MARK_RAN
+      onFailureMessage: "Table [sessions] doesn't exist"
+      changes:
+        - createIndex:
+            tableName: sessions
+            indexName: idx_sessions_table_user_id
+            columns:
+              - column:
+                  name: user_id
+
+      rollback:
+        - noRollback: true
+

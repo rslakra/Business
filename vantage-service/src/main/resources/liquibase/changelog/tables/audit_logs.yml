@@ -1,0 +1,106 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_audit_logs_table
+      author: Rohtash Lakra
+      context: v0.0.1
+      preConditions:
+        not:
+          tableExists:
+            tableName: audit_logs
+        onFail: MARK_RAN
+        onFailureMessage: "Table [audit_logs] already exists."
+      changes:
+        - createTable:
+            tableName: audit_logs
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: pk_audit_log_id
+                    unique: true
+                    uniqueConstraintName: uk_audit_log_id
+                    nullable: false
+              - column:
+                  name: table_name
+                  type: VARCHAR(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: column_name
+                  type: VARCHAR(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: column_id
+                  type: VARCHAR(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: old_value
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: new_value
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_on
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: DATETIME
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_by
+                  type: VARCHAR(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_on
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: DATETIME
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_by
+                  type: VARCHAR(64)
+                  constraints:
+                    nullable: false
+
+        - noRollback: true
+
+  - changeSet:
+      id: create_index_on_audit_logs_table
+      author: Rohtash Lakra
+      context: v0.0.1
+      preConditions:
+        tableExists:
+          tableName: audit_logs
+      onFail: MARK_RAN
+      onFailureMessage: "Table [audit_logs] doesn't exist"
+      changes:
+        - createIndex:
+            tableName: audit_logs
+            indexName: idx_audit_logs_table_name_column_name_column_id
+            columns:
+              - column:
+                  name: table_name
+              - column:
+                  name: column_name
+              - column:
+                  name: column_id
+
+      rollback:
+        - noRollback: true
+

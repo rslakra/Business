@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link rel="stylesheet" type="text/css" media="all" href="../../../../static/css/styles.css"
+          th:href="@{/css/styles.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" href="../../../../static/css/form-styles.css"
+          th:href="@{/css/form-styles.css}"/>
+
+    <!-- Title -->
+    <title>Upload Tasks</title>
+</head>
+<body>
+
+<!-- Body Container -->
+<div class="body-container">
+
+    <!-- H2 -->
+    <h2>Upload Tasks</h2>
+
+    <div class="contents"> <!-- div:contents-start -->
+        <!-- Form -->
+        <div class="form-style">
+            <h2 class="center">Upload Tasks</h2>
+            <form action="#" th:action="@{/tasks/upload}" method="POST" enctype="multipart/form-data">
+                <div class="section"><span>*</span>Upload Tasks</div>
+                <div class="inner-wrap">
+                    <label>Upload
+                        <input type="file" name="file" placeholder="Tasks File"/>
+                    </label>
+                </div>
+
+                <div class="button-section">
+                    <input type="submit" name="Submit"/>
+                </div>
+            </form>
+        </div>
+
+        <!--Back Button -->
+        <div>
+            <a class="button" th:href="@{/tasks/list}">Back</a>
+        </div>
+
+    </div> <!-- div:contents-end -->
+
+</div>
+
+</body>
+
+<!-- Footer -->
+<!--<div th:replace="~{fragments/footer::footer}">Footer</div>-->
+<footer class="footer">
+    <div th:insert="~{fragments/footer::footer}"></div>
+</footer>
+</html>

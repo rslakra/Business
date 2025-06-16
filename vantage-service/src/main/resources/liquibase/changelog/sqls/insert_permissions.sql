@@ -1,0 +1,17 @@
+INSERT INTO permissions (id, name, status, created_on, created_at, created_by, updated_on, updated_at, updated_by)
+VALUES (1, 'Read', 'ACTIVE', 1749776630446, CURRENT_TIMESTAMP, 'rslakra', 1749776630446, CURRENT_TIMESTAMP,
+'rslakra'),
+    (2, 'Write', 'ACTIVE', 1749776630446, CURRENT_TIMESTAMP, 'rslakra', 1749776630446, CURRENT_TIMESTAMP, 'rslakra'),
+    (3, 'Execute', 'ACTIVE', 1749776630446, CURRENT_TIMESTAMP, 'rslakra', 1749776630446, CURRENT_TIMESTAMP, 'rslakra'),
+    (4, 'Modify', 'ACTIVE', 1749776630446, CURRENT_TIMESTAMP, 'rslakra', 1749776630446, CURRENT_TIMESTAMP,
+    'rslakra'),
+    (5, 'Full Control', 'ACTIVE', 1749776630446, CURRENT_TIMESTAMP, 'rslakra', 1749776630446, CURRENT_TIMESTAMP,
+    'rslakra'),
+    (6, 'Owner', 'ACTIVE', 1749776630446, CURRENT_TIMESTAMP, 'rslakra', 1749776630446, CURRENT_TIMESTAMP, 'rslakra'),
+    (7, 'List Folder Contents', 'INACTIVE', 1749776630446, CURRENT_TIMESTAMP, 'rslakra', 1749776630446,
+    CURRENT_TIMESTAMP, 'rslakra'),
+    (8, 'Download', 'ACTIVE', 1749776630446, CURRENT_TIMESTAMP, 'rslakra', 1749776630446, CURRENT_TIMESTAMP,
+    'rslakra'),
+    (9, 'Upload', 'ACTIVE', 1749776630446, CURRENT_TIMESTAMP, 'rslakra', 1749776630446, CURRENT_TIMESTAMP, 'rslakra'),
+    (10, 'Share', 'INACTIVE', 1749776630446, CURRENT_TIMESTAMP, 'rslakra', 1749776630446, CURRENT_TIMESTAMP, 'rslakra')
+    ;

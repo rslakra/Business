@@ -1,0 +1,10 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: v0.0.1
+      author: Rohtash Lakra
+      context: v0.0.1
+      changes:
+        - tagDatabase:
+            tag: v0.0.1
+

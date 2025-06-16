@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--    <div th:insert="fragments/header :: header">Header</div>-->
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- css -->
+    <link rel="stylesheet" type="text/css" media="all" href="../static/css/styles.css" th:href="@{/css/styles.css}"/>
+
+    <!-- Title -->
+    <title>The Business Service</title>
+</head>
+
+<!--<header class="header">-->
+<!--    <div th:insert="~{fragments/header::header}"></div>-->
+<!--</header>-->
+
+<body>
+
+<div class="container" th:fragment="content">
+    <!-- Logo and Header -->
+    <div class="center">
+        <div>
+            <a th:href="@{/}" title="Home">
+                <img src="../static/images/logo.png" alt="The Business Application" title="The Business Application"
+                     th:src="@{/images/logo.png}"/>
+            </a>
+        </div>
+        <h1>Welcome to The Business Application!</h1>
+    </div>
+
+    <!-- Top Buttons-Bar -->
+    <div class="navbar">
+        <!-- List Roles -->
+        <a class="button" th:href="@{/roles/list}"><i class="fa-brands fa-critical-role"></i> List Roles</a>
+        <!-- List Users -->
+        <a class="button" th:href="@{/users/list}"><i class="fa-solid fa-users"></i> List Users</a>
+        <!-- List Tasks -->
+        <a class="button" th:href="@{/tasks/list}"><i class="fa-solid fa-list-check"></i> List Tasks</a>
+        <!-- List Marketing -->
+        <a class="button" th:href="@{/marketing/list}"><i class="fa-solid fa-chart-simple"></i> List Marketing</a>
+        <!-- List Content-Taxonomies -->
+        <a class="button" th:href="@{/content-taxonomy/list}"><i class="fa-solid fa-arrows-to-circle"></i> List
+            Content-Taxonomies</a>
+    </div>
+
+</div>
+
+</body>
+
+<!-- Footer -->
+<!--<div th:replace="~{fragments/footer::footer}">Footer</div>-->
+
+<footer class="footer">
+    <div th:insert="~{fragments/footer::footer}"></div>
+</footer>
+
+</html>
+
