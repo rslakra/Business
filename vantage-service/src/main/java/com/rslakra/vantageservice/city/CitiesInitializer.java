@@ -18,6 +18,10 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * @author Rohtash Lakra
+ * @created 06/20/2025 10:11 PM
+ */
 @Configuration
 @EnableConfigurationProperties(StaticDataProperties.class)
 public class CitiesInitializer implements InitializingBean {

@@ -7,6 +7,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+/**
+ * @author Rohtash Lakra
+ * @created 06/20/2025 10:11 PM
+ */
 @Repository
 public interface CityRepository extends BaseRepository<City, Long> {
     

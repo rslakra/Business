@@ -12,25 +12,30 @@
         <appender-ref ref="CONSOLE"/>
     </root>
 
-
     <!-- slf4j -->
+    <logger name="ch.qos.logback" level="WARN"/>
     <logger name="ch.qos.logback.core.joran" level="WARN"/>
 
     <!-- rslakra -->
     <logger name="com.rslakra" level="DEBUG"/>
-    <!-- zaxxer -->
-    <logger name="com.zaxxer" level="WARN"/>
+
+    <!-- swagger -->
+    <logger name="io.swagger" level="WARN"/>
+
+    <!-- liquibase -->
+    <logger name="liquibase" level="WARN"/>
 
     <!-- apache -->
     <logger name="org.apache" level="WARN"/>
     <logger name="org.apache.tomcat" level="WARN"/>
 
     <!-- hibernate -->
-    <logger name="org.hibernate" level="WARN"/>
+    <logger name="org.hibernate" level="INFO"/>
 
     <!-- springframework -->
     <logger name="org.springframework" level="WARN"/>
     <logger name="org.springframework.boot" level="WARN"/>
+    <logger name="org.springframework.core" level="WARN"/>
     <logger name="org.springframework.transaction" level="WARN"/>
     <!-- to debug some marshaling issues, this should be TRACE -->
     <logger name="org.springframework.web.servlet.mvc" level="WARN"/>
@@ -40,7 +45,7 @@
 
     <!-- zaxxer -->
     <logger name="org.zaxxer" level="WARN"/>
-    <!-- <logger name="org.zaxxer.hikari" level="WARN"/>-->
-    <!-- <logger name="org.zaxxer.hikari.*" level="WARN"/>-->
+    <logger name="org.zaxxer.hikari" level="INFO"/>
+    <!--<logger name="org.zaxxer.hikari.*" level="INFO"/>-->
 
 </configuration>

@@ -21,6 +21,10 @@ import java.util.function.Supplier;
 
 import static org.springframework.http.HttpStatus.NO_CONTENT;
 
+/**
+ * @author Rohtash Lakra
+ * @created 06/20/2025 10:11 PM
+ */
 @Controller
 @RequestMapping("/cities")
 public class CityWebController extends AbstractWebController<City, Long> {

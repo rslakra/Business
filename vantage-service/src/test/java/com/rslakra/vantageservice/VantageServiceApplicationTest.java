@@ -54,5 +54,4 @@ public class VantageServiceApplicationTest {
         assertEquals(HttpStatus.OK, entity.getStatusCode());
     }
 
-
 }
