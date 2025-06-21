@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:with="http://www.thymeleaf.org/extras/with"
+      layout:decorate="~{layouts/default}"
+      with:title="'Roles'">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link rel="stylesheet" type="text/css" media="all" href="../../../../static/css/styles.css"
+          th:href="@{/css/styles.css}"/>
+    <link rel="stylesheet" type="text/css" media="all" href="../../../../static/css/form-styles.css"
+          th:href="@{/css/form-styles.css}"/>
+
+    <!-- Title -->
+    <title>Profile</title>
+</head>
+
+<!-- bodyContents:start-->
+<th:block layout:fragment="bodyContents"> <!-- bodyContents:start-->
+    <div class="page-body"> <!-- pageBody:start -->
+
+        <!-- List of Roles -->
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>DOB</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <div th:switch="${users.size()}">
+                <div th:case="0">
+                    <tr>
+                        <td colspan="4">
+                            <h2>No Records Found!</h2>
+                        </td>
+                    </tr>
+                </div>
+                <div th:case="*">
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.id}"/>
+                        <td th:text="${user.name}"/>
+                        <td th:text="${user.dob}"/>
+                        <td th:text="${user.status}"/>
+                        <td class="action-button">
+                            <a class="action-button-padding" th:href="@{/users/update/{id}(id=${user.id})}">
+                                <i class="fa fa-pencil" style="font-size:24px;color:red"></i>
+                            </a>
+                            <a class="action-button-padding" th:href="@{/users/delete/{id}(id=${user.id})}">
+                                <i class="fa fa-trash" style="font-size:24px;color:red"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </div>
+            </div>
+            </tbody>
+        </table>
+
+    </div> <!-- pageBody:end -->
+</th:block> <!-- bodyContents:end-->
+
+<!-- Footer -->
+<!--<div th:replace="~{fragments/footer::footer}">Footer</div>-->
+<footer class="footer">
+    <div th:insert="~{fragments/footer::footer}"></div>
+</footer>
+
+</html>

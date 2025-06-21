@@ -65,29 +65,18 @@ databaseChangeLog:
                   type: VARCHAR(64)
                   constraints:
                     nullable: false
+
+        - addAutoIncrement:
+            columnDataType: BIGINT
+            columnName: id
+            defaultOnNull: false
+            generationType: ALWAYS
+            incrementBy: 1
+            startWith: 1
+            tableName: roles
+
       rollback:
         - noRollback: true
-
-#
-#  - changeSet:
-#      id: create_index_on_roles_table
-#      author: Rohtash Lakra
-#      context: v0.0.1
-#      preConditions:
-#        tableExists:
-#          tableName: roles
-#      onFail: MARK_RAN
-#      onFailureMessage: "Table [roles] doesn't exist"
-#      changes:
-#        - createIndex:
-#            tableName: roles
-#            indexName: idx_roles_table_name
-#            columns:
-#              - column:
-#                  name: name
-#      rollback:
-#        - noRollback: true
-
 
   - changeSet:
       id: insert_default_roles

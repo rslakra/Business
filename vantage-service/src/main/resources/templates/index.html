@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:with="http://www.thymeleaf.org/extras/with"
-      layout:decorate="~{layouts/layout}"
+      layout:decorate="~{layouts/default}"
       with:title="'eVantage'">
 
 <!-- bodyContents:start-->
@@ -26,7 +25,6 @@
                 there is much more it can do.
             </p>
         </div>
-        <div><a th:href="@{/login}">Log in</a></div>
     </div> <!-- pageBody:end -->
 </th:block> <!-- bodyContents:end-->
 </html>

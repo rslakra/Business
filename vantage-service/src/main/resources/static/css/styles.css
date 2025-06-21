@@ -15,9 +15,10 @@ h2 {
     margin-bottom: 25px;
 }
 
+/*
 input[type=text]:focus {
     border: 3px solid #555;
-}
+}*/
 
 
 table {
@@ -127,4 +128,44 @@ a:hover {
 
 .action-button-padding {
     padding: 10px;
+}
+
+/** .scss styles */
+.modal-body {
+  .submit-cancel {
+    margin-top: 2em;
+    margin-bottom: 0;
+    text-align: right;
+  }
+
+  .btn:not(.btn-cancel) {
+    float: right;
+    margin-left: 5px;
+  }
+}
+
+.submit-cancel .btn {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.city-link + .city-link {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.btn + .btn {
+  margin-left: 5px;
+}
+
+.editable-click {
+  cursor: pointer;
+}
+
+span.control-label {
+  font-weight: 600;
+}
+
+.page-header {
+  margin: 16px 0 16px;
 }

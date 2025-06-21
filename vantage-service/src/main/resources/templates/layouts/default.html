@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<th:block layout:insert="~{fragments/head}"/>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block layout:insert="~{fragments/header}"/>
 <body>
+<noscript>You need to enable JavaScript to run this app.</noscript>
 <th:block layout:replace="~{fragments/navigation}"/>
-<h1>Header in default layout!</h1>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
-            <th:block layout:insert="~{fragments/title}"/>
-            <th:block layout:fragment="content"/>
+            <th:block layout:insert="~{fragments/pageTitle}"/>
+            <th:block layout:fragment="bodyContents"/>
         </div>
     </div>
 </div>
-<th:block layout:fragment="body_end"/>
-<th:block layout:replace="~{fragments/scripts :: end}"/>
-<!--<div th:replace="fragments/header :: header">Header goes here!</div>-->
-<!--<div th:replace="${view} :: content">Content goes here!</div>-->
-<!--<div th:replace="fragments/footer :: footer">Footer goes here!</div>-->
+<!--<th:block layout:fragment="bodyEnd"/>-->
+<th:block layout:replace="~{fragments/bodyScripts :: loadScripts}"/>
+<!--<th:block layout:replace="~{fragments/footer}"/>-->
 </body>
 </html>

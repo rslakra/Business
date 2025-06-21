@@ -1,42 +1,19 @@
 package com.rslakra.vantageservice.city.persistence.repository;
 
+import com.rslakra.appsuite.spring.persistence.repository.BaseRepository;
 import com.rslakra.vantageservice.city.persistence.entity.City;
-import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.*;
+import java.util.Optional;
 
 @Repository
-public class CityRepository {
+public interface CityRepository extends BaseRepository<City, Long> {
     
-    private final Set<City> cities = new HashSet<>();
+    /**
+     * @param name
+     * @return
+     */
+    Optional<City> findByName(@Param("name") String name);
     
-    public Optional<City> find(String id) {
-        return cities
-                .stream()
-                .filter(c -> c.getId().equals(id))
-                .findFirst();
-    }
-    
-    public void add(City city) {
-        cities.add(city);
-    }
-    
-    public void update(City city) {
-        remove(city.getId());
-        add(city);
-    }
-    
-    
-    public void remove(String id) {
-        if (StringUtils.isNotBlank(id)) {
-            cities.removeIf(c -> c.getId().equals(id));
-        }
-    }
-    
-    public List<City> getAll() {
-        List<City> cityList = new ArrayList<>(cities);
-        cityList.sort(Comparator.comparing(City::getName));
-        return cityList;
-    }
 }

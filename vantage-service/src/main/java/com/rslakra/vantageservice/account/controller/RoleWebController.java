@@ -38,9 +38,7 @@ import java.util.Optional;
 public class RoleWebController extends AbstractWebController<Role, Long> {
     
     private static final Logger LOGGER = LoggerFactory.getLogger(RoleWebController.class);
-    
     private final RoleParser roleParser;
-    // roleService
     private final RoleService roleService;
     
     /**
@@ -78,12 +76,11 @@ public class RoleWebController extends AbstractWebController<Role, Long> {
      * @param model
      * @return
      */
-    @GetMapping("/list")
+    @GetMapping(path = {"", "/list"})
     @Override
     public String getAll(Model model) {
         List<Role> roles = roleService.getAll();
         model.addAttribute("roles", roles);
-        
         return "views/account/role/listRoles";
     }
     

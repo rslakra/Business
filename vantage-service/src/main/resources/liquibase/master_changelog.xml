@@ -28,6 +28,7 @@
     <include file="liquibase/changelog/tables/user_security.xml"/>
     <include file="liquibase/changelog/tables/sessions.xml"/>
     <include file="liquibase/changelog/tables/permissions.xml"/>
+    <include file="liquibase/changelog/tables/cities.xml"/>
     <include file="liquibase/changelog/tables/documents.xml"/>
     <include file="liquibase/changelog/tables/documents_versions.xml"/>
     <include file="liquibase/changelog/tables/documents_permissions.xml"/>

@@ -30,7 +30,6 @@ import java.util.Optional;
 public class TaskServiceImpl extends AbstractServiceImpl<Task, Long> implements TaskService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TaskServiceImpl.class);
-
     private final UserRepository userRepository;
     private final TaskRepository taskRepository;
 

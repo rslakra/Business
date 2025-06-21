@@ -1,18 +1,40 @@
 package com.rslakra.vantageservice.city.persistence.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import com.rslakra.appsuite.core.ToString;
+import com.rslakra.appsuite.spring.persistence.entity.NamedEntity;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
-public class City implements Serializable {
+@Entity
+@Table(name = "cities")
+public class City extends NamedEntity<Long> {
     
-    private String id;
-    private String name;
-    private int foundedIn;
-    private int population;
+    @Column(name = "founded_in")
+    private Integer foundedIn;
+    
+    @Column(name = "population")
+    private Integer population;
+    
+    /**
+     * Returns the string representation of this object.
+     *
+     * @return
+     */
+    @Override
+    public String toString() {
+        return ToString.of(City.class)
+                .add("id", getId())
+                .add("name", getName())
+                .add("foundedIn", getFoundedIn())
+                .add("population", getPopulation())
+                .toString();
+    }
 }

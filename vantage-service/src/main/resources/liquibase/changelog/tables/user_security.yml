@@ -89,6 +89,15 @@ databaseChangeLog:
                   constraints:
                     nullable: false
 
+        - addAutoIncrement:
+            columnDataType: BIGINT
+            columnName: id
+            defaultOnNull: false
+            generationType: ALWAYS
+            incrementBy: 1
+            startWith: 1
+            tableName: user_security
+
         - addForeignKeyConstraint:
             baseTableName: user_security
             baseColumnNames: user_id

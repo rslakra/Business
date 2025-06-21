@@ -44,6 +44,8 @@ databaseChangeLog:
   - include:
       file: liquibase/changelog/tables/permissions.yml
   - include:
+      file: liquibase/changelog/tables/cities.yml
+  - include:
       file: liquibase/changelog/tables/documents.yml
   - include:
       file: liquibase/changelog/tables/documents_versions.yml

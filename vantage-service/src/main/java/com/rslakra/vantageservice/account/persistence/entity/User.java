@@ -44,7 +44,7 @@ public class User extends Person {
     private String phoneNumber;
     
     @Column(name = "dob")
-    private String dob;
+    private Date dob;
     
     @Column(name = "social_identity")
     private String socialIdentity;

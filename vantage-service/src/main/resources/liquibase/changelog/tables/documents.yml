@@ -106,6 +106,15 @@ databaseChangeLog:
                   constraints:
                     nullable: false
 
+        - addAutoIncrement:
+            columnDataType: BIGINT
+            columnName: id
+            defaultOnNull: false
+            generationType: ALWAYS
+            incrementBy: 1
+            startWith: 1
+            tableName: documents
+
       rollback:
         - noRollback: true
 

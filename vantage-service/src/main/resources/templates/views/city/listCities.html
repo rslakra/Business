@@ -2,10 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:with="http://www.thymeleaf.org/extras/with"
-      layout:decorate="~{layouts/layout}"
-      with:title="Cities">
+      layout:decorate="~{layouts/default}"
+      with:title="'Cities'">
 
-<th:block layout:fragment="content">
+<!-- bodyContents:start-->
+<th:block layout:fragment="bodyContents"> <!-- bodyContents:start-->
+    <div class="page-body"> <!-- pageBody:start -->
+
     <table class="table table-striped table-bordered" id="cities">
         <thead>
         <tr>
@@ -46,7 +49,9 @@
         </tr>
         </tbody>
     </table>
-</th:block>
+
+<!--</th:block>-->
+
 <th:block layout:fragment="body_end">
     <div class="modal fade" tabindex="-1" role="dialog" id="cityModal">
         <div class="modal-dialog" role="document">
@@ -63,4 +68,14 @@
         </div>
     </div>
 </th:block>
+
+</div> <!-- pageBody:end -->
+</th:block> <!-- bodyContents:end-->
+
+<!-- Footer -->
+<!--<div th:replace="~{fragments/footer::footer}">Footer</div>-->
+<footer class="footer">
+    <div th:insert="~{fragments/footer::footer}"></div>
+</footer>
+
 </html>

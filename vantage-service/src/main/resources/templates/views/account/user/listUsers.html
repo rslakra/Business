@@ -1,23 +1,32 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:with="http://www.thymeleaf.org/extras/with"
+      layout:decorate="~{layouts/default}"
+      with:title="'Users'">
 
-    <!-- css -->
-    <link rel="stylesheet" type="text/css" media="all" href="../../../../static/css/styles.css"
-          th:href="@{/css/styles.css}"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta http-equiv="x-ua-compatible" content="ie=edge">-->
+<!--    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
 
-    <!-- Title -->
-    <title>The Users</title>
-</head>
-<body>
+<!--    &lt;!&ndash; css &ndash;&gt;-->
+<!--    <link rel="stylesheet" type="text/css" media="all" href="../../../../static/css/styles.css"-->
+<!--          th:href="@{/css/styles.css}"/>-->
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
 
-<!-- Body Container -->
-<div class="body-container">
+<!--    &lt;!&ndash; Title &ndash;&gt;-->
+<!--    <title>The Users</title>-->
+<!--</head>-->
+
+<!--<body>-->
+<!--&lt;!&ndash; Body Container &ndash;&gt;-->
+<!--<div class="body-container">-->
+
+<!-- bodyContents:start-->
+<th:block layout:fragment="bodyContents"> <!-- bodyContents:start-->
+    <div class="page-body"> <!-- pageBody:start -->
 
     <!-- Top Buttons-Bar -->
     <div class="navbar">
@@ -91,14 +100,13 @@
         </tbody>
     </table>
 
-    <!--Back Button -->
-    <div>
-        <a class="button" href="../../../home.html" th:href="@{/home}">Back</a>
-    </div>
+<!--    &lt;!&ndash;Back Button &ndash;&gt;-->
+<!--    <div>-->
+<!--        <a class="button" href="../../../home.html" th:href="@{/home}">Back</a>-->
+<!--    </div>-->
 
-</div>
-
-</body>
+    </div> <!-- pageBody:end -->
+</th:block> <!-- bodyContents:end-->
 
 <!-- Footer -->
 <!--<div th:replace="~{fragments/footer::footer}">Footer</div>-->
