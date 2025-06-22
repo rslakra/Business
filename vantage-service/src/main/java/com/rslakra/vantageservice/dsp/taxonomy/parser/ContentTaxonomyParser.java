@@ -1,11 +1,11 @@
-package com.rslakra.vantageservice.advertising.parser;
+package com.rslakra.vantageservice.dsp.taxonomy.parser;
 
 import com.rslakra.appsuite.core.BeanUtils;
 import com.rslakra.appsuite.spring.parser.AbstractParser;
 import com.rslakra.appsuite.spring.parser.Parser;
 import com.rslakra.appsuite.spring.parser.csv.CsvParser;
 import com.rslakra.appsuite.spring.parser.excel.ExcelParser;
-import com.rslakra.vantageservice.advertising.persistence.entity.ContentTaxonomy;
+import com.rslakra.vantageservice.dsp.taxonomy.persistence.entity.ContentTaxonomy;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.poi.ss.usermodel.Cell;
 import org.slf4j.Logger;
@@ -22,15 +22,15 @@ import java.util.List;
  */
 public class ContentTaxonomyParser extends AbstractParser<ContentTaxonomy>
         implements ExcelParser<ContentTaxonomy>, CsvParser<ContentTaxonomy> {
-
+    
     private static final Logger LOGGER = LoggerFactory.getLogger(ContentTaxonomyParser.class);
     public static final String CSV_DOWNLOAD_FILE_NAME = "contentTaxonomy.csv";
     public static final String EXCEL_DOWNLOAD_FILE_NAME = "contentTaxonomy.xlsx";
-
+    
     public static final String[] HEADERS = {
             "id", "parentId", "name", "tier1", "tier2", "tier13", "tier4", "extension", "score", "confident"
     };
-
+    
     /**
      * @return
      */
@@ -38,7 +38,7 @@ public class ContentTaxonomyParser extends AbstractParser<ContentTaxonomy>
     public String getUploadFileName() {
         return null;
     }
-
+    
     /**
      * @return
      */
@@ -46,7 +46,7 @@ public class ContentTaxonomyParser extends AbstractParser<ContentTaxonomy>
     public String getDownloadFileName() {
         return null;
     }
-
+    
     /**
      * @return
      */
@@ -54,7 +54,7 @@ public class ContentTaxonomyParser extends AbstractParser<ContentTaxonomy>
     public String[] getReadHeaders() {
         return HEADERS;
     }
-
+    
     /**
      * @return
      */
@@ -62,7 +62,7 @@ public class ContentTaxonomyParser extends AbstractParser<ContentTaxonomy>
     public String[] getWriteHeaders() {
         return HEADERS;
     }
-
+    
     /**
      * Returns the name of the Excel sheet.
      *
@@ -72,7 +72,7 @@ public class ContentTaxonomyParser extends AbstractParser<ContentTaxonomy>
     public String getSheetName() {
         return ContentTaxonomy.class.getSimpleName();
     }
-
+    
     /**
      * @param rowCells
      * @return
@@ -91,49 +91,49 @@ public class ContentTaxonomyParser extends AbstractParser<ContentTaxonomy>
                 case 1:
                     contentTaxonomy.setParentId(Parser.asType(currentCell.getStringCellValue(), Long.class));
                     break;
-
+                
                 case 2:
                     contentTaxonomy.setName(currentCell.getStringCellValue());
                     break;
-
+                
                 case 3:
                     contentTaxonomy.setTier1(currentCell.getStringCellValue());
                     break;
-
+                
                 case 4:
                     contentTaxonomy.setTier2(currentCell.getStringCellValue());
                     break;
-
+                
                 case 5:
                     contentTaxonomy.setTier3(currentCell.getStringCellValue());
                     break;
-
+                
                 case 6:
                     contentTaxonomy.setTier4(currentCell.getStringCellValue());
                     break;
-
+                
                 case 7:
                     contentTaxonomy.setExtension(currentCell.getStringCellValue());
                     break;
-
+                
                 case 8:
                     contentTaxonomy.setScore(Parser.asType(currentCell.getStringCellValue(), BigDecimal.class));
                     break;
-
+                
                 case 9:
                     contentTaxonomy.setConfident(Parser.asType(currentCell.getStringCellValue(), Boolean.class));
                     break;
-
+                
                 default:
                     break;
             }
-
+            
             cellIndex++;
         }
-
+        
         return contentTaxonomy;
     }
-
+    
     /**
      * @param csvRecord
      * @return
@@ -153,11 +153,11 @@ public class ContentTaxonomyParser extends AbstractParser<ContentTaxonomy>
         contentTaxonomy.setExtension(csvRecord.get(8)); // extension
         contentTaxonomy.setScore(Parser.asType(csvRecord.get(9), BigDecimal.class)); // score
         contentTaxonomy.setConfident(Parser.asType(csvRecord.get(10), Boolean.class)); // confident
-
+        
         LOGGER.debug("-buildCSVRecord(), contentTaxonomy:{}", contentTaxonomy);
         return contentTaxonomy;
     }
-
+    
     /**
      * @param contentTaxonomy
      * @return
@@ -176,8 +176,8 @@ public class ContentTaxonomyParser extends AbstractParser<ContentTaxonomy>
         contentTaxonomies.add(contentTaxonomy.getExtension());
         contentTaxonomies.add(BeanUtils.toString(contentTaxonomy.getScore()));
         contentTaxonomies.add(BeanUtils.toString(contentTaxonomy.getConfident()));
-
+        
         return contentTaxonomies;
     }
-
+    
 }

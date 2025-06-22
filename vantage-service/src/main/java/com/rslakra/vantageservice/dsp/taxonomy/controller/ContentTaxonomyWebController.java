@@ -1,4 +1,4 @@
-package com.rslakra.vantageservice.advertising.controller;
+package com.rslakra.vantageservice.dsp.taxonomy.controller;
 
 import com.rslakra.appsuite.core.BeanUtils;
 import com.rslakra.appsuite.core.Payload;
@@ -7,9 +7,9 @@ import com.rslakra.appsuite.spring.filter.Filter;
 import com.rslakra.appsuite.spring.parser.Parser;
 import com.rslakra.appsuite.spring.parser.csv.CsvParser;
 import com.rslakra.appsuite.spring.parser.excel.ExcelParser;
-import com.rslakra.vantageservice.advertising.parser.ContentTaxonomyParser;
-import com.rslakra.vantageservice.advertising.persistence.entity.ContentTaxonomy;
-import com.rslakra.vantageservice.advertising.service.ContentTaxonomyService;
+import com.rslakra.vantageservice.dsp.taxonomy.parser.ContentTaxonomyParser;
+import com.rslakra.vantageservice.dsp.taxonomy.persistence.entity.ContentTaxonomy;
+import com.rslakra.vantageservice.dsp.taxonomy.service.ContentTaxonomyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +40,6 @@ public class ContentTaxonomyWebController extends AbstractWebController<ContentT
     private static final Logger LOGGER = LoggerFactory.getLogger(ContentTaxonomyWebController.class);
     
     private final ContentTaxonomyParser contentTaxonomyParser;
-    
-    // contentTaxonomyService
     private final ContentTaxonomyService contentTaxonomyService;
     
     /**
@@ -79,12 +77,12 @@ public class ContentTaxonomyWebController extends AbstractWebController<ContentT
      * @param model
      * @return
      */
-    @GetMapping("/list")
+    @GetMapping(path = {"/", "/list"})
     @Override
     public String getAll(Model model) {
         List<ContentTaxonomy> contentTaxonomies = contentTaxonomyService.getAll();
         model.addAttribute("contentTaxonomies", contentTaxonomies);
-        return "views/advertising/content-taxonomy/listContentTaxonomies";
+        return "views/dsp/content-taxonomy/listContentTaxonomies";
     }
     
     /**
@@ -99,7 +97,7 @@ public class ContentTaxonomyWebController extends AbstractWebController<ContentT
     public String filter(Model model, Filter filter) {
         List<ContentTaxonomy> contentTaxonomies = contentTaxonomyService.getAll();
         model.addAttribute("contentTaxonomies", contentTaxonomies);
-        return "views/advertising/content-taxonomy/listContentTaxonomies";
+        return "views/dsp/content-taxonomy/listContentTaxonomies";
     }
     
     /**
@@ -127,7 +125,7 @@ public class ContentTaxonomyWebController extends AbstractWebController<ContentT
         }
         model.addAttribute("contentTaxonomy", contentTaxonomy);
         
-        return "views/advertising/content-taxonomy/editContentTaxonomy";
+        return "views/dsp/content-taxonomy/editContentTaxonomy";
     }
     
     /**
@@ -159,7 +157,7 @@ public class ContentTaxonomyWebController extends AbstractWebController<ContentT
      */
     @GetMapping(path = {"/upload"})
     public String showUploadPage() {
-        return "views/advertising/content-taxonomy/uploadContentTaxonomies";
+        return "views/dsp/content-taxonomy/uploadContentTaxonomies";
     }
     
     /**

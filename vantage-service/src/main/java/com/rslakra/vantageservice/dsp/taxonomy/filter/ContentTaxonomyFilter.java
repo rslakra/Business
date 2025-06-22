@@ -1,4 +1,4 @@
-package com.rslakra.vantageservice.advertising.filter;
+package com.rslakra.vantageservice.dsp.taxonomy.filter;
 
 import com.rslakra.appsuite.spring.filter.DefaultFilter;
 

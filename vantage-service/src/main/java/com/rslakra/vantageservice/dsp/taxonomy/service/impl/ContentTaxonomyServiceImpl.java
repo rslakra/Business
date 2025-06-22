@@ -1,4 +1,4 @@
-package com.rslakra.vantageservice.advertising.service.impl;
+package com.rslakra.vantageservice.dsp.taxonomy.service.impl;
 
 import com.rslakra.appsuite.core.BeanUtils;
 import com.rslakra.appsuite.spring.exception.InvalidRequestException;
@@ -7,9 +7,9 @@ import com.rslakra.appsuite.spring.filter.Filter;
 import com.rslakra.appsuite.spring.persistence.ServiceOperation;
 import com.rslakra.appsuite.spring.service.AbstractServiceImpl;
 import com.rslakra.vantageservice.account.persistence.repository.UserRepository;
-import com.rslakra.vantageservice.advertising.persistence.entity.ContentTaxonomy;
-import com.rslakra.vantageservice.advertising.persistence.repository.ContentTaxonomyRepository;
-import com.rslakra.vantageservice.advertising.service.ContentTaxonomyService;
+import com.rslakra.vantageservice.dsp.taxonomy.persistence.entity.ContentTaxonomy;
+import com.rslakra.vantageservice.dsp.taxonomy.persistence.repository.ContentTaxonomyRepository;
+import com.rslakra.vantageservice.dsp.taxonomy.service.ContentTaxonomyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +26,12 @@ import java.util.List;
 @Service
 public class ContentTaxonomyServiceImpl extends AbstractServiceImpl<ContentTaxonomy, Long>
         implements ContentTaxonomyService {
-
+    
     private static final Logger LOGGER = LoggerFactory.getLogger(ContentTaxonomyServiceImpl.class);
-
+    
     private final UserRepository userRepository;
     private final ContentTaxonomyRepository contentTaxonomyRepository;
-
+    
     /**
      * @param userRepository
      * @param contentTaxonomyRepository
@@ -43,7 +43,7 @@ public class ContentTaxonomyServiceImpl extends AbstractServiceImpl<ContentTaxon
         this.userRepository = userRepository;
         this.contentTaxonomyRepository = contentTaxonomyRepository;
     }
-
+    
     /**
      * Validates the <code>T</code> object.
      *
@@ -59,11 +59,11 @@ public class ContentTaxonomyServiceImpl extends AbstractServiceImpl<ContentTaxon
                 if (BeanUtils.isEmpty(contentTaxonomy.getName())) {
                     throw new InvalidRequestException("The contentTaxonomy's name should provide!");
                 }
-
+                
                 if (BeanUtils.isEmpty(contentTaxonomy.getTier1())) {
                     throw new InvalidRequestException("The contentTaxonomy's tier1 should provide!");
                 }
-
+                
                 //                // check task exists for this user
                 //                List<ContentTaxonomy> contentTaxonomyList = contentTaxonomyRepository.findAllByUserId(contentTaxonomy.getUserId());
                 //                if (contentTaxonomyList.stream()
@@ -72,14 +72,14 @@ public class ContentTaxonomyServiceImpl extends AbstractServiceImpl<ContentTaxon
                 //                                                       contentTaxonomy.getUserId());
                 //                }
             }
-
+            
             break;
-
+            
             case UPDATE: {
                 if (BeanUtils.isNull(contentTaxonomy.getId())) {
                     throw new InvalidRequestException("The contentTaxonomy's ID should provide!");
                 }
-
+                
                 //                if (BeanUtils.isNotEmpty(contentTaxonomy.getUserId())) {
                 //                    Optional<ContentTaxonomy>
                 //                        contentTaxonomyOptional =
@@ -91,17 +91,17 @@ public class ContentTaxonomyServiceImpl extends AbstractServiceImpl<ContentTaxon
                 //                    }
                 //                }
             }
-
+            
             break;
-
+            
             default:
                 throw new InvalidRequestException("Unsupported Operation!");
         }
-
+        
         LOGGER.debug("-validate(), contentTaxonomy: {}", contentTaxonomy);
         return contentTaxonomy;
     }
-
+    
     /**
      * Creates the <code>T</code> object.
      *
@@ -116,7 +116,7 @@ public class ContentTaxonomyServiceImpl extends AbstractServiceImpl<ContentTaxon
         LOGGER.debug("-create(), contentTaxonomy: {}", contentTaxonomy);
         return contentTaxonomy;
     }
-
+    
     /**
      * Creates the <code>List<T></code> objects.
      *
@@ -129,14 +129,14 @@ public class ContentTaxonomyServiceImpl extends AbstractServiceImpl<ContentTaxon
         if (BeanUtils.isEmpty(contentTaxonomys)) {
             throw new InvalidRequestException("The contentTaxonomy should provide!");
         }
-
+        
         contentTaxonomys.forEach(contentTaxonomy -> validate(ServiceOperation.CREATE, contentTaxonomy));
         contentTaxonomys = contentTaxonomyRepository.saveAll(contentTaxonomys);
-
+        
         LOGGER.debug("-create(), marketing: {}", contentTaxonomys);
         return contentTaxonomys;
     }
-
+    
     /**
      * Returns the list of all <code>T</code> objects.
      *
@@ -146,7 +146,7 @@ public class ContentTaxonomyServiceImpl extends AbstractServiceImpl<ContentTaxon
     public List<ContentTaxonomy> getAll() {
         return contentTaxonomyRepository.findAll();
     }
-
+    
     /**
      * Returns the <code>T</code> object by <code>id</code>.
      *
@@ -157,7 +157,7 @@ public class ContentTaxonomyServiceImpl extends AbstractServiceImpl<ContentTaxon
     public ContentTaxonomy getById(final Long id) {
         return contentTaxonomyRepository.findById(id).orElseThrow(() -> new NoRecordFoundException("id:%d", id));
     }
-
+    
     /**
      * Returns the pageable <code>T</code> object by <code>pageable</code> filter.
      *
@@ -168,7 +168,7 @@ public class ContentTaxonomyServiceImpl extends AbstractServiceImpl<ContentTaxon
     public List<ContentTaxonomy> getByFilter(Filter filter) {
         return contentTaxonomyRepository.findAll();
     }
-
+    
     /**
      * Returns the pageable <code>T</code> object by <code>pageable</code> filter.
      *
@@ -180,7 +180,7 @@ public class ContentTaxonomyServiceImpl extends AbstractServiceImpl<ContentTaxon
     public Page<ContentTaxonomy> getByFilter(Filter filter, Pageable pageable) {
         return contentTaxonomyRepository.findAll(pageable);
     }
-
+    
     /**
      * Updates the <code>T</code> object.
      *
@@ -195,7 +195,7 @@ public class ContentTaxonomyServiceImpl extends AbstractServiceImpl<ContentTaxon
         LOGGER.debug("-update(), contentTaxonomy: {}", contentTaxonomy);
         return contentTaxonomy;
     }
-
+    
     /**
      * Updates the <code>List<T></code> objects.
      *
@@ -208,14 +208,14 @@ public class ContentTaxonomyServiceImpl extends AbstractServiceImpl<ContentTaxon
         if (BeanUtils.isEmpty(contentTaxonomys)) {
             throw new InvalidRequestException("The marketing should provide!");
         }
-
+        
         contentTaxonomys.forEach(contentTaxonomy -> validate(ServiceOperation.UPDATE, contentTaxonomy));
         contentTaxonomys = contentTaxonomyRepository.saveAll(contentTaxonomys);
-
+        
         LOGGER.debug("-update(), marketing: {}", contentTaxonomys);
         return contentTaxonomys;
     }
-
+    
     /**
      * Deletes the object by <code>id</code>.
      *

@@ -1,7 +1,7 @@
-package com.rslakra.vantageservice.advertising.service;
+package com.rslakra.vantageservice.dsp.taxonomy.service;
 
 import com.rslakra.appsuite.spring.service.AbstractService;
-import com.rslakra.vantageservice.advertising.persistence.entity.ContentTaxonomy;
+import com.rslakra.vantageservice.dsp.taxonomy.persistence.entity.ContentTaxonomy;
 
 /**
  * @author Rohtash Lakra

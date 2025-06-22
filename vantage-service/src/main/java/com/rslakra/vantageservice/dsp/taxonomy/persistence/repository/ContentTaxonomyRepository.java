@@ -1,7 +1,7 @@
-package com.rslakra.vantageservice.advertising.persistence.repository;
+package com.rslakra.vantageservice.dsp.taxonomy.persistence.repository;
 
 import com.rslakra.appsuite.spring.persistence.repository.BaseRepository;
-import com.rslakra.vantageservice.advertising.persistence.entity.ContentTaxonomy;
+import com.rslakra.vantageservice.dsp.taxonomy.persistence.entity.ContentTaxonomy;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
@@ -13,11 +13,11 @@ import java.util.List;
  */
 @Repository
 public interface ContentTaxonomyRepository extends BaseRepository<ContentTaxonomy, Long> {
-
+    
     /**
      * @param parentId
      * @return
      */
     List<ContentTaxonomy> findByParentId(@Param("parentId") Long parentId);
-
+    
 }

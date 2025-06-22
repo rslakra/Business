@@ -1,11 +1,11 @@
-package com.rslakra.vantageservice.advertising.controller.rest;
+package com.rslakra.vantageservice.dsp.taxonomy.controller.rest;
 
 import com.rslakra.appsuite.core.Payload;
 import com.rslakra.appsuite.spring.controller.rest.AbstractRestController;
 import com.rslakra.appsuite.spring.filter.Filter;
-import com.rslakra.vantageservice.advertising.filter.ContentTaxonomyFilter;
-import com.rslakra.vantageservice.advertising.persistence.entity.ContentTaxonomy;
-import com.rslakra.vantageservice.advertising.service.ContentTaxonomyService;
+import com.rslakra.vantageservice.dsp.taxonomy.filter.ContentTaxonomyFilter;
+import com.rslakra.vantageservice.dsp.taxonomy.persistence.entity.ContentTaxonomy;
+import com.rslakra.vantageservice.dsp.taxonomy.service.ContentTaxonomyService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,23 +14,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * @author Rohtash Lakra
@@ -39,11 +26,11 @@ import java.util.Optional;
 @RestController
 @RequestMapping("${restPrefix}/content-taxonomy")
 public class ContentTaxonomyController extends AbstractRestController<ContentTaxonomy, Long> {
-
+    
     private static final Logger LOGGER = LoggerFactory.getLogger(ContentTaxonomyController.class);
-
+    
     private final ContentTaxonomyService contentTaxonomyService;
-
+    
     /**
      * @param contentTaxonomyService
      */
@@ -51,7 +38,7 @@ public class ContentTaxonomyController extends AbstractRestController<ContentTax
     public ContentTaxonomyController(final ContentTaxonomyService contentTaxonomyService) {
         this.contentTaxonomyService = contentTaxonomyService;
     }
-
+    
     /**
      * Returns the list of <code>T</code> objects.
      *
@@ -62,7 +49,7 @@ public class ContentTaxonomyController extends AbstractRestController<ContentTax
     public List<ContentTaxonomy> getAll() {
         return contentTaxonomyService.getAll();
     }
-
+    
     /**
      * Returns the list of <code>T</code> filters objects.
      *
@@ -82,11 +69,11 @@ public class ContentTaxonomyController extends AbstractRestController<ContentTax
         } else {
             marketings = contentTaxonomyService.getAll();
         }
-
+        
         LOGGER.debug("-getByFilter(), marketings: {}", marketings);
         return marketings;
     }
-
+    
     /**
      * Returns the <code>Page<T></code> list of objects filtered with <code>allParams</code>.
      *
@@ -98,7 +85,7 @@ public class ContentTaxonomyController extends AbstractRestController<ContentTax
     public Page<ContentTaxonomy> getByFilter(Map<String, Object> allParams, Pageable pageable) {
         return contentTaxonomyService.getByFilter(null, pageable);
     }
-
+    
     /**
      * @param filter
      * @return
@@ -107,7 +94,7 @@ public class ContentTaxonomyController extends AbstractRestController<ContentTax
     public List<ContentTaxonomy> getByFilter(Filter filter) {
         return null;
     }
-
+    
     /**
      * @param filter
      * @param pageable
@@ -117,7 +104,7 @@ public class ContentTaxonomyController extends AbstractRestController<ContentTax
     public Page<ContentTaxonomy> getByFilter(Filter filter, Pageable pageable) {
         return null;
     }
-
+    
     /**
      * Creates the <code>T</code> type object.
      *
@@ -131,7 +118,7 @@ public class ContentTaxonomyController extends AbstractRestController<ContentTax
         task = contentTaxonomyService.create(task);
         return ResponseEntity.ok(task);
     }
-
+    
     /**
      * Creates the list of <code>T</code> type objects.
      *
@@ -145,7 +132,7 @@ public class ContentTaxonomyController extends AbstractRestController<ContentTax
         tasks = contentTaxonomyService.create(tasks);
         return ResponseEntity.ok(tasks);
     }
-
+    
     /**
      * Updates the <code>T</code> type object.
      *
@@ -158,7 +145,7 @@ public class ContentTaxonomyController extends AbstractRestController<ContentTax
         task = contentTaxonomyService.update(task);
         return ResponseEntity.ok(task);
     }
-
+    
     /**
      * Updates the list of <code>T</code> type objects.
      *
@@ -172,7 +159,7 @@ public class ContentTaxonomyController extends AbstractRestController<ContentTax
         contentTaxonomies = contentTaxonomyService.update(contentTaxonomies);
         return ResponseEntity.ok(contentTaxonomies);
     }
-
+    
     /**
      * Deletes the <code>T</code> type object by <code>id</code>.
      *
@@ -189,7 +176,7 @@ public class ContentTaxonomyController extends AbstractRestController<ContentTax
                 .withMessage("Record with id:%d deleted successfully!", idOptional.get());
         return ResponseEntity.ok(payload);
     }
-
+    
     /**
      * Uploads the <code>file</code>
      *
@@ -201,7 +188,7 @@ public class ContentTaxonomyController extends AbstractRestController<ContentTax
     public ResponseEntity<Payload> upload(MultipartFile file) {
         return null;
     }
-
+    
     /**
      * Downloads the object of <code>T</code> as <code>fileType</code> file.
      *
@@ -213,5 +200,5 @@ public class ContentTaxonomyController extends AbstractRestController<ContentTax
     public ResponseEntity<Resource> download(String fileType) {
         return null;
     }
-
+    
 }
