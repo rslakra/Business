@@ -22,17 +22,17 @@ import java.util.Optional;
 
 /**
  * @author: Rohtash Lakra
-  * @since 09/30/2019 05:38 PM
+ * @since 09/30/2019 05:38 PM
  */
 @Controller
 @RequestMapping("/tasks")
 public class TaskWebController extends AbstractWebController<Task, Long> {
-
+    
     private static final Logger LOGGER = LoggerFactory.getLogger(TaskWebController.class);
-
+    
     // taskService
     private final TaskService taskService;
-
+    
     /**
      * @param taskService
      */
@@ -41,7 +41,7 @@ public class TaskWebController extends AbstractWebController<Task, Long> {
         LOGGER.debug("TaskWebController({})", taskService);
         this.taskService = taskService;
     }
-
+    
     /**
      * Saves the <code>t</code> object.
      *
@@ -59,24 +59,24 @@ public class TaskWebController extends AbstractWebController<Task, Long> {
         } else {
             task = taskService.create(task);
         }
-
+        
         return "redirect:/tasks/list";
     }
-
+    
     /**
      * Returns the list of <code>T</code> objects.
      *
      * @param model
      * @return
      */
-    @GetMapping("/list")
+    @GetMapping(path = {"", "/", "/list"})
     @Override
     public String getAll(Model model) {
         List<Task> tasks = taskService.getAll();
         model.addAttribute("tasks", tasks);
         return "views/task/listTasks";
     }
-
+    
     /**
      * Filters the list of <code>T</code> objects.
      *
@@ -91,7 +91,7 @@ public class TaskWebController extends AbstractWebController<Task, Long> {
         model.addAttribute("tasks", tasks);
         return "views/task/listTasks";
     }
-
+    
     /**
      * @param model
      * @param allParams
@@ -101,7 +101,7 @@ public class TaskWebController extends AbstractWebController<Task, Long> {
     public String filter(Model model, Map<String, Object> allParams) {
         return null;
     }
-
+    
     /**
      * @param model
      * @param idOptional
@@ -117,10 +117,10 @@ public class TaskWebController extends AbstractWebController<Task, Long> {
             task = new Task();
         }
         model.addAttribute("task", task);
-
+        
         return "views/task/editTask";
     }
-
+    
     /**
      * Deletes the object with <code>id</code>.
      *
@@ -134,12 +134,22 @@ public class TaskWebController extends AbstractWebController<Task, Long> {
         taskService.delete(id);
         return "redirect:/tasks/list";
     }
-
+    
     /**
      * @return
      */
     @Override
     public Parser<Task> getParser() {
         return null;
+    }
+    
+    /**
+     * Displays the upload <code>Tasks</code> UI.
+     *
+     * @return
+     */
+    @GetMapping(path = {"/upload"})
+    public String showUploadPage() {
+        return "views/task/uploadTasks";
     }
 }

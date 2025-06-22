@@ -12,6 +12,9 @@
                     <span class="icon-bar" aria-hidden="true"></span>
                 </button>
                 <a class="navbar-brand" th:href="@{/}">eVantage</a>
+<!--                <a class="navbar-brand" th:href="@{/}" title="Home">-->
+<!--                    <img class="logo" th:src="@{/images/logo.png}" src="../../static/images/logo.png"-->
+<!--                         alt="The eVantage Application" title="The eVantage Application"/> eVantage</a>-->
             </div> <!-- left-side nav-bar:end-->
 
             <!--nav-bar-->
@@ -24,6 +27,12 @@
                         <li><a th:href="@{/roles/list}">List Roles</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a th:href="@{/roles/create}">Add Role</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/roles/upload}">Upload Roles</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/roles/download?fileType=csv}">Download Roles (.csv)</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/roles/download?fileType=excel}">Download Roles (.xlsx)</a></li>
                     </ul>
                 </li>
 
@@ -35,6 +44,12 @@
                         <li><a th:href="@{/users/list}">List Users</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a th:href="@{/users/create}">Add User</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/users/upload}">Upload Users</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/users/download?fileType=csv}">Download Users (.csv)</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/users/download?fileType=excel}">Download Users (.xlsx)</a></li>
                     </ul>
                 </li>
 
@@ -46,6 +61,12 @@
                         <li><a th:href="@{/tasks/list}">List Tasks</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a th:href="@{/tasks/create}">Add Task</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/tasks/upload}">Upload Tasks</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/tasks/download?fileType=csv}">Download Tasks (.csv)</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/tasks/download?fileType=excel}">Download Tasks (.xlsx)</a></li>
                     </ul>
                 </li>
 
@@ -57,6 +78,12 @@
                         <li><a th:href="@{/marketing/list}">List Marketing</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a th:href="@{/marketing/create}">Add Marketing</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/marketing/upload}">Upload Marketing</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/marketing/download?fileType=csv}">Download Marketing (.csv)</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/marketing/download?fileType=excel}">Download Marketing (.xlsx)</a></li>
                     </ul>
                 </li>
 
@@ -68,6 +95,12 @@
                         <li><a th:href="@{/content-taxonomy/list}">List Content-Taxonomies</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a th:href="@{/content-taxonomy/create}">Add Content-Taxonomy</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/content-taxonomy/upload}">Upload Content-Taxonomies</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/content-taxonomy/download?fileType=csv}">Download Content-Taxonomies (.csv)</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/content-taxonomy/download?fileType=excel}">Download Content-Taxonomies (.xlsx)</a></li>
                     </ul>
                 </li>
 
@@ -79,6 +112,12 @@
                         <li><a th:href="@{/cities/list}">List Cities</a></li>
                         <li role="separator" class="divider"></li>
                         <li><a th:href="@{/cities/create}">Add City</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/cities/upload}">Upload Cities</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/cities/download?fileType=csv}">Download Cities (.csv)</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/cities/download?fileType=excel}">Download Cities (.xlsx)</a></li>
                     </ul>
                 </li>
 

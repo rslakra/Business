@@ -77,7 +77,7 @@ public class ContentTaxonomyWebController extends AbstractWebController<ContentT
      * @param model
      * @return
      */
-    @GetMapping(path = {"/", "/list"})
+    @GetMapping(path = {"", "/", "/list"})
     @Override
     public String getAll(Model model) {
         List<ContentTaxonomy> contentTaxonomies = contentTaxonomyService.getAll();

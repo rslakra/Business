@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:with="http://www.thymeleaf.org/extras/with"
       layout:decorate="~{layouts/default}"
-      with:title="'Upload Tasks'">
+      with:title="'Upload Cities'">
 
 <!--<head>-->
 <!--    <meta charset="utf-8">-->
@@ -19,7 +19,7 @@
 <!--          th:href="@{/css/form-styles.css}"/>-->
 
 <!--    &lt;!&ndash; Title &ndash;&gt;-->
-<!--    <title>Upload Tasks</title>-->
+<!--    <title>Upload Cities</title>-->
 <!--</head>-->
 
 <!--<body>-->
@@ -32,17 +32,17 @@
     <div class="page-body"> <!-- pageBody:start -->
 
         <!-- H2 -->
-<!--        <h2>Upload Tasks</h2>-->
+<!--        <h2>Upload Cities</h2>-->
 
         <div class="contents"> <!-- div:contents-start -->
             <!-- Form -->
             <div class="form-style">
-                <h2 class="center">Upload Tasks</h2>
-                <form action="#" th:action="@{/tasks/upload}" method="POST" enctype="multipart/form-data">
-                    <div class="section"><span>*</span>Upload Tasks</div>
+                <h2 class="center">Upload Cities</h2>
+                <form action="#" th:action="@{/city/upload}" method="POST" enctype="multipart/form-data">
+                    <div class="section"><span>*</span>Upload Cities</div>
                     <div class="inner-wrap">
                         <label><div>Upload</div>
-                            <input type="file" name="file" placeholder="Tasks File"/>
+                            <input type="file" name="file" placeholder="Cities File"/>
                         </label>
                     </div>
 

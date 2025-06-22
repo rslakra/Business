@@ -76,7 +76,7 @@ public class RoleWebController extends AbstractWebController<Role, Long> {
      * @param model
      * @return
      */
-    @GetMapping(path = {"", "/list"})
+    @GetMapping(path = {"", "/", "/list"})
     @Override
     public String getAll(Model model) {
         List<Role> roles = roleService.getAll();

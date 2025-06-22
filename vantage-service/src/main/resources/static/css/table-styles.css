@@ -1,3 +1,6 @@
+/**
+ * Table Styles
+ */
 
 .table-style {
     width: 450px;
@@ -57,6 +60,7 @@
 .table-style input[type="time"],
 .table-style input[type="url"],
 .table-style input[type="password"],
+.table-style input[type="file"],
 .table-style textarea,
 .table-style select {
     display: block;

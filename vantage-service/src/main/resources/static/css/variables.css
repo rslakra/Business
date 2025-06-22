@@ -1,0 +1,11 @@
+/**
+ * Define Variables
+ */
+:root {
+  --black-color: #000000;
+  --white-color: #FFFFFF;
+  --border-radius: 8px;
+  --background-color: #f0f0f0;
+  --background-inner-wrap: #F8F8F8;
+}
+

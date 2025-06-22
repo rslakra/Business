@@ -79,7 +79,7 @@ public class UserWebController extends AbstractWebController<User, Long> {
      * @param model
      * @return
      */
-    @GetMapping("/list")
+    @GetMapping(path = {"", "/", "/list"})
     @Override
     public String getAll(Model model) {
         List<User> users = userService.getAll();

@@ -1,5 +1,10 @@
+@import url('./variables.css');
+
+/**
+ * Generic Styles
+ */
 html {
-    background-color: #f0f0f0;
+    background-color: var(--background-color);
     font-size: 16px;
 }
 
@@ -58,7 +63,6 @@ td.number {
     text-align: right;
 }
 
-
 footer {
     display: block;
     background-color: #46494e;
@@ -69,6 +73,8 @@ footer {
 
 .logo {
     float: left;
+    width: 100px;
+    height:100px;
 }
 
 .welcome {
@@ -84,9 +90,9 @@ footer {
     background: #46494e;
     padding: 8px 20px 8px 20px;
     margin: 10px 0px 10px -1px;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
+    border-radius: var(--border-radius);
+    -webkit-border-radius: var(--border-radius);
+    -moz-border-radius: var(--border-radius);
     color: #fff;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
     font: normal 30px 'Bitter', serif;

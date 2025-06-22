@@ -197,4 +197,14 @@ public class CityWebController extends AbstractWebController<City, Long> {
     public String delete(Model model, Long aLong) {
         return "";
     }
+    
+    /**
+     * Displays the upload <code>Cities</code> UI.
+     *
+     * @return
+     */
+    @GetMapping(path = {"/upload"})
+    public String showUploadPage() {
+        return "views/city/uploadCities";
+    }
 }
