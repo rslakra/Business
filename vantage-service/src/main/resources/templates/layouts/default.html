@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"> <!-- html:start-->
+
+<!-- header -->
 <th:block layout:insert="~{fragments/header}"/>
-<body>
+
+<!-- body -->
+<body> <!-- body:start-->
 <noscript>You need to enable JavaScript to run this app.</noscript>
+<!-- navigation -->
 <th:block layout:replace="~{fragments/navigation}"/>
+
+<!-- bodyContents -->
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -14,8 +21,20 @@
         </div>
     </div>
 </div>
+
 <!--<th:block layout:fragment="bodyEnd"/>-->
+
+<!-- JavaScripts -->
 <th:block layout:replace="~{fragments/bodyScripts :: loadScripts}"/>
+
+<!-- footer -->
 <!--<th:block layout:replace="~{fragments/footer}"/>-->
-</body>
-</html>
+<!--<div class="page-header" th:replace="~{fragments/footer::footer}"></div>-->
+<!--<div th:replace="~{fragments/footer :: (${user.hasRole('ROLE_ADMIN')}? #{footer-admin} : #{footer}) }"></div>-->
+<footer>
+    <div th:replace="~{fragments/footer::footer}"></div>
+</footer>
+
+</body> <!-- body:end-->
+
+</html> <!-- html:end-->
