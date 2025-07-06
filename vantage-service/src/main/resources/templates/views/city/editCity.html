@@ -30,22 +30,18 @@
                             <input class="form-control" th:field="*{population}" type="number" step="1"
                                    min="0" max="2147483647"/>
                         </div>
-                        <div class="form-group submit-cancel">
+
+                        <div class="form-group submit-cancel"> <!-- div:button-section-start -->
                             <input class="btn btn-primary" type="submit" value="Save Changes"/>
                             <a class="btn btn-default btn-cancel" th:href="@{/cities}">Cancel</a>
-                        </div>
+                        </div> <!-- div:button-section-end -->
                     </form>
+
                 </th:block>
             </div>
         </div>
 
     </div> <!-- pageBody:end -->
 </th:block> <!-- bodyContents:end-->
-
-<!-- Footer -->
-<!--<div th:replace="~{fragments/footer::footer}">Footer</div>-->
-<footer class="footer">
-    <div th:insert="~{fragments/footer::footer}"></div>
-</footer>
 
 </html>

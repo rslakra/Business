@@ -5,45 +5,9 @@
       layout:decorate="~{layouts/default}"
       with:title="'Content-Taxonomy'">
 
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta http-equiv="x-ua-compatible" content="ie=edge">-->
-<!--    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
-
-<!--    &lt;!&ndash; css &ndash;&gt;-->
-<!--    <link rel="stylesheet" type="text/css" media="all" href="../../../../static/css/styles.css"-->
-<!--          th:href="@{/css/styles.css}"/>-->
-<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
-
-<!--    &lt;!&ndash; Title &ndash;&gt;-->
-<!--    <title>The Content-Taxonomy</title>-->
-<!--</head>-->
-
-<!--<body>-->
-<!--&lt;!&ndash; Body Container &ndash;&gt;-->
-<!--<div class="body-container">-->
-
 <!-- bodyContents:start-->
 <th:block layout:fragment="bodyContents"> <!-- bodyContents:start-->
     <div class="page-body"> <!-- pageBody:start -->
-
-<!--    &lt;!&ndash; Top Buttons-Bar &ndash;&gt;-->
-<!--    <div class="navbar">-->
-<!--        &lt;!&ndash; New User &ndash;&gt;-->
-<!--        <a class="button" th:href="@{/content-taxonomy/create}"><i class="fa-solid fa-file-lines"></i> New-->
-<!--            Content-Taxonomy</a>-->
-<!--        &lt;!&ndash; Upload Users &ndash;&gt;-->
-<!--        <a class="button" th:href="@{/content-taxonomy/upload}"><i class="fa-solid fa-cloud-arrow-up"></i> Upload-->
-<!--            Content-Taxonomies</a>-->
-<!--        &lt;!&ndash; Download Users (.csv) &ndash;&gt;-->
-<!--        <a class="button" th:href="@{/content-taxonomy/download?fileType=csv}"><i-->
-<!--                class="fa-solid fa-cloud-arrow-down"></i>Download Content-Taxonomies (.csv)</a>-->
-<!--        &lt;!&ndash; Download Roles (.xlsx) &ndash;&gt;-->
-<!--        <a class="button" th:href="@{/content-taxonomy/download?fileType=excel}"><i-->
-<!--                class="fa-solid fa-cloud-arrow-down"></i>Download Content-Taxonomies (.xlsx)</a>-->
-<!--    </div>-->
-
         <!-- List of Content-Taxonomies -->
         <table>
             <thead>
@@ -98,18 +62,7 @@
             </tbody>
         </table>
 
-<!--    &lt;!&ndash;Back Button &ndash;&gt;-->
-<!--    <div>-->
-<!--        <a class="button" href="../../../home.html" th:href="@{/home}">Back</a>-->
-<!--    </div>-->
-
     </div> <!-- pageBody:end -->
 </th:block> <!-- bodyContents:end-->
-
-<!-- Footer -->
-<!--<div th:replace="~{fragments/footer::footer}">Footer</div>-->
-<footer class="footer">
-    <div th:insert="~{fragments/footer::footer}"></div>
-</footer>
 
 </html>
