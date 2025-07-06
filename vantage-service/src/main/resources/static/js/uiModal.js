@@ -1,4 +1,10 @@
 (function ($) {
+
+    const UiMode = {
+        ENRICHED: 'enriched',
+        PLAIN: 'plain'
+    };
+
     const initModalEventHandlers = () => {
         // loads content into .modal-body when the modal is being shown
         const $uiModal = $('#uiModal');

@@ -192,6 +192,22 @@
             <version>${poi-ooxml.version}</version>
         </dependency>
 
+        <!-- Bootstrap 5 -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>5.3.5</version> <!-- Use the desired Bootstrap 5 version -->
+        </dependency>
+
+        <!-- Font Awesome 5 -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>font-awesome</artifactId>
+<!--            <version>5.15.2</version> &lt;!&ndash; Use the desired Font Awesome 5 version &ndash;&gt;-->
+<!--            <version>6.4.2</version> &lt;!&ndash; Use the desired Font Awesome 5 version &ndash;&gt;-->
+            <version>6.5.1</version> <!-- Use the desired Font Awesome 5 version -->
+        </dependency>
+
         <!-- tests -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
