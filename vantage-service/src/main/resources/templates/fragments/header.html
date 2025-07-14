@@ -5,6 +5,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
+    <!--title-->
+    <title th:text="${title}">Thymeleaf Head</title>
+
     <!--favicon-->
     <link rel="shortcut icon" href="../../static/images/favicon.ico" th:href="@{/images/favicon.ico}"/>
 
@@ -26,7 +29,4 @@
 <!--          th:href="@{/css/navbar-styles.css}"/>-->
     <link rel="stylesheet" type="text/css" media="all" href="../../static/css/form-styles.css"
           th:href="@{/css/form-styles.css}"/>
-
-    <!--title-->
-    <title th:text="${title}">Thymeleaf Head</title>
 </head>

@@ -1,7 +1,6 @@
-# Business
+# vantage-service
 
-The ```Business``` repository contains various business management projects.
-
+The ```vantage-service``` contains business management project.
 
 ## Folder Structure Conventions
 
@@ -9,16 +8,16 @@ The ```Business``` repository contains various business management projects.
 
 ```
     /
-    ├── business-service            # The Business Service
-    ├── retail-suite                # An Online retail store.
-    ├── vantage-service            # The Vantage Service
+    ├── src                         # The src folder
+    ├── buildMaven.sh               # The Maven Build Script
+    ├── pom.xml                     # A Project Object Model or POM is XML file that contains information about the 
+    project and configuration details used by Maven to build the project.
+    ├── runMaven.sh                 # The Maven Build Script
     └── README.md
 ```
 
-
-
-
 ## Tables
+
 ```shell
 select * from addresses;
 select * from audit_logs;
@@ -36,11 +35,9 @@ select * from users_roles;
 select * from user_security;
 ```
 
-
 # Reference
 
 ---
-
 
 # Author
 
