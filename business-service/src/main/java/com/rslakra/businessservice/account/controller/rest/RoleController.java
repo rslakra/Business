@@ -262,22 +262,4 @@ public class RoleController extends AbstractRestController<Role, Long> {
         return responseEntity;
     }
 
-//
-//    /**
-//     * @param aLong
-//     */
-//    @Override
-//    public void validate(Optional<Long> aLong) {
-//        super.validate(aLong);
-//    }
-//
-//    /**
-//     * @param serviceOperation
-//     * @param role
-//     * @return
-//     */
-//    @Override
-//    public Role validate(ServiceOperation serviceOperation, Role role) {
-//        return super.validate(serviceOperation, role);
-//    }
 }
