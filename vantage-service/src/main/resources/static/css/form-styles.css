@@ -43,12 +43,12 @@
 .form-style h1 > span {
     display: block;
     margin-top: 2px;
-    font: 13px Arial, Helvetica, sans-serif;
+    font: 14px Arial, Helvetica, sans-serif;
 }
 
 .form-style label {
     display: block;
-    font: 13px Arial, Helvetica, sans-serif;
+    font: 14px Arial, Helvetica, sans-serif;
     color: #888;
     margin-bottom: 16px;
 }
@@ -137,5 +137,21 @@
     color: #4D4D4D;
     margin-top: 10px;
     text-align: right;
+}
+
+.form-label-style {
+    display: flex;
+    align-items: center;
+    vertical-align: inherit;
+}
+
+.form-span-checkbox {
+    padding: 0px 8px;
+    margin-top: 6px;
+    vertical-align: middle;
+}
+
+input[type=checkbox], input[type=radio] {
+    vertical-align: middle;
 }
 
