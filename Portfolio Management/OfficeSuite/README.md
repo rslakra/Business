@@ -10,18 +10,21 @@ The ```OfficeSuite``` project contains various services.
 ---
 
 ```
-    /
-    ├── <module>                # The module service
-    ├── OfficeSuite               # The OfficeSuite services
-    |    ├── modules                # The modules
-    |    ├── <service>              # The Service
-    |    |    ├── <service>-iws     # The <service>-iws Service
-    |    |    ├── webapp            # The WebApp for Service
-    |    |    └── README.md
-    |    └── README.md
-    ├── README.md               # Instructions and helpful links
-    ├── robots.txt              # tells which URLs the search engine crawlers can access on your site
-    └── <module>                # The module service
+/
+├── <module>                        # The module service
+├── OfficeSuite                     # The OfficeSuite services
+│    ├── modules                    # The modules
+│    ├── <service>                  # The Service
+│    │    ├── <service>-iws         # The <service>-iws Service
+│    │    ├── webapp                # The WebApp for Service
+│    │    ├── README.md
+│    │    └── /
+│    ├── README.md
+│    └── /
+├── README.md                       # Instructions and helpful links
+├── robots.txt                      # tells which URLs the search engine crawlers can access on your site
+├── <module>                        # The module service
+└── /
 ```
 
 ## Project Setup
