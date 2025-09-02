@@ -1,8 +1,8 @@
-# TaskForce
+# DriverSuite
 
 ---
 
-The ```TaskForce``` project contains various services.
+The ```DriverSuite``` project contains various services.
 
 
 ## Folder Structure/Conventions
@@ -12,7 +12,7 @@ The ```TaskForce``` project contains various services.
 ```
 /
 ├── <module>                        # The module service
-├── TaskForce                       # The TaskForce services
+├── DriverSuite                     # The DriverSuite services
 │    ├── modules                    # The modules
 │    ├── <service>                  # The Service
 │    │    ├── <service>-iws         # The <service>-iws Service
