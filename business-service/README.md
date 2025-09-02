@@ -7,13 +7,15 @@ The ```business-service``` contains business management project.
 ---
 
 ```
-    /
-    ├── src                         # The src folder
-    ├── buildMaven.sh               # The Maven Build Script
-    ├── pom.xml                     # A Project Object Model or POM is XML file that contains information about the 
-    project and configuration details used by Maven to build the project.
-    ├── runMaven.sh                 # The Maven Build Script
-    └── README.md
+/
+├── src                         # The src folder
+├── buildMaven.sh               # The Maven Build Script
+├── pom.xml                     # A Project Object Model or POM is XML file that contains information about the 
+project and configuration details used by Maven to build the project.
+├── runMaven.sh                 # The Maven Build Script
+├── README.md
+├── <module>                        # The module service
+└── /
 ```
 
 ## Tables

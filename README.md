@@ -8,11 +8,16 @@ The ```Business``` repository contains various business management projects.
 ---
 
 ```
-    /
-    ├── business-service            # The Business Service
-    ├── retail-suite                # An Online retail store.
-    ├── vantage-service            # The Vantage Service
-    └── README.md
+/
+├── business-service            # The Business Service
+├── retail-suite                # An Online retail store.
+├── vantage-service            # The Vantage Service
+│    ├── README.md
+│    └── /
+├── README.md                   # Instructions and helpful links
+├── robots.txt                  # tells which URLs the search engine crawlers can access on your site
+├── <module>                    # The module service
+└── /
 ```
 
 
