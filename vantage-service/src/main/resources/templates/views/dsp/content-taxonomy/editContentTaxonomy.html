@@ -10,10 +10,7 @@
     <div class="page-body"> <!-- pageBody:start -->
         <!-- Form -->
         <div class="form-style">
-            <h2 class="center-align">
-                <!-- if contentTaxonomy.getId() is null -->
-                <span th:text="${contentTaxonomy.id == null} ? 'Create ' : 'Update '"/> Content-Taxonomy
-            </h2>
+            <h2 th:text="${contentTaxonomy.id == null} ? 'Create Content-Taxonomy' : 'Update Content-Taxonomy'"></h2>
             <form action="#" th:action="@{/content-taxonomy/save}" th:object="${contentTaxonomy}" method="post">
                 <div class="section"><span>*</span>User Details</div>
                 <input type="hidden" name="id" th:field="*{id}">

@@ -11,10 +11,7 @@
 
     <!-- Form -->
         <div class="form-style">
-            <h2 class="center-align">
-                <!-- if role.getId() is null -->
-                <span th:text="${role.id == null} ? 'Create ' : 'Update '"/> Role
-            </h2>
+            <h2 th:text="${role.id == null} ? 'Create Role' : 'Update Role'"></h2>
             <form action="#" th:action="@{/roles/save}" th:object="${role}" method="post">
                 <div class="section"><span>*</span>Role Details</div>
                 <input type="hidden" name="id" th:field="*{id}">

@@ -10,10 +10,7 @@
     <div class="page-body"> <!-- pageBody:start -->
         <!-- Form -->
         <div class="form-style">
-            <h2 class="center-align">
-                <!-- if marketing.getId() is null -->
-                <span th:text="${marketing.id == null} ? 'Create ' : 'Update '"/> Marketing
-            </h2>
+            <h2 th:text="${marketing.id == null} ? 'Create Marketing' : 'Update Marketing'"></h2>
             <form action="#" th:action="@{/marketing/save}" th:object="${marketing}" method="post">
                 <div class="section"><span>*</span>Marketing Details</div>
                 <input type="hidden" name="id" th:field="*{id}">

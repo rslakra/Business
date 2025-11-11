@@ -11,10 +11,7 @@
 
         <!-- Form -->
         <div class="form-style">
-            <h2 class="center-align">
-                <!-- if task.getId() is null -->
-                <span th:text="${task.id == null} ? 'Create ' : 'Update '"/> Task
-            </h2>
+            <h2 th:text="${task.id == null} ? 'Create Task' : 'Update Task'"></h2>
             <form action="#" th:action="@{/tasks/save}" th:object="${task}" method="post">
                 <div class="section"><span>*</span>Task Details</div>
                 <input type="hidden" name="id" th:field="*{id}">

@@ -10,10 +10,7 @@
     <div class="page-body"> <!-- pageBody:start -->
         <!-- Form -->
         <div class="form-style">
-            <h2 class="center-align">
-                <!-- if user.getId() is null -->
-                <span th:text="${user.id == null} ? 'Create ' : 'Update '"/> User
-            </h2>
+            <h2 th:text="${user.id == null} ? 'Create User' : 'Update User'"></h2>
             <form action="#" th:action="@{/users/save}" th:object="${user}" method="post">
                 <div class="section"><span>*</span>User Details</div>
                 <input type="hidden" name="id" th:field="*{id}">
