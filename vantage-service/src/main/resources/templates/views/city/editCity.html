@@ -3,43 +3,46 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:with="http://www.thymeleaf.org/extras/with"
       layout:decorate="~{layouts/default}"
-      with:title="'Edit City'">
+      with:title="'Add/Update City'">
 
 <!-- bodyContents:start-->
 <th:block layout:fragment="bodyContents"> <!-- bodyContents:start-->
     <div class="page-body"> <!-- pageBody:start -->
 
-        <div class="row">
-            <div class="col-md-6">
-
-                <!--/* only th:fragment form is returned for an XMLHttpRequest */-->
-                <th:block th:fragment="form">
-<!--                    <form th:action="@{/cities/save}" th:object="${city}" method="post">-->
-                    <form th:action="@{|/cities/${city.id}|}" th:object="${city}" method="post">
-                        <div class="form-group">
-                            <label class="control-label" th:for="name">Name</label>
-                            <input class="form-control" th:field="*{name}" type="text"/>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" th:for="foundedIn">Founded in</label>
-                            <input class="form-control" th:field="*{foundedIn}" type="number" step="1"
+        <!--/* only th:fragment form is returned for an XMLHttpRequest */-->
+        <th:block th:fragment="form">
+            <!-- Form -->
+            <div class="form-style">
+                <h2 class="center-align">
+                    <!-- if city.getId() is null -->
+                    <span th:text="${city.id == null} ? 'Create ' : 'Update '"/> City
+                </h2>
+                <form th:action="@{/cities/save}" th:object="${city}" method="post">
+                    <div class="section"><span>*</span>City Details</div>
+                    <input type="hidden" name="id" th:field="*{id}">
+                    <div class="inner-wrap">
+                        <label><div>Name</div>
+                            <input type="text" th:field="*{name}" name="name" placeholder="Name"/>
+                        </label>
+                        <label><div>Founded In</div>
+                            <input type="number" th:field="*{foundedIn}" name="foundedIn" 
+                                   placeholder="Founded In" step="1"
                                    min="-2147483648" max="2147483647"/>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label" th:for="population">Population</label>
-                            <input class="form-control" th:field="*{population}" type="number" step="1"
+                        </label>
+                        <label><div>Population</div>
+                            <input type="number" th:field="*{population}" name="population" 
+                                   placeholder="Population" step="1"
                                    min="0" max="2147483647"/>
-                        </div>
+                        </label>
+                    </div>
 
-                        <div class="form-group submit-cancel"> <!-- div:button-section-start -->
-                            <input class="btn btn-primary" type="submit" value="Save Changes"/>
-                            <a class="btn btn-default btn-cancel" th:href="@{/cities}">Cancel</a>
-                        </div> <!-- div:button-section-end -->
-                    </form>
-
-                </th:block>
+                    <div class="button-section"> <!-- div:button-section-start -->
+                        <input type="submit" name="Submit"/>
+                        <a class="button" th:href="@{/cities}">Cancel</a>
+                    </div> <!-- div:button-section-end -->
+                </form>
             </div>
-        </div>
+        </th:block>
 
     </div> <!-- pageBody:end -->
 </th:block> <!-- bodyContents:end-->

@@ -155,3 +155,29 @@ input[type=checkbox], input[type=radio] {
     vertical-align: middle;
 }
 
+/**
+ * Read-only input styles for delete/confirmation forms
+ */
+.form-style input[readonly] {
+    background-color: #f5f5f5 !important;
+    cursor: not-allowed;
+    color: #666;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/**
+ * Delete button styles for delete/confirmation forms
+ */
+.form-style input[type="submit"][value="Delete"] {
+    background: #d9534f !important;
+    border-color: #d43f3a !important;
+}
+
+.form-style input[type="submit"][value="Delete"]:hover {
+    background: #c9302c !important;
+    border-color: #ac2925 !important;
+}
+
