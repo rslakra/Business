@@ -63,11 +63,11 @@
 
         const _storageType = getStorageType();
         if (_storageType && StorageType.SESSION === _storageType) {
-            // removes to session storage
+            // removes from session storage
             sessionStorage.removeItem(key);
         } else {
-            // removes to local storage
-            localStorage.getItem(key);
+            // removes from local storage
+            localStorage.removeItem(key);
         }
     }
 
@@ -149,11 +149,15 @@
      * Adds the <code>toggleStorageUiButton</code>.
      */
     function addToggleStorageUiButton() {
+        const $uiToggleStorage = $('#ui-toggle-storage');
+        if ($uiToggleStorage.length === 0) {
+            return; // Element doesn't exist, skip
+        }
         const $toggleStorageUiButton = $('<a></a>')
             .attr('role', 'button')
             .text('Storage')
             .on('click', toggleStorage);
-        $('#ui-toggle-storage')
+        $uiToggleStorage
             .html($toggleStorageUiButton)
             .removeClass('hidden');
     }
@@ -209,9 +213,7 @@
      */
     function initStorageType() {
         const preferredStorageType = getStorageType();
-        if (preferredStorageType && UiMode.ENRICHED == preferredStorageType) {
-            // uiEnriched();
-        }
+        // Storage type is initialized, no UI mode check needed here
 
         addToggleStorageUiButton();
     }

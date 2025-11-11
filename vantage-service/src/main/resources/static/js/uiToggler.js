@@ -47,11 +47,16 @@
     }
 
     function addButtonToToggleUi() {
+        const $uiToggle = $('#ui-toggle');
+        if ($uiToggle.length === 0) {
+            return; // Element doesn't exist, skip
+        }
         const $toggleUiBtn = $('<a></a>')
             .attr('role', 'button')
             .text('Toggle')
             .on('click', toggleUiMode);
-        $('#ui-toggle')
+            
+        $uiToggle
             .html($toggleUiBtn)
             .removeClass('hidden');
     }

@@ -76,10 +76,39 @@ footer {
     margin-top: 50px;
 }
 
-.logo {
-    float: left;
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+}
+
+/* Logo wrapper to blend white background with navbar */
+.logo-wrapper {
+    display: inline-block;
+    vertical-align: middle;
     height: 36px;
     width: 36px;
+    margin-right: 8px;
+    /* Get the exact navbar background color - Bootstrap 3 navbar-default uses #f8f8f8 */
+    /* If this doesn't match, inspect the navbar element in browser dev tools and update this value */
+    background-color: #f8f8f8;
+    border-radius: 4px;
+    padding: 2px;
+    box-sizing: border-box;
+    line-height: 0;
+}
+
+/* Alternative: try to match navbar background more precisely */
+.navbar-default .logo-wrapper {
+    /* Bootstrap 3 navbar-default background color */
+    background-color: #f8f8f8;
+}
+
+.logo {
+    display: block;
+    height: 100%;
+    width: 100%;
+    border-radius: 2px;
 }
 
 .welcome {

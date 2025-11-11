@@ -117,11 +117,11 @@ public class UserWebController extends AbstractWebController<User, Long> {
      * @param idOptional
      * @return
      */
-    @RequestMapping(path = {"/create", "/update/{userId}"})
+    @GetMapping(path = {"/create", "/update/{userId}", "/update"})
     @Override
-    public String editObject(Model model, @PathVariable(name = "userId") Optional<Long> idOptional) {
+    public String editObject(Model model, @PathVariable(name = "userId", required = false) Optional<Long> idOptional) {
         User user = null;
-        if (idOptional.isPresent()) {
+        if (idOptional != null && idOptional.isPresent()) {
             user = userService.getById(idOptional.get());
         } else {
             user = new User();
