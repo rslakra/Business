@@ -13,14 +13,29 @@
     line-height: inherit;
     white-space: nowrap;
     margin-right: 1rem;
-    transition: opacity 0.2s ease; /* Smooth hover transition */
+    transition: opacity 0.2s ease, color 0.2s ease; /* Smooth hover transition */
+    color: var(--navbar-text);
 }
 
 .navbar-brand:hover {
     opacity: 0.9; /* Slight fade on hover */
+    color: var(--primary-color);
 }
 
-/* Navbar link hover effects */
+/* Navbar link hover effects - Light theme */
+.navbar-light .navbar-nav .nav-link {
+    color: var(--navbar-text);
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border-radius: 4px;
+    margin: 0 2px;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    background-color: var(--navbar-hover);
+    color: var(--primary-color);
+}
+
+/* Navbar link hover effects - Dark theme (for future use) */
 .navbar-dark .navbar-nav .nav-link {
     transition: background-color 0.2s ease, color 0.2s ease;
     border-radius: 4px;
@@ -32,7 +47,24 @@
     color: #fff;
 }
 
-/* Dropdown menu styling */
+/* Dropdown menu styling - Light theme */
+.navbar-light .dropdown-menu {
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-light .dropdown-item {
+    color: var(--text-primary);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.navbar-light .dropdown-item:hover {
+    background-color: var(--navbar-hover);
+    color: var(--primary-color);
+}
+
+/* Dropdown menu styling - Dark theme (for future use) */
 .navbar-dark .dropdown-menu {
     background-color: var(--navbar-bg);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -78,6 +110,11 @@
     box-sizing: border-box;
     line-height: 0;
     flex-shrink: 0;
+}
+
+.navbar-light .logo-wrapper {
+    /* Match navbar background color */
+    background-color: var(--navbar-bg);
 }
 
 .navbar-dark .logo-wrapper {

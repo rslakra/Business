@@ -12,8 +12,8 @@ html {
 
 body {
     font-size: 16px;
-    background-color: #ffffff;
-    border: 1px solid #cccccc;
+    background-color: var(--white-color);
+    border: 1px solid var(--border-color);
     margin: 0px auto;
     padding: 20px 20px;
 }
@@ -30,7 +30,7 @@ ol > li {
 /* Generic link styles */
 a {
     text-decoration: none;
-    color: #777;
+    color: var(--text-secondary);
 }
 
 a:hover {
@@ -67,12 +67,12 @@ a:hover {
 /* Footer styles */
 footer {
     display: block;
-    background-color: var(--footer-bg); /* Match navbar color scheme (slightly darker) */
+    background-color: var(--footer-bg); /* White to match navbar */
     text-align: center;
     padding: inherit;
-    color: var(--footer-text); /* White text for dark background */
+    color: var(--footer-text); /* Dark text to match navbar */
     margin-top: 50px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border to separate from content */
+    border-top: 1px solid var(--border-color-light); /* Subtle border to separate from content */
 }
 
 /* Page header */

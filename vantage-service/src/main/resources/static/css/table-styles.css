@@ -7,18 +7,18 @@
 /* Generic table styles */
 table {
     width: 100%;
-    border: 1px solid #000;
+    border: 1px solid var(--table-border);
     border-collapse: collapse;
 }
 
 table > tbody > tr > td, table > thead > tr > th {
     padding: 10px;
-    border-left: 1px dotted #000000;
+    border-left: 1px dotted var(--table-border);
     line-height: 20px;
 }
 
 table > tbody > tr, table > thead > tr {
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid var(--table-border);
 }
 
 table th {
@@ -32,7 +32,7 @@ thead {
 }
 
 tr.odd td {
-    background-color: #f0faaa;
+    background-color: var(--table-odd-bg);
 }
 
 td {
@@ -58,7 +58,7 @@ td.number {
     width: 450px;
     padding: 30px;
     margin: 40px auto;
-    background: #FFF;
+    background: var(--white-color);
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -69,7 +69,7 @@ td.number {
 
 .table-style .inner-wrap {
     padding: 30px;
-    background: #F8F8F8;
+    background: var(--background-inner-wrap);
     border-radius: 6px;
     margin-bottom: 15px;
 }
@@ -99,7 +99,7 @@ td.number {
 .table-style label {
     display: block;
     font: 13px Arial, Helvetica, sans-serif;
-    color: #888;
+    color: var(--text-muted);
     margin-bottom: 15px;
 }
 
@@ -180,7 +180,7 @@ td.number {
     float: right;
     width: 250px;
     font: 12px Arial, Helvetica, sans-serif;
-    color: #4D4D4D;
+    color: var(--text-secondary);
     margin-top: 10px;
     text-align: right;
 }

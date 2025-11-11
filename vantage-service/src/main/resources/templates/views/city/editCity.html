@@ -13,10 +13,7 @@
         <th:block th:fragment="form">
             <!-- Form -->
             <div class="form-style">
-                <h2 class="center-align">
-                    <!-- if city.getId() is null -->
-                    <span th:text="${city.id == null} ? 'Create ' : 'Update '"/> City
-                </h2>
+                <h2 th:text="${city.id == null} ? 'Create City' : 'Update City'"></h2>
                 <form th:action="@{/cities/save}" th:object="${city}" method="post">
                     <div class="section"><span>*</span>City Details</div>
                     <input type="hidden" name="id" th:field="*{id}">

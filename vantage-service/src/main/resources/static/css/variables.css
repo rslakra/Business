@@ -8,17 +8,56 @@
   --background-color: #f0f0f0;
   --background-inner-wrap: #F8F8F8;
   
-  /* Modern Color Scheme */
-  --primary-color: #0096b5; /* Primary teal-blue */
-  --primary-dark: #007a94; /* Darker teal-blue for hover states and borders */
-  --primary-light: #00b8d9; /* Lighter teal-blue for accents */
-  --secondary-color: #0ea5e9; /* Sky blue accent */
-  --accent-color: #10b981; /* Green accent for success/actions */
-  --navbar-bg: #0096b5; /* Navbar background */
-  --navbar-text: #ffffff; /* Navbar text color */
-  --header-bg: #0096b5; /* Table header background */
+  /* Travel Website Color Scheme - Inspired by Modern Travel Design */
+  /* Primary Colors - Vibrant Blue (from buttons and logo) */
+  --primary-color: #007bff; /* Primary vibrant blue - main action color */
+  --primary-dark: #0056b3; /* Darker blue for hover states and borders */
+  --primary-light: #3399ff; /* Lighter blue for accents and highlights */
+  
+  /* Secondary Colors */
+  --secondary-color: #dc3545; /* Red from logo and jacket - secondary actions */
+  --secondary-dark: #c82333; /* Darker red for hover */
+  --secondary-light: #ff6b7a; /* Lighter red for accents */
+  
+  /* Accent Colors - Decorative elements */
+  --accent-purple: #9b59b6; /* Purple from watercolor splotches */
+  --accent-pink: #ff6b9d; /* Pink from decorative shapes */
+  --accent-color: #10b981; /* Green for success/positive actions */
+  
+  /* Navbar - Clean white background with blue accents */
+  --navbar-bg: #ffffff; /* White navbar background */
+  --navbar-text: #212529; /* Dark text for navbar */
+  --navbar-hover: #f8f9fa; /* Light gray hover background */
+  
+  /* Table Headers - Blue to match primary */
+  --header-bg: #007bff; /* Table header background */
   --header-text: #ffffff; /* Table header text */
-  --footer-bg: #007a94; /* Footer background (slightly darker) */
-  --footer-text: #ffffff; /* Footer text */
+  
+  /* Footer - White to match navbar */
+  --footer-bg: #ffffff; /* Footer background (white to match navbar) */
+  --footer-text: #212529; /* Dark text for footer (matches navbar text) */
+  
+  /* Text Colors */
+  --text-primary: #212529; /* Dark gray for headings */
+  --text-secondary: #6c757d; /* Medium gray for secondary text */
+  --text-muted: #adb5bd; /* Light gray for muted text */
+  
+  /* UI State Colors */
+  --error-bg: #f8d7da; /* Light red background for error alerts */
+  --error-text: #721c24; /* Dark red text for error messages */
+  --error-border: #f5c6cb; /* Light red border for error alerts */
+  --error-field-bg: #fff5f5; /* Very light red background for error fields */
+  
+  /* Read-only and Disabled States */
+  --readonly-bg: #f5f5f5; /* Light gray for read-only inputs */
+  --readonly-text: #666666; /* Medium gray for read-only text */
+  
+  /* Table Colors */
+  --table-odd-bg: #f8f9fa; /* Light gray for odd table rows */
+  --table-border: #000000; /* Black for table borders */
+  
+  /* Border Colors */
+  --border-color: #cccccc; /* Light gray for general borders */
+  --border-color-light: #e0e0e0; /* Very light gray for subtle borders */
 }
 
