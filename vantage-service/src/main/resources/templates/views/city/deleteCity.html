@@ -9,35 +9,43 @@
 <th:block layout:fragment="bodyContents"> <!-- bodyContents:start-->
     <div class="page-body"> <!-- pageBody:start -->
 
-        <div class="row">
-            <div class="col-md-6">
+        <!--/* only th:fragment form is returned for an XMLHttpRequest */-->
+        <th:block th:fragment="form">
+            <!-- Form -->
+            <div class="form-style">
+                <h2 class="center-align">Delete City</h2>
+                <form th:action="@{|/cities/${city.id}/delete|}" th:object="${city}" method="post">
+                    <div class="section"><span>*</span>City Details</div>
+                    <input type="hidden" name="id" th:field="*{id}">
+                    <div class="inner-wrap">
+                        <label><div>Name</div>
+                            <input type="text" th:value="*{name}" readonly 
+                                   tabindex="-1" onfocus="this.blur()" 
+                                   onkeydown="return false;" onpaste="return false;" oncut="return false;"/>
+                        </label>
+                        <label><div>Founded In</div>
+                            <input type="text" 
+                                   th:value="${city.foundedIn != null ? (city.foundedIn lt 0 ? (city.foundedIn * -1) + ' BC' : city.foundedIn + ' AD') : ''}" 
+                                   readonly 
+                                   tabindex="-1" onfocus="this.blur()" 
+                                   onkeydown="return false;" onpaste="return false;" oncut="return false;"/>
+                        </label>
+                        <label><div>Population</div>
+                            <input type="text" 
+                                   th:value="${city.population != null ? #numbers.formatInteger(city.population, 1, 'DEFAULT') : ''}" 
+                                   readonly 
+                                   tabindex="-1" onfocus="this.blur()" 
+                                   onkeydown="return false;" onpaste="return false;" oncut="return false;"/>
+                        </label>
+                    </div>
 
-                <!--/* only th:fragment form is returned for an XMLHttpRequest */-->
-                <th:block th:fragment="form">
-                    <form th:action="@{|/cities/${city.id}/delete|}" th:object="${city}" method="post">
-                        <div class="form-group">
-                            <span class="control-label" id="label-name">Name</span>
-                            <p class="form-control-static" aria-labelledby="label-name" th:text="*{name}">City name</p>
-                        </div>
-                        <div class="form-group">
-                            <span class="control-label" id="label-founded-in">Founded in</span>
-                            <p class="form-control-static" aria-labelledby="label-founded-in"
-                               th:text="${city.foundedIn} lt 0 ? ${(city.foundedIn * -1) + ' BC'}: ${city.foundedIn + ' AD'}">
-                                Founded in</p>
-                        </div>
-                        <div class="form-group">
-                            <span class="control-label" id="label-population">Population</span>
-                            <p class="form-control-static" aria-labelledby="label-population"
-                               th:text="${#numbers.formatInteger(city.population, 1, 'DEFAULT')}"> Population</p>
-                        </div>
-                        <div class="form-group submit-cancel">
-                            <input class="btn btn-danger" type="submit" value="Delete"/>
-                            <a class="btn btn-default btn-cancel" th:href="@{/cities}">Cancel</a>
-                        </div>
-                    </form>
-                </th:block>
+                    <div class="button-section"> <!-- div:button-section-start -->
+                        <input type="submit" name="Submit" value="Delete"/>
+                        <a class="button" th:href="@{/cities}">Cancel</a>
+                    </div> <!-- div:button-section-end -->
+                </form>
             </div>
-        </div>
+        </th:block>
 
     </div> <!-- pageBody:end -->
 </th:block> <!-- bodyContents:end-->

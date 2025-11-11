@@ -1,13 +1,111 @@
+@import url('./variables.css');
+
 /**
  * NavBar Styles
  */
-.navbar {
+
+/* Bootstrap 5 navbar brand styling */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+    margin-right: 1rem;
+    transition: opacity 0.2s ease; /* Smooth hover transition */
+}
+
+.navbar-brand:hover {
+    opacity: 0.9; /* Slight fade on hover */
+}
+
+/* Navbar link hover effects */
+.navbar-dark .navbar-nav .nav-link {
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border-radius: 4px;
+    margin: 0 2px;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle hover background */
+    color: #fff;
+}
+
+/* Dropdown menu styling */
+.navbar-dark .dropdown-menu {
+    background-color: var(--navbar-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-dark .dropdown-item {
+    color: rgba(255, 255, 255, 0.9);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.navbar-dark .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+
+/* Ensure Bootstrap 5 navbar items are visible on large screens */
+@media (min-width: 992px) {
+    .navbar-expand-lg .navbar-collapse {
+        display: flex !important;
+        flex-basis: auto;
+    }
+    
+    .navbar-expand-lg .navbar-nav {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+/* Logo wrapper to blend white background with navbar */
+.logo-wrapper {
+    display: inline-block;
+    vertical-align: middle;
+    height: 36px;
+    width: 36px;
+    max-height: 36px;
+    max-width: 36px;
+    margin-right: 8px;
+    /* Match navbar background color */
+    background-color: var(--navbar-bg);
+    border-radius: 4px;
+    padding: 2px;
+    box-sizing: border-box;
+    line-height: 0;
+    flex-shrink: 0;
+}
+
+.navbar-dark .logo-wrapper {
+    /* Match navbar background color */
+    background-color: var(--navbar-bg);
+}
+
+.logo {
+    display: block;
+    height: 100%;
+    width: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    border-radius: 2px;
+    object-fit: contain;
+}
+
+/* Legacy navbar styles (only apply to custom navbars in home.html, NOT Bootstrap navbars) */
+/* Use a more specific selector to avoid conflicts with Bootstrap 5 navbars */
+body > .container .navbar,
+body > div > .navbar {
   width: 100%;
   background-color: #555;
   overflow: auto;
 }
 
-.navbar a {
+body > .container .navbar a,
+body > div > .navbar a {
   float: left;
   padding: 12px;
   color: white;
@@ -15,7 +113,8 @@
   font-size: 17px;
 }
 
-.navbar a:hover {
+body > .container .navbar a:hover,
+body > div > .navbar a:hover {
   background-color: #000;
 }
 
@@ -23,8 +122,9 @@
   background-color: #04AA6D;
 }
 
-@media screen and (max-width: 500px) {
-  .navbar a {
+@media screen and (max-width: 480px) {
+  body > .container .navbar a,
+  body > div > .navbar a {
     float: none;
     display: block;
   }

@@ -21,9 +21,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.beans.PropertyEditorSupport;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -54,17 +59,67 @@ public class UserWebController extends AbstractWebController<User, Long> {
     }
     
     /**
-     * Saves the <code>t</code> object.
+     * Initializes the data binder to handle empty date strings.
+     *
+     * @param binder
+     */
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        // Custom editor for Date to handle empty strings
+        binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
+            @Override
+            public void setAsText(String text) {
+                if (text == null || text.trim().isEmpty()) {
+                    setValue(null);
+                } else {
+                    try {
+                        // Try parsing with common date formats
+                        SimpleDateFormat[] formats = {
+                            new SimpleDateFormat("yyyy-MM-dd"),
+                            new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"),
+                            new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSS")
+                        };
+                        Date date = null;
+                        for (SimpleDateFormat format : formats) {
+                            try {
+                                date = format.parse(text);
+                                break;
+                            } catch (ParseException e) {
+                                // Try next format
+                            }
+                        }
+                        setValue(date);
+                    } catch (Exception e) {
+                        setValue(null);
+                    }
+                }
+            }
+            
+            @Override
+            public String getAsText() {
+                Date value = (Date) getValue();
+                return (value != null ? new SimpleDateFormat("yyyy-MM-dd").format(value) : "");
+            }
+        });
+    }
+
+    /**
+     * Saves the <code>user</code> object (creates new or updates existing).
      *
      * @param user
      * @return
      */
     @PostMapping("/save")
     @Override
-    public String save(User user) {
+    public String save(@ModelAttribute("user") User user) {
+        LOGGER.info("user={}", user);
         if (BeanUtils.isNotNull(user.getId())) {
             User oldUser = userService.getById(user.getId());
+            // Preserve registeredOn since it's updatable=false and auto-generated
+            Date originalRegisteredOn = oldUser.getRegisteredOn();
             BeanUtils.copyProperties(user, oldUser);
+            // Restore registeredOn to prevent it from being updated
+            oldUser.setRegisteredOn(originalRegisteredOn);
             user = userService.update(oldUser);
         } else {
             user = userService.create(user);
@@ -117,11 +172,11 @@ public class UserWebController extends AbstractWebController<User, Long> {
      * @param idOptional
      * @return
      */
-    @RequestMapping(path = {"/create", "/update/{userId}"})
+    @GetMapping(path = {"/create", "/update/{userId}", "/update"})
     @Override
-    public String editObject(Model model, @PathVariable(name = "userId") Optional<Long> idOptional) {
+    public String editObject(Model model, @PathVariable(name = "userId", required = false) Optional<Long> idOptional) {
         User user = null;
-        if (idOptional.isPresent()) {
+        if (idOptional != null && idOptional.isPresent()) {
             user = userService.getById(idOptional.get());
         } else {
             user = new User();

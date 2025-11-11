@@ -1,5 +1,6 @@
 package com.rslakra.vantageservice.city.controller;
 
+import com.rslakra.appsuite.core.BeanUtils;
 import com.rslakra.appsuite.spring.controller.web.AbstractWebController;
 import com.rslakra.appsuite.spring.filter.Filter;
 import com.rslakra.appsuite.spring.parser.Parser;
@@ -77,6 +78,27 @@ public class CityWebController extends AbstractWebController<City, Long> {
         return editObject(model, Optional.of(id)) + FRAGMENT_FORM;
     }
     
+    /**
+     * Saves the <code>city</code> object (creates new or updates existing).
+     *
+     * @param city
+     * @return
+     */
+    @PostMapping("/save")
+    public String save(@ModelAttribute("city") City city) {
+        LOGGER.info("city={}", city);
+        if (BeanUtils.isNotNull(city.getId())) {
+            City oldCity = cityService.getById(city.getId());
+            BeanUtils.copyProperties(city, oldCity);
+            city = cityService.update(oldCity);
+        } else {
+            city = cityService.create(city);
+        }
+        
+        // Redirects to the /list endpoint
+        return "redirect:/cities";
+    }
+    
     @PostMapping("/{id}")
     public String updateCity(@PathVariable(value = "id", required = false) Optional<Long> id,
                              @ModelAttribute("city") City city) {
@@ -148,15 +170,6 @@ public class CityWebController extends AbstractWebController<City, Long> {
     @Override
     public Parser<City> getParser() {
         return null;
-    }
-    
-    /**
-     * @param city
-     * @return
-     */
-    @Override
-    public String save(City city) {
-        return "";
     }
     
     /**

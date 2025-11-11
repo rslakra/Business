@@ -8,45 +8,36 @@
 <!-- bodyContents:start-->
 <th:block layout:fragment="bodyContents"> <!-- bodyContents:start-->
     <div class="page-body"> <!-- pageBody:start -->
-        <!-- List of Roles -->
-        <table>
-            <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>DOB</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <div th:switch="${users.size()}">
-                <div th:case="0">
-                    <tr>
-                        <td colspan="4">
-                            <h2>No Records Found!</h2>
-                        </td>
-                    </tr>
-                </div>
-                <div th:case="*">
-                    <tr th:each="user : ${users}">
-                        <td th:text="${user.id}"/>
-                        <td th:text="${user.name}"/>
-                        <td th:text="${user.dob}"/>
-                        <td th:text="${user.status}"/>
-                        <td class="action-button">
-                            <a class="action-button-padding" th:href="@{/users/update/{id}(id=${user.id})}">
-                                <i class="fa fa-pencil" style="font-size:24px;color:red"></i>
-                            </a>
-                            <a class="action-button-padding" th:href="@{/users/delete/{id}(id=${user.id})}">
-                                <i class="fa fa-trash" style="font-size:24px;color:red"></i>
-                            </a>
-                        </td>
-                    </tr>
-                </div>
-            </div>
-            </tbody>
-        </table>
+        <!-- User Profile -->
+        <div th:if="${user != null}">
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>DOB</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td th:text="${user.id}"/>
+                    <td th:text="${user.name}"/>
+                    <td th:text="${user.dob}"/>
+                    <td th:text="${user.status}"/>
+                    <td class="action-button">
+                        <a class="action-button-padding" th:href="@{/users/update/{id}(id=${user.id})}">
+                            <i class="fa fa-pencil" style="font-size:24px;color:red"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:if="${user == null}">
+            <h2>No User Profile Found!</h2>
+        </div>
 
     </div> <!-- pageBody:end -->
 </th:block> <!-- bodyContents:end-->

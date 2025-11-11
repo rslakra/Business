@@ -1,7 +1,59 @@
+@import url('./variables.css');
+
 /**
  * Table Styles
  */
 
+/* Generic table styles */
+table {
+    width: 100%;
+    border: 1px solid #000;
+    border-collapse: collapse;
+}
+
+table > tbody > tr > td, table > thead > tr > th {
+    padding: 10px;
+    border-left: 1px dotted #000000;
+    line-height: 20px;
+}
+
+table > tbody > tr, table > thead > tr {
+    border-bottom: 1px solid #000000;
+}
+
+table th {
+    background-color: var(--header-bg); /* Match navbar color scheme */
+    color: var(--header-text); /* White text for dark background */
+    font-weight: 600; /* Make headers stand out */
+}
+
+thead {
+    text-align: center;
+}
+
+tr.odd td {
+    background-color: #f0faaa;
+}
+
+td {
+    text-align: center;
+}
+
+td.number {
+    text-align: right;
+}
+
+/* Action button styles for tables */
+.action-button {
+    width: 101px;
+    min-width: 101px;
+}
+
+.action-button-padding {
+    padding: 8px;
+}
+
+/* Table-style specific classes */
 .table-style {
     width: 450px;
     padding: 30px;
@@ -23,7 +75,7 @@
 }
 
 .table-style h1 {
-    background: #2A88AD;
+    background: var(--primary-color); /* Use modern primary color */
     padding: 20px 30px 15px 30px;
     margin: -30px -30px 30px -30px;
     border-radius: 10px 10px 0 0;
@@ -35,7 +87,7 @@
     -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
     -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
     box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
-    border: 1px solid #257C9E;
+    border: 1px solid var(--primary-dark);
 }
 
 .table-style h1 > span {
@@ -80,12 +132,12 @@
 
 .table-style .section {
     font: normal 20px 'Bitter', serif;
-    color: #2A88AD;
+    color: var(--primary-color); /* Use modern primary color */
     margin-bottom: 5px;
 }
 
 .table-style .section span {
-    background: #2A88AD;
+    background: var(--primary-color); /* Use modern primary color */
     padding: 5px 10px 5px 10px;
     position: absolute;
     border-radius: 50%;
@@ -100,7 +152,7 @@
 
 .table-style input[type="button"],
 .table-style input[type="submit"] {
-    background: #2A88AD;
+    background: var(--primary-color); /* Use modern primary color */
     padding: 8px 20px 8px 20px;
     border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -111,13 +163,14 @@
     -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
     -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
     box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
-    border: 1px solid #257C9E;
+    border: 1px solid var(--primary-dark);
     font-size: 15px;
+    transition: background-color 0.3s ease; /* Smooth hover transition */
 }
 
 .table-style input[type="button"]:hover,
 .table-style input[type="submit"]:hover {
-    background: #2A6881;
+    background: var(--primary-dark); /* Darker shade on hover */
     -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
     -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
     box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.28);
