@@ -44,8 +44,11 @@
                         <span class="form-span-checkbox">Test User</span>
                     </label>
                     <label><div>Registered On</div>
-                        <input type="text" th:field="*{registeredOn}"
-                               name="registeredOn" placeholder="Registered On" readonly/>
+                        <input type="text" 
+                               th:value="${user.registeredOn != null ? #dates.format(user.registeredOn, 'yyyy-MM-dd HH:mm:ss') : ''}"
+                               placeholder="Registered On" readonly
+                               tabindex="-1" onfocus="this.blur()"
+                               onkeydown="return false;" onpaste="return false;" oncut="return false;"/>
                     </label>
                     <label><div>Country Code</div>
                         <input type="text" th:field="*{countryCode}"
@@ -56,8 +59,8 @@
                                name="phoneNumber" placeholder="Phone Number"/>
                     </label>
                     <label><div>Date of Birth</div>
-                        <input type="date" th:field="*{dob}"
-                               name="dob" placeholder="Date of Birth"/>
+                        <input type="date" th:field="*{dob}" name="dob" 
+                               placeholder="Date of Birth"/>
                     </label>
                     <label><div>Referral Code</div>
                         <input type="text" th:field="*{referralCode}"

@@ -1,13 +1,62 @@
+@import url('./variables.css');
+
 /**
  * NavBar Styles
  */
-.navbar {
+
+/* Bootstrap navbar brand styling */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    font-size: 18px;
+    line-height: 20px;
+    height: 50px;
+    max-height: 50px;
+}
+
+/* Logo wrapper to blend white background with navbar */
+.logo-wrapper {
+    display: inline-block;
+    vertical-align: middle;
+    height: 36px;
+    width: 36px;
+    max-height: 36px;
+    max-width: 36px;
+    margin-right: 8px;
+    /* Bootstrap 3 navbar-default background color */
+    background-color: #f8f8f8;
+    border-radius: 4px;
+    padding: 2px;
+    box-sizing: border-box;
+    line-height: 0;
+    flex-shrink: 0;
+}
+
+.navbar-default .logo-wrapper {
+    /* Bootstrap 3 navbar-default background color */
+    background-color: #f8f8f8;
+}
+
+.logo {
+    display: block;
+    height: 100%;
+    width: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    border-radius: 2px;
+    object-fit: contain;
+}
+
+/* Legacy navbar styles (only apply when NOT using Bootstrap navbar-default) */
+/* These styles are for custom navbar usage, not Bootstrap's navbar-default */
+.navbar:not(.navbar-default):not(.navbar-inverse) {
   width: 100%;
   background-color: #555;
   overflow: auto;
 }
 
-.navbar a {
+.navbar:not(.navbar-default):not(.navbar-inverse) a {
   float: left;
   padding: 12px;
   color: white;
@@ -15,7 +64,7 @@
   font-size: 17px;
 }
 
-.navbar a:hover {
+.navbar:not(.navbar-default):not(.navbar-inverse) a:hover {
   background-color: #000;
 }
 
@@ -24,7 +73,7 @@
 }
 
 @media screen and (max-width: 500px) {
-  .navbar a {
+  .navbar:not(.navbar-default):not(.navbar-inverse) a {
     float: none;
     display: block;
   }

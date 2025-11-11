@@ -1,7 +1,58 @@
+@import url('./variables.css');
+
 /**
  * Table Styles
  */
 
+/* Generic table styles */
+table {
+    width: 100%;
+    border: 1px solid #000;
+    border-collapse: collapse;
+}
+
+table > tbody > tr > td, table > thead > tr > th {
+    padding: 10px;
+    border-left: 1px dotted #000000;
+    line-height: 20px;
+}
+
+table > tbody > tr, table > thead > tr {
+    border-bottom: 1px solid #000000;
+}
+
+table th {
+    background-color: #46494e;
+    color: #ffffff;
+}
+
+thead {
+    text-align: center;
+}
+
+tr.odd td {
+    background-color: #f0faaa;
+}
+
+td {
+    text-align: center;
+}
+
+td.number {
+    text-align: right;
+}
+
+/* Action button styles for tables */
+.action-button {
+    width: 101px;
+    min-width: 101px;
+}
+
+.action-button-padding {
+    padding: 8px;
+}
+
+/* Table-style specific classes */
 .table-style {
     width: 450px;
     padding: 30px;

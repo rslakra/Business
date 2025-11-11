@@ -3,6 +3,8 @@
 /**
  * Generic Styles
  */
+
+/* Base HTML and Body styles */
 html {
     background-color: var(--background-color);
     font-size: 16px;
@@ -16,107 +18,27 @@ body {
     padding: 20px 20px;
 }
 
+/* Typography */
 h2 {
     margin-bottom: 25px;
-}
-
-/*
-input[type=text]:focus {
-    border: 3px solid #555;
-}*/
-
-
-table {
-    width: 100%;
-    border: 1px solid #000;
-    border-collapse: collapse;
-}
-
-table > tbody > tr > td, table > thead > tr > th {
-    padding: 10px;
-    border-left: 1px dotted #000000;
-    line-height: 20px;
-}
-
-table > tbody > tr, table > thead > tr {
-    border-bottom: 1px solid #000000;
-}
-
-table th {
-    background-color: #46494e;
-    color: #ffffff;
-}
-
-thead {
- text-align: center;
 }
 
 ol > li {
     margin-top: 10px;
 }
 
-tr.odd td {
-    background-color: #f0faaa;
+/* Generic link styles */
+a {
+    text-decoration: none;
+    color: #777;
 }
 
-td {
-    text-align: center;
+a:hover {
+    color: #99cc33;
+    border-bottom: 1px solid #99cc33;
 }
 
-td.number {
-    text-align: right;
-}
-
-footer {
-    display: block;
-    background-color: #46494e;
-    text-align: center;
-    padding: inherit;
-    color: #ffffff;
-    margin-top: 50px;
-}
-
-.navbar-brand {
-    display: flex;
-    align-items: center;
-    padding: 8px 15px;
-}
-
-/* Logo wrapper to blend white background with navbar */
-.logo-wrapper {
-    display: inline-block;
-    vertical-align: middle;
-    height: 36px;
-    width: 36px;
-    margin-right: 8px;
-    /* Get the exact navbar background color - Bootstrap 3 navbar-default uses #f8f8f8 */
-    /* If this doesn't match, inspect the navbar element in browser dev tools and update this value */
-    background-color: #f8f8f8;
-    border-radius: 4px;
-    padding: 2px;
-    box-sizing: border-box;
-    line-height: 0;
-}
-
-/* Alternative: try to match navbar background more precisely */
-.navbar-default .logo-wrapper {
-    /* Bootstrap 3 navbar-default background color */
-    background-color: #f8f8f8;
-}
-
-.logo {
-    display: block;
-    height: 100%;
-    width: 100%;
-    border-radius: 2px;
-}
-
-.welcome {
-    float: right;
-}
-
-
-/* text-align */
+/* Utility classes */
 .left-align {
     text-align: left;
 }
@@ -133,94 +55,58 @@ footer {
     text-align: right;
 }
 
-.button, a.button {
-    /*background: #2A88AD;*/
-    background: #46494e;
-    padding: 8px 20px 8px 20px;
-    margin: 10px 0px 10px -1px;
-    border-radius: var(--border-radius);
-    -webkit-border-radius: var(--border-radius);
-    -moz-border-radius: var(--border-radius);
-    color: #fff;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.12);
-    font: normal 30px 'Bitter', serif;
-    -moz-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
-    -webkit-box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
-    box-shadow: inset 0px 2px 2px 0px rgba(255, 255, 255, 0.17);
-    border: 1px solid #257C9E;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-}
-
-a {
-    text-decoration: none;
-    color: #777;
-    /*border-bottom: 1px dotted #777;*/
-}
-
-a:hover {
-    color: #99cc33;
-    border-bottom: 1px solid #99cc33;
-}
-
-/* Darker background on mouse-over */
-/*.button, a.button:hover {*/
-/*    color: #46494e;*/
-/*    border-bottom: 1px solid #46494e;*/
-/*    background-color: #FFFFFF;*/
-/*}*/
-
 .padding-default {
     padding: 20px;
 }
 
-.action-button {
-    width: 101px;
-    min-width: 101px;
+.welcome {
+    float: right;
 }
 
-.action-button-padding {
-    padding: 8px;
+/* Footer styles */
+footer {
+    display: block;
+    background-color: #46494e;
+    text-align: center;
+    padding: inherit;
+    color: #ffffff;
+    margin-top: 50px;
 }
 
-/** .scss styles */
-.modal-body {
-  .submit-cancel {
+/* Page header */
+.page-header {
+    margin: 16px 0 16px;
+}
+
+/* Modal styles */
+.modal-body .submit-cancel {
     margin-top: 2em;
     margin-bottom: 0;
     text-align: right;
-  }
+}
 
-  .btn:not(.btn-cancel) {
+.modal-body .btn:not(.btn-cancel) {
     float: right;
     margin-left: 5px;
-  }
 }
 
-.submit-cancel .btn {
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.city-link + .city-link {
-  display: inline-block;
-  margin-left: 10px;
-}
-
+/* Generic button spacing */
 .btn + .btn {
-  margin-left: 5px;
+    margin-left: 5px;
 }
 
+/* Editable styles */
 .editable-click {
-  cursor: pointer;
+    cursor: pointer;
 }
 
+/* Control label */
 span.control-label {
-  font-weight: 600;
+    font-weight: 600;
 }
 
-.page-header {
-  margin: 16px 0 16px;
+/* City link spacing */
+.city-link + .city-link {
+    display: inline-block;
+    margin-left: 10px;
 }
