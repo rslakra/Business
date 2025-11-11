@@ -34,8 +34,9 @@ a {
 }
 
 a:hover {
-    color: #99cc33;
-    border-bottom: 1px solid #99cc33;
+    color: var(--primary-color); /* Use modern primary color for hover */
+    border-bottom: 1px solid var(--primary-color);
+    transition: color 0.2s ease, border-color 0.2s ease; /* Smooth transition */
 }
 
 /* Utility classes */
@@ -66,12 +67,12 @@ a:hover {
 /* Footer styles */
 footer {
     display: block;
-    background-color: #f8f9fa; /* Match Bootstrap 5 navbar-light bg-light color */
+    background-color: var(--footer-bg); /* Match navbar color scheme (slightly darker) */
     text-align: center;
     padding: inherit;
-    color: #212529; /* Dark text for light background */
+    color: var(--footer-text); /* White text for dark background */
     margin-top: 50px;
-    border-top: 1px solid #dee2e6; /* Subtle border to separate from content */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border to separate from content */
 }
 
 /* Page header */

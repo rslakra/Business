@@ -13,6 +13,40 @@
     line-height: inherit;
     white-space: nowrap;
     margin-right: 1rem;
+    transition: opacity 0.2s ease; /* Smooth hover transition */
+}
+
+.navbar-brand:hover {
+    opacity: 0.9; /* Slight fade on hover */
+}
+
+/* Navbar link hover effects */
+.navbar-dark .navbar-nav .nav-link {
+    transition: background-color 0.2s ease, color 0.2s ease;
+    border-radius: 4px;
+    margin: 0 2px;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Subtle hover background */
+    color: #fff;
+}
+
+/* Dropdown menu styling */
+.navbar-dark .dropdown-menu {
+    background-color: var(--navbar-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-dark .dropdown-item {
+    color: rgba(255, 255, 255, 0.9);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.navbar-dark .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #fff;
 }
 
 /* Ensure Bootstrap 5 navbar items are visible on large screens */
@@ -37,8 +71,8 @@
     max-height: 36px;
     max-width: 36px;
     margin-right: 8px;
-    /* Bootstrap 5 navbar-light background color */
-    background-color: #f8f9fa;
+    /* Match navbar background color */
+    background-color: var(--navbar-bg);
     border-radius: 4px;
     padding: 2px;
     box-sizing: border-box;
@@ -46,9 +80,9 @@
     flex-shrink: 0;
 }
 
-.navbar-light .logo-wrapper {
-    /* Bootstrap 5 navbar-light background color */
-    background-color: #f8f9fa;
+.navbar-dark .logo-wrapper {
+    /* Match navbar background color */
+    background-color: var(--navbar-bg);
 }
 
 .logo {

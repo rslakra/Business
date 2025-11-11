@@ -7,5 +7,18 @@
   --border-radius: 8px;
   --background-color: #f0f0f0;
   --background-inner-wrap: #F8F8F8;
+  
+  /* Modern Color Scheme */
+  --primary-color: #0096b5; /* Primary teal-blue */
+  --primary-dark: #007a94; /* Darker teal-blue for hover states and borders */
+  --primary-light: #00b8d9; /* Lighter teal-blue for accents */
+  --secondary-color: #0ea5e9; /* Sky blue accent */
+  --accent-color: #10b981; /* Green accent for success/actions */
+  --navbar-bg: #0096b5; /* Navbar background */
+  --navbar-text: #ffffff; /* Navbar text color */
+  --header-bg: #0096b5; /* Table header background */
+  --header-text: #ffffff; /* Table header text */
+  --footer-bg: #007a94; /* Footer background (slightly darker) */
+  --footer-text: #ffffff; /* Footer text */
 }
 
