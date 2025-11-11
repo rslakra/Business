@@ -22,8 +22,9 @@ table > tbody > tr, table > thead > tr {
 }
 
 table th {
-    background-color: #46494e;
-    color: #ffffff;
+    background-color: #f8f9fa; /* Match Bootstrap 5 navbar-light bg-light color */
+    color: #212529; /* Dark text for light background */
+    font-weight: 600; /* Make headers stand out */
 }
 
 thead {

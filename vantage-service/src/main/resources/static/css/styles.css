@@ -66,11 +66,12 @@ a:hover {
 /* Footer styles */
 footer {
     display: block;
-    background-color: #46494e;
+    background-color: #f8f9fa; /* Match Bootstrap 5 navbar-light bg-light color */
     text-align: center;
     padding: inherit;
-    color: #ffffff;
+    color: #212529; /* Dark text for light background */
     margin-top: 50px;
+    border-top: 1px solid #dee2e6; /* Subtle border to separate from content */
 }
 
 /* Page header */
