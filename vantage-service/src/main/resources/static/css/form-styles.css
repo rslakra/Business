@@ -303,3 +303,210 @@ input[type=checkbox], input[type=radio] {
     font-style: italic;
 }
 
+/**
+ * Modern Contact Form Style - Matching Mobile App Design
+ */
+.modern-form-container {
+    max-width: 600px;
+    width: 100%;
+    margin: 40px auto;
+    background: var(--white-color);
+    position: relative;
+    border-radius: 0;
+    overflow: hidden;
+}
+
+.wave-top {
+    width: 100%;
+    height: 120px;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+}
+
+.wave-top svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.wave-bottom {
+    width: 100%;
+    height: 120px;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+}
+
+.wave-bottom svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.modern-form-content {
+    padding: 40px 30px;
+    background: var(--white-color);
+}
+
+.modern-form-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 40px 0;
+    text-align: left;
+    line-height: 1.2;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.modern-form {
+    width: 100%;
+}
+
+.modern-form-field {
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.modern-form-field-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.modern-form-field-half {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.modern-form-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.modern-form-input {
+    width: 100%;
+    padding: 12px 0;
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+    background: transparent;
+    font-size: 16px;
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.modern-form-input:focus {
+    outline: none;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.modern-form-input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+.modern-form-input-readonly {
+    color: var(--text-secondary);
+    cursor: not-allowed;
+    background: transparent;
+}
+
+.modern-form-checkbox-label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.modern-form-checkbox {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+}
+
+.modern-form-checkbox-label span {
+    user-select: none;
+}
+
+.modern-form-submit-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.modern-form-submit {
+    width: 100%;
+    max-width: 300px;
+    padding: 16px 32px;
+    background: var(--black-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    text-align: center;
+}
+
+.modern-form-submit:hover {
+    background: #333333;
+    transform: translateY(-1px);
+}
+
+.modern-form-submit:active {
+    transform: translateY(0);
+}
+
+.modern-form-cancel {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    transition: color 0.3s ease;
+}
+
+.modern-form-cancel:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .modern-form-content {
+        padding: 30px 20px;
+    }
+    
+    .modern-form-title {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+    
+    .modern-form-field-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .modern-form-field-half {
+        margin-bottom: 30px;
+    }
+    
+    .wave-top,
+    .wave-bottom {
+        height: 80px;
+    }
+}
+
