@@ -8,28 +8,39 @@
 <!-- bodyContents:start-->
 <th:block layout:fragment="bodyContents"> <!-- bodyContents:start-->
     <div class="page-body"> <!-- pageBody:start -->
-
-    <!-- Form -->
-        <div class="form-style">
-            <h2 th:text="${role.id == null} ? 'Create Role' : 'Update Role'"></h2>
-            <form action="#" th:action="@{/roles/save}" th:object="${role}" method="post">
-                <div class="section"><span>*</span>Role Details</div>
-                <input type="hidden" name="id" th:field="*{id}">
-                <div class="inner-wrap">
-                    <label><div>Name</div>
-                        <input type="text" th:field="*{name}" name="name" placeholder="Name"/>
-                    </label>
-                    <label><div>Status</div>
-                        <input type="text" th:field="*{status}" name="status" placeholder="Status"/>
-                    </label>
+        <!-- Modern Contact Form Style -->
+        <div class="modern-form-container">
+            <!-- Top Wave Decoration with Title Overlay -->
+            <div class="wave-top">
+                <th:block th:replace="~{fragments/waves :: wave-top}"></th:block>
+                <h1 class="modern-form-title" th:text="${role.id == null} ? 'Create Role' : 'Update Role'"></h1>
+            </div>
+            
+            <!-- Form Content -->
+            <div class="modern-form-content">
+                <form id="modern-form-role" action="#" th:action="@{/roles/save}" th:object="${role}" method="post" class="modern-form">
+                    <input type="hidden" name="id" th:field="*{id}">
+                    
+                    <div class="modern-form-field">
+                        <label class="modern-form-label">Name</label>
+                        <input type="text" th:field="*{name}" name="name" class="modern-form-input" placeholder="Name"/>
+                    </div>
+                    
+                    <div class="modern-form-field">
+                        <label class="modern-form-label">Status</label>
+                        <input type="text" th:field="*{status}" name="status" class="modern-form-input" placeholder="Status"/>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Bottom Wave Decoration with Buttons Overlay -->
+            <div class="wave-bottom">
+                <th:block th:replace="~{fragments/waves :: wave-bottom}"></th:block>
+                <div class="modern-form-submit-container">
+                    <button type="submit" form="modern-form-role" class="modern-form-submit">Submit</button>
+                    <a href="#" th:href="@{/roles}" class="modern-form-cancel">Cancel</a>
                 </div>
-
-                <div class="button-section"> <!-- div:button-section-start -->
-                    <input type="submit" name="Submit"/>
-                    <a class="button" th:href="@{/roles}">Cancel</a>
-                </div> <!-- div:button-section-end -->
-            </form>
-
+            </div>
         </div>
 
     </div> <!-- pageBody:end -->

@@ -11,33 +11,48 @@
 
         <!--/* only th:fragment form is returned for an XMLHttpRequest */-->
         <th:block th:fragment="form">
-            <!-- Form -->
-            <div class="form-style">
-                <h2 th:text="${city.id == null} ? 'Create City' : 'Update City'"></h2>
-                <form th:action="@{/cities/save}" th:object="${city}" method="post">
-                    <div class="section"><span>*</span>City Details</div>
-                    <input type="hidden" name="id" th:field="*{id}">
-                    <div class="inner-wrap">
-                        <label><div>Name</div>
-                            <input type="text" th:field="*{name}" name="name" placeholder="Name"/>
-                        </label>
-                        <label><div>Founded In</div>
+            <!-- Modern Contact Form Style -->
+            <div class="modern-form-container">
+                <!-- Top Wave Decoration with Title Overlay -->
+                <div class="wave-top">
+                    <th:block th:replace="~{fragments/waves :: wave-top}"></th:block>
+                    <h1 class="modern-form-title" th:text="${city.id == null} ? 'Create City' : 'Update City'"></h1>
+                </div>
+                
+                <!-- Form Content -->
+                <div class="modern-form-content">
+                    <form id="modern-form-city" th:action="@{/cities/save}" th:object="${city}" method="post" class="modern-form">
+                        <input type="hidden" name="id" th:field="*{id}">
+                        
+                        <div class="modern-form-field">
+                            <label class="modern-form-label">Name</label>
+                            <input type="text" th:field="*{name}" name="name" class="modern-form-input" placeholder="Name"/>
+                        </div>
+                        
+                        <div class="modern-form-field">
+                            <label class="modern-form-label">Founded In</label>
                             <input type="number" th:field="*{foundedIn}" name="foundedIn" 
-                                   placeholder="Founded In" step="1"
+                                   class="modern-form-input" placeholder="Founded In" step="1"
                                    min="-2147483648" max="2147483647"/>
-                        </label>
-                        <label><div>Population</div>
+                        </div>
+                        
+                        <div class="modern-form-field">
+                            <label class="modern-form-label">Population</label>
                             <input type="number" th:field="*{population}" name="population" 
-                                   placeholder="Population" step="1"
+                                   class="modern-form-input" placeholder="Population" step="1"
                                    min="0" max="2147483647"/>
-                        </label>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Bottom Wave Decoration with Buttons Overlay -->
+                <div class="wave-bottom">
+                    <th:block th:replace="~{fragments/waves :: wave-bottom}"></th:block>
+                    <div class="modern-form-submit-container">
+                        <button type="submit" form="modern-form-city" class="modern-form-submit">Submit</button>
+                        <a href="#" th:href="@{/cities}" class="modern-form-cancel">Cancel</a>
                     </div>
-
-                    <div class="button-section"> <!-- div:button-section-start -->
-                        <input type="submit" name="Submit"/>
-                        <a class="button" th:href="@{/cities}">Cancel</a>
-                    </div> <!-- div:button-section-end -->
-                </form>
+                </div>
             </div>
         </th:block>
 

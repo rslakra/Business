@@ -8,27 +8,39 @@
 <!-- bodyContents:start-->
 <th:block layout:fragment="bodyContents"> <!-- bodyContents:start-->
     <div class="page-body"> <!-- pageBody:start -->
-        <!-- Form -->
-        <div class="form-style">
-            <h2 th:text="${marketing.id == null} ? 'Create Marketing' : 'Update Marketing'"></h2>
-            <form action="#" th:action="@{/marketing/save}" th:object="${marketing}" method="post">
-                <div class="section"><span>*</span>Marketing Details</div>
-                <input type="hidden" name="id" th:field="*{id}">
-                <div class="inner-wrap">
-                    <label>User ID
-                        <input type="text" th:field="*{userId}" name="userId" placeholder="User ID"/>
-                    </label>
-                    <label>Name
-                        <input type="text" th:field="*{name}" name="name" placeholder="Name"/>
-                    </label>
+        <!-- Modern Contact Form Style -->
+        <div class="modern-form-container">
+            <!-- Top Wave Decoration with Title Overlay -->
+            <div class="wave-top">
+                <th:block th:replace="~{fragments/waves :: wave-top}"></th:block>
+                <h1 class="modern-form-title" th:text="${marketing.id == null} ? 'Create Marketing' : 'Update Marketing'"></h1>
+            </div>
+            
+            <!-- Form Content -->
+            <div class="modern-form-content">
+                <form id="modern-form-marketing" action="#" th:action="@{/marketing/save}" th:object="${marketing}" method="post" class="modern-form">
+                    <input type="hidden" name="id" th:field="*{id}">
+                    
+                    <div class="modern-form-field">
+                        <label class="modern-form-label">User ID</label>
+                        <input type="text" th:field="*{userId}" name="userId" class="modern-form-input" placeholder="User ID"/>
+                    </div>
+                    
+                    <div class="modern-form-field">
+                        <label class="modern-form-label">Name</label>
+                        <input type="text" th:field="*{name}" name="name" class="modern-form-input" placeholder="Name"/>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Bottom Wave Decoration with Buttons Overlay -->
+            <div class="wave-bottom">
+                <th:block th:replace="~{fragments/waves :: wave-bottom}"></th:block>
+                <div class="modern-form-submit-container">
+                    <button type="submit" form="modern-form-marketing" class="modern-form-submit">Submit</button>
+                    <a href="#" th:href="@{/marketing}" class="modern-form-cancel">Cancel</a>
                 </div>
-
-                <div class="button-section"> <!-- div:button-section-start -->
-                    <input type="submit" name="Submit"/>
-                    <a class="button" th:href="@{/marketing}">Cancel</a>
-                </div> <!-- div:button-section-end -->
-            </form>
-
+            </div>
         </div>
 
     </div> <!-- pageBody:end -->
