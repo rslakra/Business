@@ -4,15 +4,28 @@
  * NavBar Styles
  */
 
-/* Bootstrap navbar brand styling */
+/* Bootstrap 5 navbar brand styling */
 .navbar-brand {
     display: flex;
     align-items: center;
-    padding: 8px 15px;
-    font-size: 18px;
-    line-height: 20px;
-    height: 50px;
-    max-height: 50px;
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+    margin-right: 1rem;
+}
+
+/* Ensure Bootstrap 5 navbar items are visible on large screens */
+@media (min-width: 992px) {
+    .navbar-expand-lg .navbar-collapse {
+        display: flex !important;
+        flex-basis: auto;
+    }
+    
+    .navbar-expand-lg .navbar-nav {
+        display: flex;
+        flex-direction: row;
+    }
 }
 
 /* Logo wrapper to blend white background with navbar */
@@ -24,8 +37,8 @@
     max-height: 36px;
     max-width: 36px;
     margin-right: 8px;
-    /* Bootstrap 3 navbar-default background color */
-    background-color: #f8f8f8;
+    /* Bootstrap 5 navbar-light background color */
+    background-color: #f8f9fa;
     border-radius: 4px;
     padding: 2px;
     box-sizing: border-box;
@@ -33,9 +46,9 @@
     flex-shrink: 0;
 }
 
-.navbar-default .logo-wrapper {
-    /* Bootstrap 3 navbar-default background color */
-    background-color: #f8f8f8;
+.navbar-light .logo-wrapper {
+    /* Bootstrap 5 navbar-light background color */
+    background-color: #f8f9fa;
 }
 
 .logo {
@@ -48,15 +61,17 @@
     object-fit: contain;
 }
 
-/* Legacy navbar styles (only apply when NOT using Bootstrap navbar-default) */
-/* These styles are for custom navbar usage, not Bootstrap's navbar-default */
-.navbar:not(.navbar-default):not(.navbar-inverse) {
+/* Legacy navbar styles (only apply to custom navbars in home.html, NOT Bootstrap navbars) */
+/* Use a more specific selector to avoid conflicts with Bootstrap 5 navbars */
+body > .container .navbar,
+body > div > .navbar {
   width: 100%;
   background-color: #555;
   overflow: auto;
 }
 
-.navbar:not(.navbar-default):not(.navbar-inverse) a {
+body > .container .navbar a,
+body > div > .navbar a {
   float: left;
   padding: 12px;
   color: white;
@@ -64,7 +79,8 @@
   font-size: 17px;
 }
 
-.navbar:not(.navbar-default):not(.navbar-inverse) a:hover {
+body > .container .navbar a:hover,
+body > div > .navbar a:hover {
   background-color: #000;
 }
 
@@ -72,8 +88,9 @@
   background-color: #04AA6D;
 }
 
-@media screen and (max-width: 500px) {
-  .navbar:not(.navbar-default):not(.navbar-inverse) a {
+@media screen and (max-width: 480px) {
+  body > .container .navbar a,
+  body > div > .navbar a {
     float: none;
     display: block;
   }

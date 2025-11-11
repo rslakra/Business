@@ -27,7 +27,10 @@
         // Closes the modal when the user clicks the cancel button instead of following its link
         $('.modal').on('click', '.btn-cancel', (e) => {
             e.preventDefault();
-            $(e.delegateTarget).modal('hide');
+            const modal = bootstrap.Modal.getInstance(e.delegateTarget);
+            if (modal) {
+                modal.hide();
+            }
         });
 
         // Make modals draggable

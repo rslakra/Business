@@ -7,17 +7,25 @@
     const uiModeStorageKey = 'uiMode';
 
     function initInlineEditable() {
-        $('.inline-editable').editable({mode: 'inline'});
+        // Bootstrap-editable for Bootstrap 3 is incompatible with Bootstrap 5
+        // Disabled until a Bootstrap 5 compatible solution is found
+        // $('.inline-editable').editable({mode: 'inline'});
+        console.warn('Inline editing disabled: bootstrap-editable is not compatible with Bootstrap 5');
     }
 
     function uiStandardHtml() {
-        $('.inline-editable').editable('destroy');
+        // Bootstrap-editable for Bootstrap 3 is incompatible with Bootstrap 5
+        // try {
+        //     $('.inline-editable').editable('destroy');
+        // } catch (e) {
+        //     // editable plugin not available
+        // }
         $('.href-link')
             .removeAttr('role')
-            .removeAttr('data-toggle')
-            .removeAttr('data-target')
-            .removeAttr('data-remote')
-            .removeClass('btn btn-default');
+            .removeAttr('data-bs-toggle')
+            .removeAttr('data-bs-target')
+            .removeAttr('data-bs-remote')
+            .removeClass('btn btn-secondary');
     }
 
     function uiEnriched() {
@@ -29,10 +37,10 @@
          */
         $('.href-link')
             .attr('role', 'button')
-            .attr('data-toggle', 'modal')
-            .attr('data-target', '#uiModal')
-            .attr('data-remote', 'false')
-            .addClass('btn btn-default');
+            .attr('data-bs-toggle', 'modal')
+            .attr('data-bs-target', '#uiModal')
+            .attr('data-bs-remote', 'false')
+            .addClass('btn btn-secondary');
     }
 
     function toggleUiMode() {
