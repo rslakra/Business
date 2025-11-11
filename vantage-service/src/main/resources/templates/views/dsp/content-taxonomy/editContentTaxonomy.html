@@ -8,59 +8,76 @@
 <!-- bodyContents:start-->
 <th:block layout:fragment="bodyContents"> <!-- bodyContents:start-->
     <div class="page-body"> <!-- pageBody:start -->
-        <!-- Form -->
-        <div class="form-style">
-            <h2 th:text="${contentTaxonomy.id == null} ? 'Create Content-Taxonomy' : 'Update Content-Taxonomy'"></h2>
-            <form action="#" th:action="@{/content-taxonomy/save}" th:object="${contentTaxonomy}" method="post">
-                <div class="section"><span>*</span>User Details</div>
-                <input type="hidden" name="id" th:field="*{id}">
-                <div class="inner-wrap">
-                    <label>Parent ID
-                        <input type="number" th:field="*{parentId}"
-                               name="parentId" placeholder="Parent ID"/>
-                    </label>
-                    <label>Name
-                        <input type="text" th:field="*{name}"
-                               name="name" placeholder="Name"/>
-                    </label>
-                    <label>Tier 1
-                        <input type="text" th:field="*{tier1}"
-                               name="tier1" placeholder="Tier 1"/>
-                    </label>
-                    <label>Tier 2
-                        <input type="text" th:field="*{tier2}"
-                               name="tier2" placeholder="Tier 2"/>
-                    </label>
-                    <label>Tier 3
-                        <input type="text" th:field="*{tier3}"
-                               name="tier3" placeholder="Tier 3"/>
-                    </label>
-                    <label>Tier 4
-                        <input type="text" th:field="*{tier4}"
-                               name="tier4" placeholder="Tier 4"/>
-                    </label>
-                    <label>Extension
-                        <input type="text" th:field="*{extension}"
-                               name="extension" placeholder="Extension"/>
-                    </label>
-                    <label>Score
-                        <input type="number" th:field="*{score}"
-                               name="score" placeholder="Score"/>
-                    </label>
-                    <label class="form-label-style">
-                        <input type="checkbox" th:field="*{confident}"
-                               name="confident" placeholder="Confident"/>
-                        <span class="form-span-checkbox">Confident</span>
-                    </label>
+        <!-- Modern Contact Form Style -->
+        <div class="modern-form-container">
+            <!-- Top Wave Decoration with Title Overlay -->
+            <div class="wave-top">
+                <th:block th:replace="~{fragments/waves :: wave-top}"></th:block>
+                <h1 class="modern-form-title" th:text="${contentTaxonomy.id == null} ? 'Create Content-Taxonomy' : 'Update Content-Taxonomy'"></h1>
+            </div>
+            
+            <!-- Form Content -->
+            <div class="modern-form-content">
+                <form id="modern-form-content-taxonomy" action="#" th:action="@{/content-taxonomy/save}" th:object="${contentTaxonomy}" method="post" class="modern-form">
+                    <input type="hidden" name="id" th:field="*{id}">
+                    
+                    <div class="modern-form-field">
+                        <label class="modern-form-label">Parent ID</label>
+                        <input type="number" th:field="*{parentId}" name="parentId" class="modern-form-input" placeholder="Parent ID"/>
+                    </div>
+                    
+                    <div class="modern-form-field">
+                        <label class="modern-form-label">Name</label>
+                        <input type="text" th:field="*{name}" name="name" class="modern-form-input" placeholder="Name"/>
+                    </div>
+                    
+                    <div class="modern-form-field">
+                        <label class="modern-form-label">Tier 1</label>
+                        <input type="text" th:field="*{tier1}" name="tier1" class="modern-form-input" placeholder="Tier 1"/>
+                    </div>
+                    
+                    <div class="modern-form-field">
+                        <label class="modern-form-label">Tier 2</label>
+                        <input type="text" th:field="*{tier2}" name="tier2" class="modern-form-input" placeholder="Tier 2"/>
+                    </div>
+                    
+                    <div class="modern-form-field">
+                        <label class="modern-form-label">Tier 3</label>
+                        <input type="text" th:field="*{tier3}" name="tier3" class="modern-form-input" placeholder="Tier 3"/>
+                    </div>
+                    
+                    <div class="modern-form-field">
+                        <label class="modern-form-label">Tier 4</label>
+                        <input type="text" th:field="*{tier4}" name="tier4" class="modern-form-input" placeholder="Tier 4"/>
+                    </div>
+                    
+                    <div class="modern-form-field">
+                        <label class="modern-form-label">Extension</label>
+                        <input type="text" th:field="*{extension}" name="extension" class="modern-form-input" placeholder="Extension"/>
+                    </div>
+                    
+                    <div class="modern-form-field">
+                        <label class="modern-form-label">Score</label>
+                        <input type="number" th:field="*{score}" name="score" class="modern-form-input" placeholder="Score"/>
+                    </div>
+                    
+                    <div class="modern-form-field">
+                        <label class="modern-form-checkbox-label">
+                            <input type="checkbox" th:field="*{confident}" name="confident" class="modern-form-checkbox"/>
+                            <span>Confident</span>
+                        </label>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Bottom Wave Decoration with Buttons Overlay -->
+            <div class="wave-bottom">
+                <th:block th:replace="~{fragments/waves :: wave-bottom}"></th:block>
+                <div class="modern-form-submit-container">
+                    <button type="submit" form="modern-form-content-taxonomy" class="modern-form-submit">Submit</button>
+                    <a href="#" th:href="@{/content-taxonomy}" class="modern-form-cancel">Cancel</a>
                 </div>
-
-                <div class="button-section"> <!-- div:button-section-start -->
-                    <input type="submit" name="Submit"/>
-                    <a class="button" th:href="@{/content-taxonomy}">Cancel</a>
-                </div> <!-- div:button-section-end -->
-
-            </form>
-
+            </div>
         </div>
 
     </div> <!-- pageBody:end -->

@@ -312,8 +312,12 @@ input[type=checkbox], input[type=radio] {
     margin: 40px auto;
     background: var(--white-color);
     position: relative;
-    border-radius: 0;
+    border-radius: 12px;
     overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+    -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+    -moz-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+
 }
 
 .wave-top {
@@ -322,12 +326,17 @@ input[type=checkbox], input[type=radio] {
     margin: 0;
     padding: 0;
     line-height: 0;
+    position: relative;
 }
 
 .wave-top svg {
     width: 100%;
     height: 100%;
     display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
 
 .wave-bottom {
@@ -336,12 +345,17 @@ input[type=checkbox], input[type=radio] {
     margin: 0;
     padding: 0;
     line-height: 0;
+    position: relative;
 }
 
 .wave-bottom svg {
     width: 100%;
     height: 100%;
     display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
 
 .modern-form-content {
@@ -352,11 +366,20 @@ input[type=checkbox], input[type=radio] {
 .modern-form-title {
     font-size: 32px;
     font-weight: 700;
-    color: var(--text-primary);
-    margin: 0 0 40px 0;
-    text-align: left;
+    color: var(--primary-dark);
+    margin: 0;
+    padding: 0;
+    text-align: center;
     line-height: 1.2;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .modern-form {
@@ -440,31 +463,42 @@ input[type=checkbox], input[type=radio] {
 
 .modern-form-submit-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
     gap: 15px;
-    margin-top: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0;
+    z-index: 2;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .modern-form-submit {
-    width: 100%;
-    max-width: 300px;
-    padding: 16px 32px;
-    background: var(--black-color);
-    color: var(--white-color);
-    border: none;
+    flex: 0 0 auto;
+    padding: 12px 24px;
+    background: var(--white-color);
+    color: var(--primary-color);
+    border: 2px solid var(--white-color);
     border-radius: 8px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.1s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.1s ease;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .modern-form-submit:hover {
-    background: #333333;
+    background: var(--primary-light);
+    color: var(--white-color);
+    border-color: var(--primary-light);
     transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
 .modern-form-submit:active {
@@ -472,16 +506,27 @@ input[type=checkbox], input[type=radio] {
 }
 
 .modern-form-cancel {
-    color: var(--text-secondary);
+    color: var(--white-color);
     text-decoration: none;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 12px 24px;
+    background: var(--secondary-light);
+    border: 2px solid var(--secondary-light);
+    border-radius: 8px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    transition: color 0.3s ease;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.1s ease;
+    display: inline-block;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .modern-form-cancel:hover {
-    color: var(--primary-color);
-    text-decoration: underline;
+    background: var(--secondary-color);
+    border-color: var(--secondary-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    text-decoration: none;
 }
 
 /* Responsive adjustments */
@@ -492,7 +537,7 @@ input[type=checkbox], input[type=radio] {
     
     .modern-form-title {
         font-size: 28px;
-        margin-bottom: 30px;
+        padding: 20px 20px 0 20px;
     }
     
     .modern-form-field-row {
@@ -506,7 +551,11 @@ input[type=checkbox], input[type=radio] {
     
     .wave-top,
     .wave-bottom {
-        height: 80px;
+        height: 100px;
+    }
+    
+    .modern-form-submit-container {
+        padding: 15px 20px;
     }
 }
 

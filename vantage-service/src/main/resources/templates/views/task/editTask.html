@@ -8,43 +8,64 @@
 <!-- bodyContents:start-->
 <th:block layout:fragment="bodyContents"> <!-- bodyContents:start-->
     <div class="page-body"> <!-- pageBody:start -->
-
-        <!-- Form -->
-        <div class="form-style">
-            <h2 th:text="${task.id == null} ? 'Create Task' : 'Update Task'"></h2>
-            <form action="#" th:action="@{/tasks/save}" th:object="${task}" method="post">
-                <div class="section"><span>*</span>Task Details</div>
-                <input type="hidden" name="id" th:field="*{id}">
-                <div class="inner-wrap">
-                    <label>User ID
-                        <input type="text" th:field="*{userId}" name="userId" placeholder="User ID"/>
-                    </label>
-                    <label>Title
-                        <input type="text" th:field="*{title}" name="title" placeholder="Title"/>
-                    </label>
-                    <label>Priority
-                        <input type="text" th:field="*{priority}" name="priority" placeholder="Priority"/>
-                    </label>
-                    <label>Start Date (yyyy-mm-dd)
-                        <input type="text" th:field="*{startDate}" name="startDate" placeholder="Start Date (yyyy-mm-dd)"/>
-                    </label>
-                    <label>End Date (yyyy-mm-dd)
-                        <input type="text" th:field="*{endDate}" name="endDate" placeholder="End Date (yyyy-mm-dd)"/>
-                    </label>
-                    <label>Status
-                        <input type="text" th:field="*{status}" name="status" placeholder="Status"/>
-                    </label>
-                    <label>Description
-                        <input type="text" th:field="*{description}" name="Description" placeholder="Description"/>
-                    </label>
+        <!-- Modern Contact Form Style -->
+        <div class="modern-form-container">
+            <!-- Top Wave Decoration with Title Overlay -->
+            <div class="wave-top">
+                <th:block th:replace="~{fragments/waves :: wave-top}"></th:block>
+                <h1 class="modern-form-title" th:text="${task.id == null} ? 'Create Task' : 'Update Task'"></h1>
+            </div>
+            
+            <!-- Form Content -->
+            <div class="modern-form-content">
+                <form id="modern-form-task" action="#" th:action="@{/tasks/save}" th:object="${task}" method="post" class="modern-form">
+                    <input type="hidden" name="id" th:field="*{id}">
+                    
+                    <div class="modern-form-field">
+                        <label class="modern-form-label">User ID</label>
+                        <input type="text" th:field="*{userId}" name="userId" class="modern-form-input" placeholder="User ID"/>
+                    </div>
+                    
+                    <div class="modern-form-field">
+                        <label class="modern-form-label">Title</label>
+                        <input type="text" th:field="*{title}" name="title" class="modern-form-input" placeholder="Title"/>
+                    </div>
+                    
+                    <div class="modern-form-field">
+                        <label class="modern-form-label">Priority</label>
+                        <input type="text" th:field="*{priority}" name="priority" class="modern-form-input" placeholder="Priority"/>
+                    </div>
+                    
+                    <div class="modern-form-field">
+                        <label class="modern-form-label">Start Date (yyyy-mm-dd)</label>
+                        <input type="text" th:field="*{startDate}" name="startDate" class="modern-form-input" placeholder="Start Date (yyyy-mm-dd)"/>
+                    </div>
+                    
+                    <div class="modern-form-field">
+                        <label class="modern-form-label">End Date (yyyy-mm-dd)</label>
+                        <input type="text" th:field="*{endDate}" name="endDate" class="modern-form-input" placeholder="End Date (yyyy-mm-dd)"/>
+                    </div>
+                    
+                    <div class="modern-form-field">
+                        <label class="modern-form-label">Status</label>
+                        <input type="text" th:field="*{status}" name="status" class="modern-form-input" placeholder="Status"/>
+                    </div>
+                    
+                    <div class="modern-form-field">
+                        <label class="modern-form-label">Description</label>
+                        <input type="text" th:field="*{description}" name="Description" class="modern-form-input" placeholder="Description"/>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Bottom Wave Decoration with Buttons Overlay -->
+            <div class="wave-bottom">
+                <th:block th:replace="~{fragments/waves :: wave-bottom}"></th:block>
+                <div class="modern-form-submit-container">
+                    <button type="submit" form="modern-form-task" class="modern-form-submit">Submit</button>
+                    <a href="#" th:href="@{/tasks}" class="modern-form-cancel">Cancel</a>
                 </div>
-
-                <div class="button-section"> <!-- div:button-section-start -->
-                    <input type="submit" name="Submit"/>
-                    <a class="button" th:href="@{/tasks}">Cancel</a>
-                </div> <!-- div:button-section-end -->
-            </form>
-
+            </div>
         </div>
 
     </div> <!-- pageBody:end -->

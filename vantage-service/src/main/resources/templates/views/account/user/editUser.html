@@ -10,19 +10,15 @@
     <div class="page-body"> <!-- pageBody:start -->
         <!-- Modern Contact Form Style -->
         <div class="modern-form-container">
-            <!-- Top Wave Decoration -->
+            <!-- Top Wave Decoration with Title Overlay -->
             <div class="wave-top">
-                <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-                    <path d="M0,60 Q300,20 600,60 T1200,60 L1200,120 L0,120 Z" fill="#e3f2fd" opacity="0.8"/>
-                    <path d="M0,80 Q300,40 600,80 T1200,80 L1200,120 L0,120 Z" fill="#bbdefb" opacity="0.6"/>
-                </svg>
+                <th:block th:replace="~{fragments/waves :: wave-top}"></th:block>
+                <h1 class="modern-form-title" th:text="${user.id == null} ? 'Create User' : 'Update User'"></h1>
             </div>
             
             <!-- Form Content -->
             <div class="modern-form-content">
-                <h1 class="modern-form-title" th:text="${user.id == null} ? 'Create User' : 'Update User'"></h1>
-                
-                <form action="#" th:action="@{/users/save}" th:object="${user}" method="post" class="modern-form">
+                <form id="modern-form" action="#" th:action="@{/users/save}" th:object="${user}" method="post" class="modern-form">
                     <input type="hidden" name="id" th:field="*{id}">
                     
                     <div class="modern-form-field">
@@ -87,20 +83,16 @@
                         <label class="modern-form-label">Referral Code</label>
                         <input type="text" th:field="*{referralCode}" name="referralCode" class="modern-form-input" placeholder="Referral Code"/>
                     </div>
-                    
-                    <div class="modern-form-submit-container">
-                        <button type="submit" class="modern-form-submit">Submit</button>
-                        <a href="#" th:href="@{/users}" class="modern-form-cancel">Cancel</a>
-                    </div>
                 </form>
             </div>
             
-            <!-- Bottom Wave Decoration -->
+            <!-- Bottom Wave Decoration with Buttons Overlay -->
             <div class="wave-bottom">
-                <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-                    <path d="M0,0 L1200,0 L1200,60 Q900,20 600,60 T0,60 Z" fill="#e3f2fd" opacity="0.8"/>
-                    <path d="M0,0 L1200,0 L1200,40 Q900,0 600,40 T0,40 Z" fill="#bbdefb" opacity="0.6"/>
-                </svg>
+                <th:block th:replace="~{fragments/waves :: wave-bottom}"></th:block>
+                <div class="modern-form-submit-container">
+                    <button type="submit" form="modern-form" class="modern-form-submit">Submit</button>
+                    <a href="#" th:href="@{/users}" class="modern-form-cancel">Cancel</a>
+                </div>
             </div>
         </div>
 
