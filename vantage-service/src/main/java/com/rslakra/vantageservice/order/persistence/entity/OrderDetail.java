@@ -5,9 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import java.math.BigDecimal;
 
 /**
@@ -34,7 +34,7 @@ public class OrderDetail extends AbstractEntity<Long> {
     
     // (price of the product at the time of order)
     @Column(name = "unit_price", nullable = false)
-    private BigDecimal unit_price;
+    private BigDecimal unitPrice;
     
     // subtotal (quantity * unit_price)
     @Column(name = "subtotal", nullable = false)

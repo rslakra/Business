@@ -13,7 +13,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Objects;
@@ -51,12 +51,16 @@ public class CitiesInitializer implements InitializingBean {
         
         cities.forEach(city -> {
             try {
-                LOGGER.debug("city=", city);
+                // Clear ID to ensure it's treated as a new entity (JSON may contain IDs)
+                city.setId(null);
+                LOGGER.debug("city={}", city);
                 City oldCity = cityService.getByName(city.getName());
                 if (Objects.nonNull(oldCity)) {
                     LOGGER.info("City [{}] already exists.", city.getName());
                 }
             } catch (NoRecordFoundException ex) {
+                // Ensure ID is null before creating
+                city.setId(null);
                 city = cityService.create(city);
                 LOGGER.info("Created [{}] city.", city.getName());
             }
