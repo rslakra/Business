@@ -7,7 +7,7 @@ import lombok.Setter;
 
 import java.util.List;
 
-import javax.persistence.Transient;
+import jakarta.persistence.Transient;
 
 /**
  * @author Rohtash Lakra

@@ -4,12 +4,14 @@
 
 ## Overview
 
-The application provides both web-based UI (using Thymeleaf) and RESTful API endpoints for managing business entities. It uses Spring Boot 2.7.18 with Java 21, and supports both H2 (development) and MySQL (production) databases.
+The application provides both web-based UI (using Thymeleaf) and RESTful API endpoints for managing business entities. It uses Spring Boot 3.5.7 with Java 21, and supports both H2 (development) and MySQL (production) databases.
+
+> **📋 Release Notes**: See [RELEASE.md](RELEASE.md) for detailed upgrade information and migration guide.
 
 ## Technology Stack
 
 ### Core Framework
-- **Spring Boot**: 2.7.18
+- **Spring Boot**: 3.5.7
 - **Java**: 21
 - **Build Tool**: Maven 3.x
 - **Packaging**: JAR
@@ -28,15 +30,15 @@ The application provides both web-based UI (using Thymeleaf) and RESTful API end
 - **Connection Pooling**: HikariCP
 
 ### Frontend Technologies
-- **Templating Engine**: Thymeleaf 3.0.1 with Layout Dialect 3.4.0
+- **Templating Engine**: Thymeleaf (managed by Spring Boot) with Layout Dialect 3.4.0
 - **CSS Framework**: Bootstrap 5.3.7
 - **JavaScript Libraries**:
   - jQuery 3.7.1
   - Font Awesome 4.7.0
 
 ### Utility Libraries
-- **Lombok**: 1.18.34 (Code generation)
-- **Apache Commons**: Commons Lang3 3.18.0
+- **Lombok**: 1.18.36 (Code generation)
+- **Apache Commons**: Commons Lang3 3.19.0
 - **CSV Processing**: OpenCSV 5.10
 - **Excel Processing**: Apache POI 5.4.1
 
@@ -140,7 +142,9 @@ The application provides both web-based UI (using Thymeleaf) and RESTful API end
 ├── buildMaven.sh                   # The Maven Build Script
 ├── pom.xml                         # Maven Project Object Model
 ├── runMaven.sh                     # The Maven Run Script
+├── backupH2Database.sh            # H2 Database Backup Script
 ├── README.md                       # This file
+├── RELEASE.md                      # Release Notes & Upgrade Guide
 └── robots.txt                      # Search engine crawler configuration
 ```
 
@@ -174,6 +178,7 @@ select * from user_security;
 ### Build Scripts
 - **buildMaven.sh**: Automated build script with version management
 - **runMaven.sh**: Quick run script
+- **backupH2Database.sh**: H2 database backup and restore utility
 
 ### Running the Application
 ```bash
@@ -196,6 +201,7 @@ select * from user_security;
 - Create changesets in `liquibase/changelog/tables/`
 - Include both XML and YAML formats when possible
 - Test migrations on H2 before applying to MySQL
+- **Note**: H2 database files from older versions may need to be recreated after Spring Boot upgrade. Use `backupH2Database.sh` to backup data.
 
 ### Frontend Development
 - Use Thymeleaf fragments for reusable components
@@ -234,6 +240,7 @@ vantage-service/
 - [Thymeleaf Documentation](https://www.thymeleaf.org/)
 - [Liquibase Documentation](https://www.liquibase.org/)
 - [Bootstrap 5 Documentation](https://getbootstrap.com/docs/5.3/)
+- [RELEASE.md](RELEASE.md) - Detailed release notes and upgrade guide
 
 ## Author
 
@@ -241,4 +248,5 @@ vantage-service/
 
 ---
 
-*Last Updated: November 2024*
+*Last Updated: November 2025*  
+*Spring Boot Version: 3.5.7*
