@@ -92,7 +92,7 @@ Spring Boot 3.x uses Jakarta EE instead of Java EE. All `javax.*` packages have 
 - Restore data if needed using the backup script
 
 #### External Dependencies
-- `appsuite-spring` version `0.0.28` - Ensure this version is compatible with Spring Boot 3.5.7
+- `appsuite-spring` version `0.0.30` - Ensure this version is compatible with Spring Boot 3.5.7
 - `appsuite-core` version `0.0.74` - Verify compatibility
 
 ---

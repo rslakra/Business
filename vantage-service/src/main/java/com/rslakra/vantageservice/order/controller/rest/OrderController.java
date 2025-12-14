@@ -80,7 +80,7 @@ public class OrderController extends AbstractRestController<Order, Long> {
         List<Order> orders = Collections.emptyList();
         OrderFilter userFilter = new OrderFilter(allParams);
         if (userFilter.hasKey(OrderFilter.ID)) {
-            orders = Arrays.asList(orderService.getById(userFilter.getLong(OrderFilter.ID)));
+            orders = Arrays.asList(orderService.getById(userFilter.getValue(OrderFilter.ID, Long.class)));
         } else {
             orders = orderService.getAll();
         }

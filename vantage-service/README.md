@@ -213,25 +213,25 @@ select * from user_security;
 
 ```
 vantage-service/
-├── account/          # User and role management
-├── city/             # City data management
-├── task/             # Task management
-├── marketing/        # Marketing campaign management
-├── order/            # Order processing
-├── dsp/              # Demand-Side Platform components
-│   ├── advertiser/  # Advertiser management
-│   ├── campaign/     # Campaign management
-│   ├── creative/     # Creative assets
-│   ├── impression/   # Impression tracking
-│   ├── taxonomy/     # Content taxonomy
-│   └── transaction/  # Transaction management
-├── document/         # Document management
-├── product/          # Product management
-├── project/          # Project management
-├── report/           # Reporting
-├── process/          # Process management
-├── home/             # Home page
-└── common/           # Shared utilities
+├── account/            # User and role management
+├── city/               # City data management
+├── task/               # Task management
+├── marketing/          # Marketing campaign management
+├── order/              # Order processing
+├── dsp/                # Demand-Side Platform components
+│   ├── advertiser/     # Advertiser management
+│   ├── campaign/       # Campaign management
+│   ├── creative/       # Creative assets
+│   ├── impression/     # Impression tracking
+│   ├── taxonomy/       # Content taxonomy
+│   └── transaction/    # Transaction management
+├── document/           # Document management
+├── product/            # Product management
+├── project/            # Project management
+├── report/             # Reporting
+├── process/            # Process management
+├── home/               # Home page
+└── common/             # Shared utilities
 ```
 
 ## References
@@ -245,8 +245,3 @@ vantage-service/
 ## Author
 
 **Rohtash Lakra**
-
----
-
-*Last Updated: November 2025*  
-*Spring Boot Version: 3.5.7*

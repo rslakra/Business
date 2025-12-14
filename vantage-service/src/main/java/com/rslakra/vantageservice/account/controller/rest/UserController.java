@@ -81,7 +81,7 @@ public class UserController extends AbstractRestController<User, Long> {
         if (userFilter.hasKeys(UserFilter.EMAIL, UserFilter.FIRST_NAME, UserFilter.LAST_NAME)) {
         } else if (userFilter.hasKeys(UserFilter.FIRST_NAME, UserFilter.LAST_NAME)) {
         } else if (userFilter.hasKey(UserFilter.ID)) {
-            users = Arrays.asList(userService.getById(userFilter.getLong(UserFilter.ID)));
+            users = Arrays.asList(userService.getById(userFilter.getValue(UserFilter.ID, Long.class)));
         } else if (userFilter.hasKey(UserFilter.EMAIL)) {
             users = Arrays.asList(userService.getByEmail(userFilter.getValue(UserFilter.EMAIL, String.class)));
         } else if (userFilter.hasKey(UserFilter.FIRST_NAME)) {

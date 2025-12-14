@@ -10,6 +10,11 @@ import java.util.Map;
  */
 public final class UserFilter extends DefaultFilter<Object> {
 
+    public static final String ID = "id";
+    public static final String EMAIL = "email";
+    public static final String FIRST_NAME = "firstName";
+    public static final String LAST_NAME = "lastName";
+
     /**
      * @param allParams
      */

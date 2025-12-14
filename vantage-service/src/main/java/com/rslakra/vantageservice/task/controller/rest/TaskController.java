@@ -73,7 +73,7 @@ public class TaskController extends AbstractRestController<Task, Long> {
         TaskFilter taskFilter = new TaskFilter(allParams);
         if (taskFilter.hasKeys(TaskFilter.ID, TaskFilter.FIRST_NAME)) {
         } else if (taskFilter.hasKey(TaskFilter.ID)) {
-            tasks = Arrays.asList(taskService.getById(taskFilter.getLong(TaskFilter.ID)));
+            tasks = Arrays.asList(taskService.getById(taskFilter.getValue(TaskFilter.ID, Long.class)));
         } else if (taskFilter.hasKey(TaskFilter.FIRST_NAME)) {
         } else {
             tasks = taskService.getAll();

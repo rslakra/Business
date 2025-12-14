@@ -65,7 +65,7 @@ public class ContentTaxonomyController extends AbstractRestController<ContentTax
         if (contentTaxonomyFilter.hasKeys(ContentTaxonomyFilter.ID, ContentTaxonomyFilter.FIRST_NAME)) {
         } else if (contentTaxonomyFilter.hasKey(ContentTaxonomyFilter.ID)) {
             marketings = Arrays.asList(contentTaxonomyService.getById(
-                    contentTaxonomyFilter.getLong(ContentTaxonomyFilter.ID)));
+                    contentTaxonomyFilter.getValue(ContentTaxonomyFilter.ID, Long.class)));
         } else {
             marketings = contentTaxonomyService.getAll();
         }

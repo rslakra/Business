@@ -72,7 +72,7 @@ public class RoleController extends AbstractRestController<Role, Long> {
         RoleFilter roleFilter = new RoleFilter(allParams);
         if (roleFilter.hasKeys(RoleFilter.ID, RoleFilter.NAME)) {
         } else if (roleFilter.hasKey(RoleFilter.ID)) {
-            roles = Arrays.asList(roleService.getById(roleFilter.getLong(RoleFilter.ID)));
+            roles = Arrays.asList(roleService.getById(roleFilter.getValue(RoleFilter.ID, Long.class)));
         } else if (roleFilter.hasKey(RoleFilter.NAME)) {
             roles = Arrays.asList(roleService.getByName(roleFilter.getValue(RoleFilter.NAME, String.class)));
         } else {

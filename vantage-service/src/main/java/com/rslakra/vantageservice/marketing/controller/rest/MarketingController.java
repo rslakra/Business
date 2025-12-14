@@ -77,7 +77,7 @@ public class MarketingController extends AbstractRestController<Marketing, Long>
         MarketingFilter marketingFilter = new MarketingFilter(allParams);
         if (marketingFilter.hasKeys(MarketingFilter.ID, MarketingFilter.FIRST_NAME)) {
         } else if (marketingFilter.hasKey(MarketingFilter.ID)) {
-            marketings = Arrays.asList(marketingService.getById(marketingFilter.getLong(MarketingFilter.ID)));
+            marketings = Arrays.asList(marketingService.getById(marketingFilter.getValue(MarketingFilter.ID, Long.class)));
         } else {
             marketings = marketingService.getAll();
         }

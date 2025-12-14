@@ -10,6 +10,9 @@ import java.util.Map;
  */
 public final class RoleFilter extends DefaultFilter<Object> {
 
+    public static final String ID = "id";
+    public static final String NAME = "name";
+
     /**
      * @param allParams
      */
