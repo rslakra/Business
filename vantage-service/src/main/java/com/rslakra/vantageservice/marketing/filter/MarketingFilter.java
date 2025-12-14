@@ -1,6 +1,7 @@
 package com.rslakra.vantageservice.marketing.filter;
 
 import com.rslakra.appsuite.spring.filter.DefaultFilter;
+import com.rslakra.vantageservice.marketing.persistence.entity.Marketing;
 
 import java.util.Map;
 
@@ -8,7 +9,7 @@ import java.util.Map;
  * @author Rohtash Lakra
  * @created 2/8/23 1:06 PM
  */
-public final class MarketingFilter extends DefaultFilter<Object> {
+public final class MarketingFilter extends DefaultFilter<Marketing> {
 
     public static final String ID = "id";
     public static final String NAME = "name";
@@ -20,5 +21,4 @@ public final class MarketingFilter extends DefaultFilter<Object> {
     public MarketingFilter(Map<String, Object> allParams) {
         super(allParams);
     }
-
 }

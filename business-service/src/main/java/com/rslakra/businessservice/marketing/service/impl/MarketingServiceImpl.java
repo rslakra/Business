@@ -169,7 +169,7 @@ public class MarketingServiceImpl extends AbstractServiceImpl<Marketing, Long> i
      * @return
      */
     @Override
-    public List<Marketing> getByFilter(Filter filter) {
+    public List<Marketing> getByFilter(Filter<Marketing> filter) {
         return marketingRepository.findAll();
     }
 
@@ -181,7 +181,7 @@ public class MarketingServiceImpl extends AbstractServiceImpl<Marketing, Long> i
      * @return
      */
     @Override
-    public Page<Marketing> getByFilter(Filter filter, Pageable pageable) {
+    public Page<Marketing> getByFilter(Filter<Marketing> filter, Pageable pageable) {
         return marketingRepository.findAll(pageable);
     }
 

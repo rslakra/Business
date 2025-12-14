@@ -173,7 +173,7 @@ public class TaskServiceImpl extends AbstractServiceImpl<Task, Long> implements 
      * @return
      */
     @Override
-    public List<Task> getByFilter(Filter filter) {
+    public List<Task> getByFilter(Filter<Task> filter) {
         return taskRepository.findAll();
     }
 
@@ -185,7 +185,7 @@ public class TaskServiceImpl extends AbstractServiceImpl<Task, Long> implements 
      * @return
      */
     @Override
-    public Page<Task> getByFilter(Filter filter, Pageable pageable) {
+    public Page<Task> getByFilter(Filter<Task> filter, Pageable pageable) {
         return taskRepository.findAll(pageable);
     }
 

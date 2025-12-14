@@ -182,7 +182,7 @@ public class CityServiceImpl extends AbstractServiceImpl<City, Long> implements 
      * @return
      */
     @Override
-    public List<City> getByFilter(Filter filter) {
+    public List<City> getByFilter(Filter<City> filter) {
         return cityRepository.findAll();
     }
     
@@ -191,7 +191,7 @@ public class CityServiceImpl extends AbstractServiceImpl<City, Long> implements 
      * @return
      */
     @Override
-    public Page<City> getByFilter(Filter filter, Pageable pageable) {
+    public Page<City> getByFilter(Filter<City> filter, Pageable pageable) {
         return cityRepository.findAll(pageable);
     }
     

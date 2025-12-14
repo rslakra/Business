@@ -165,7 +165,7 @@ public class ContentTaxonomyServiceImpl extends AbstractServiceImpl<ContentTaxon
      * @return
      */
     @Override
-    public List<ContentTaxonomy> getByFilter(Filter filter) {
+    public List<ContentTaxonomy> getByFilter(Filter<ContentTaxonomy> filter) {
         return contentTaxonomyRepository.findAll();
     }
 
@@ -177,7 +177,7 @@ public class ContentTaxonomyServiceImpl extends AbstractServiceImpl<ContentTaxon
      * @return
      */
     @Override
-    public Page<ContentTaxonomy> getByFilter(Filter filter, Pageable pageable) {
+    public Page<ContentTaxonomy> getByFilter(Filter<ContentTaxonomy> filter, Pageable pageable) {
         return contentTaxonomyRepository.findAll(pageable);
     }
 

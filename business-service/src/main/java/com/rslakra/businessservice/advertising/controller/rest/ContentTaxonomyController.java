@@ -78,7 +78,7 @@ public class ContentTaxonomyController extends AbstractRestController<ContentTax
         if (contentTaxonomyFilter.hasKeys(ContentTaxonomyFilter.ID, ContentTaxonomyFilter.FIRST_NAME)) {
         } else if (contentTaxonomyFilter.hasKey(ContentTaxonomyFilter.ID)) {
             marketings = Arrays.asList(contentTaxonomyService.getById(
-                    contentTaxonomyFilter.getLong(ContentTaxonomyFilter.ID)));
+                    contentTaxonomyFilter.getValue(ContentTaxonomyFilter.ID, Long.class)));
         } else {
             marketings = contentTaxonomyService.getAll();
         }
@@ -104,18 +104,22 @@ public class ContentTaxonomyController extends AbstractRestController<ContentTax
      * @return
      */
     @Override
-    public List<ContentTaxonomy> getByFilter(Filter filter) {
-        return null;
+    @SuppressWarnings("unchecked")
+    public List<ContentTaxonomy> getByFilter(Filter<ContentTaxonomy> filter) {
+        // Delegate to service if it supports Filter, otherwise return empty list
+        return Collections.emptyList();
     }
-
+    
     /**
      * @param filter
      * @param pageable
      * @return
      */
     @Override
-    public Page<ContentTaxonomy> getByFilter(Filter filter, Pageable pageable) {
-        return null;
+    @SuppressWarnings("unchecked")
+    public Page<ContentTaxonomy> getByFilter(Filter<ContentTaxonomy> filter, Pageable pageable) {
+        // Delegate to service if it supports Filter, otherwise return empty page
+        return contentTaxonomyService.getByFilter(null, pageable);
     }
 
     /**

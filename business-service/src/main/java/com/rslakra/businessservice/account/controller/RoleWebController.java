@@ -20,7 +20,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -94,9 +98,12 @@ public class RoleWebController extends AbstractWebController<Role, Long> {
      * @param filter
      * @return
      */
+    @GetMapping("/filter")
     @Override
-    public String filter(Model model, Filter filter) {
-        return null;
+    public String filter(Model model, Filter<Role> filter) {
+        List<Role> roles = roleService.getAll();
+        model.addAttribute("roles", roles);
+        return "views/account/role/listRoles";
     }
     
     /**
@@ -123,6 +130,7 @@ public class RoleWebController extends AbstractWebController<Role, Long> {
         if (idOptional.isPresent()) {
             role = roleService.getById(idOptional.get());
         } else {
+            // Create a new Role with a default RoleType - using null name for now, will be set by form
             role = new Role();
         }
         model.addAttribute("role", role);
@@ -205,7 +213,7 @@ public class RoleWebController extends AbstractWebController<Role, Long> {
     @GetMapping("/download")
     public ResponseEntity<Resource> download(@RequestParam("fileType") String fileType) {
         BeanUtils.assertNonNull(fileType, "Download 'fileType' must provide!");
-        ResponseEntity responseEntity = null;
+        ResponseEntity<Resource> responseEntity = null;
         InputStreamResource inputStreamResource = null;
         String contentDisposition;
         MediaType mediaType;

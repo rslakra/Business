@@ -134,7 +134,7 @@ public class OrderServiceImpl extends AbstractServiceImpl<Order, Long> implement
      * @return
      */
     @Override
-    public List<Order> getByFilter(Filter filter) {
+    public List<Order> getByFilter(Filter<Order> filter) {
         return orderRepository.findAll();
     }
     
@@ -146,7 +146,7 @@ public class OrderServiceImpl extends AbstractServiceImpl<Order, Long> implement
      * @return
      */
     @Override
-    public Page<Order> getByFilter(Filter filter, Pageable pageable) {
+    public Page<Order> getByFilter(Filter<Order> filter, Pageable pageable) {
         return orderRepository.findAll(pageable);
     }
     

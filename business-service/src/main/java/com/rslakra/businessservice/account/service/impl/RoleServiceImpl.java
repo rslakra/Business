@@ -180,7 +180,7 @@ public class RoleServiceImpl extends AbstractServiceImpl<Role, Long> implements 
      * @return
      */
     @Override
-    public List<Role> getByFilter(Filter filter) {
+    public List<Role> getByFilter(Filter<Role> filter) {
         return roleRepository.findAll();
     }
 
@@ -189,7 +189,7 @@ public class RoleServiceImpl extends AbstractServiceImpl<Role, Long> implements 
      * @return
      */
     @Override
-    public Page<Role> getByFilter(Filter filter, Pageable pageable) {
+    public Page<Role> getByFilter(Filter<Role> filter, Pageable pageable) {
         return roleRepository.findAll(pageable);
     }
 

@@ -46,6 +46,23 @@ select * from users_roles;
 select * from user_security;
 ```
 
+## Configuration
+
+### Server Configuration
+- **Port**: 9080
+- **Context Path**: `/business-service`
+- **Base URL**: `http://localhost:9080/business-service`
+
+### Database Configuration
+- **H2 Database** (Development): `jdbc:h2:file:~/Downloads/H2DB/BusinessService`
+- **H2 Console**: `/h2`
+- **MySQL** (Production): Configured via `application.properties`
+
+### Security Configuration
+- **Spring Security**: Auto-configuration is disabled for development
+- **Configuration**: Set in `application.properties` via `spring.autoconfigure.exclude`
+- **Note**: If security is required, create a `SecurityConfig` class in the `config` package to configure authentication and authorization properly
+
 ## Build
 
 To build the project, use the provided build script:

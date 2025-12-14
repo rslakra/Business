@@ -20,5 +20,4 @@ public final class ContentTaxonomyFilter extends DefaultFilter<Object> {
     public ContentTaxonomyFilter(Map<String, Object> allParams) {
         super(allParams);
     }
-
 }

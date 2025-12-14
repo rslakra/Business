@@ -1,6 +1,7 @@
 package com.rslakra.businessservice.advertising.filter;
 
 import com.rslakra.appsuite.spring.filter.DefaultFilter;
+import com.rslakra.businessservice.advertising.persistence.entity.ContentTaxonomy;
 
 import java.util.Map;
 
@@ -8,11 +9,7 @@ import java.util.Map;
  * @author Rohtash Lakra
  * @created 2/8/23 1:06 PM
  */
-public final class ContentTaxonomyFilter extends DefaultFilter<Object> {
-
-    public static final String ID = "id";
-    public static final String NAME = "name";
-    public static final String USER_ID = "userId";
+public final class ContentTaxonomyFilter extends DefaultFilter<ContentTaxonomy> {
 
     /**
      * @param allParams

@@ -86,7 +86,7 @@ public class TaskWebController extends AbstractWebController<Task, Long> {
      */
     @GetMapping("/filter")
     @Override
-    public String filter(Model model, Filter filter) {
+    public String filter(Model model, Filter<Task> filter) {
         List<Task> tasks = taskService.getAll();
         model.addAttribute("tasks", tasks);
         return "views/task/listTasks";

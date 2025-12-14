@@ -79,7 +79,7 @@ public class MarketingWebController extends AbstractWebController<Marketing, Lon
      * @return
      */
     @Override
-    public String filter(Model model, Filter filter) {
+    public String filter(Model model, Filter<Marketing> filter) {
         return null;
     }
     

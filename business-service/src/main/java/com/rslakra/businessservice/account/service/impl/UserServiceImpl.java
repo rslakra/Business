@@ -22,7 +22,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * @author Rohtash Lakra
@@ -158,7 +163,7 @@ public class UserServiceImpl extends AbstractServiceImpl<User, Long> implements 
      * @return
      */
     @Override
-    public List<User> getByFilter(Filter filter) {
+    public List<User> getByFilter(Filter<User> filter) {
         return userRepository.findAll();
     }
 
@@ -170,7 +175,7 @@ public class UserServiceImpl extends AbstractServiceImpl<User, Long> implements 
      * @return
      */
     @Override
-    public Page<User> getByFilter(Filter filter, Pageable pageable) {
+    public Page<User> getByFilter(Filter<User> filter, Pageable pageable) {
         return userRepository.findAll(pageable);
     }
 

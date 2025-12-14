@@ -35,7 +35,7 @@
 
         <!-- maven plugins -->
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
-        <maven-checkstyle-plugin.version>3.5.1</maven-checkstyle-plugin.version>
+        <maven-checkstyle-plugin.version>3.5.0</maven-checkstyle-plugin.version>
         <maven-release-plugin.version>3.1.1</maven-release-plugin.version>
 
         <!-- checkstyle -->
@@ -46,7 +46,7 @@
         <appsuite-core.version>0.0.74</appsuite-core.version>
 
         <!-- appsuite-spring -->
-        <appsuite-spring.version>0.0.30</appsuite-spring.version>
+        <appsuite-spring.version>0.0.31</appsuite-spring.version>
 
         <!-- lombok -->
         <lombok.version>1.18.36</lombok.version>
@@ -64,7 +64,7 @@
         <!-- mysql -->
         <mysql.version>9.2.0</mysql.version>
 
-        <!-- common-lang -->
+        <!-- mysql -->
         <commons-lang.version>3.19.0</commons-lang.version>
 
         <!-- csv-parser -->
@@ -259,13 +259,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>${maven-checkstyle-plugin.version}</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.puppycrawl.tools</groupId>
-                        <artifactId>checkstyle</artifactId>
-                        <version>10.12.5</version>
-                    </dependency>
-                </dependencies>
                 <executions>
                     <execution>
                         <id>default</id>
@@ -295,13 +288,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>${maven-checkstyle-plugin.version}</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.puppycrawl.tools</groupId>
-                        <artifactId>checkstyle</artifactId>
-                        <version>10.12.5</version>
-                    </dependency>
-                </dependencies>
                 <configuration>
                     <configLocation>${code-styles.dir}/styles.xml</configLocation>
                     <propertiesLocation>${code-styles.dir}/checkstyle.properties</propertiesLocation>

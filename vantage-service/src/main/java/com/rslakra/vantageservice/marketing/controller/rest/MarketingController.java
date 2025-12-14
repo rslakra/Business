@@ -103,17 +103,17 @@ public class MarketingController extends AbstractRestController<Marketing, Long>
      * @return
      */
     @Override
-    public List<Marketing> getByFilter(Filter filter) {
+    public List<Marketing> getByFilter(Filter<Marketing> filter) {
         return null;
     }
-
+    
     /**
      * @param filter
      * @param pageable
      * @return
      */
     @Override
-    public Page<Marketing> getByFilter(Filter filter, Pageable pageable) {
+    public Page<Marketing> getByFilter(Filter<Marketing> filter, Pageable pageable) {
         return null;
     }
 

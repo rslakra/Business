@@ -22,5 +22,4 @@ public final class TaskFilter extends DefaultFilter<Object> {
     public TaskFilter(Map<String, Object> allParams) {
         super(allParams);
     }
-
 }
