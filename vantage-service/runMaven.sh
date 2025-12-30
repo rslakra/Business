@@ -1,9 +1,20 @@
 #!/bin/bash
-#Author: Rohtash Lakra
+# Author: Rohtash Lakra
+# Maven run script for Spring Boot application
+# 
+# This script runs the Maven/Spring Boot application.
+#
+# Source common version function
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${SCRIPT_DIR}/version.sh"
+
 clear
-#echo
+echo
 echo "${JAVA_HOME}"
 echo
-#mvn clean package -DskipTests
-mvn clean spring-boot:run
-#./mvnw spring-boot:run
+
+# Run Spring Boot application
+SNAPSHOT_VERSION=$(buildVersion SNAPSHOT)
+RELEASE_VERSION=$(buildVersion)
+mvn clean spring-boot:run -Drevision=$RELEASE_VERSION
+echo

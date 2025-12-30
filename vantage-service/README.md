@@ -6,7 +6,6 @@
 
 The application provides both web-based UI (using Thymeleaf) and RESTful API endpoints for managing business entities. It uses Spring Boot 3.5.7 with Java 21, and supports both H2 (development) and MySQL (production) databases.
 
-> **📋 Release Notes**: See [RELEASE.md](RELEASE.md) for detailed upgrade information and migration guide.
 
 ## Technology Stack
 
@@ -148,8 +147,8 @@ The application provides both web-based UI (using Thymeleaf) and RESTful API end
 ├── pom.xml                         # Maven Project Object Model
 ├── runMaven.sh                     # The Maven Run Script
 ├── backupH2Database.sh            # H2 Database Backup Script
+├── version.sh                     # Common version function for build scripts
 ├── README.md                       # This file
-├── RELEASE.md                      # Release Notes & Upgrade Guide
 └── robots.txt                      # Search engine crawler configuration
 ```
 
@@ -239,19 +238,90 @@ vantage-service/
 └── common/           # Shared utilities
 ```
 
+## Release Notes & Upgrade History
+
+### Version 3.5.7 Upgrade (November 2025)
+
+#### Major Upgrade: Spring Boot 2.7.18 → 3.5.7
+
+This release includes a major upgrade from Spring Boot 2.x to 3.x, which brings significant improvements, new features, and requires Jakarta EE migration.
+
+**Core Framework Upgrade:**
+- **Spring Boot**: `2.7.18` → `3.5.7`
+- **Spring Framework**: Upgraded to `6.2.12` (via Spring Boot 3.5.7)
+- **Java**: `21` (compatible, no change required)
+
+**Breaking Changes:**
+
+1. **Jakarta EE Migration**
+   - Spring Boot 3.x uses Jakarta EE instead of Java EE
+   - All `javax.*` packages migrated to `jakarta.*`:
+     - `javax.persistence` → `jakarta.persistence` (21 files migrated)
+     - `javax.annotation` → `jakarta.annotation` (1 file migrated)
+   - **Files Updated**: All entity classes in `com.rslakra.vantageservice.*.persistence.entity` and `CitiesInitializer.java`
+
+2. **Dependency Updates**
+   - **Lombok**: `1.18.34` → `1.18.36`
+   - **Commons Lang3**: `3.18.0` → `3.19.0` (managed by Spring Boot)
+   - **JUnit Jupiter Params**: `5.10.2` → `5.11.3`
+
+**Configuration Changes:**
+- Lombok scope set to `provided` with explicit annotation processor configuration
+- Maven compiler plugin updated with annotation processor support and `-parameters` argument
+- Spring Boot plugin configured to exclude Lombok from final JAR
+
+**Code Changes:**
+- `CitiesInitializer.java`: Fixed optimistic locking issue and logger syntax
+- `OrderDetail.java`: Fixed Checkstyle violation (renamed `unit_price` → `unitPrice`)
+
+**Migration Guide:**
+
+1. **IDE Settings**: Ensure your IDE supports Jakarta EE
+2. **Database Migration**: 
+   - H2 database files from older versions may need to be recreated
+   - Use `backupH2Database.sh` script to backup data before upgrading
+   - Liquibase will automatically recreate schema on first run
+3. **Testing**: All existing tests should work with minimal changes
+
+**Known Issues & Solutions:**
+
+- **H2 Database Version Compatibility**: H2 database files created with older versions (format 2) are incompatible with H2 2.3.232 (format 3)
+  - **Solution**: Use `backupH2Database.sh` to export data, delete old database files, let Liquibase recreate schema, then restore data if needed
+- **External Dependencies**: Verify compatibility of `appsuite-spring` (0.0.30) and `appsuite-core` (0.0.74) with Spring Boot 3.5.7
+
+**New Features & Improvements:**
+- Enhanced performance and security
+- Improved observability
+- Better native image support
+- Updated dependency management
+- Hibernate 6.6.33 with better Jakarta EE support and performance improvements
+
+**Verified Functionality:**
+- ✅ Application starts successfully
+- ✅ Database connections working
+- ✅ Liquibase migrations execute correctly
+- ✅ All endpoints registered
+- ✅ Cities initialization working
+- ✅ Build completes successfully (101 source files, 0 Checkstyle violations)
+
+**Rollback Plan:**
+If you need to rollback to Spring Boot 2.7.18:
+1. Revert `pom.xml` changes
+2. Revert all `jakarta.*` → `javax.*` imports (21 files)
+3. Revert Lombok configuration changes
+4. Restore previous H2 database files from backup
+
 ## References
 
 - [Spring Boot Documentation](https://spring.io/projects/spring-boot)
 - [Thymeleaf Documentation](https://www.thymeleaf.org/)
 - [Liquibase Documentation](https://www.liquibase.org/)
 - [Bootstrap 5 Documentation](https://getbootstrap.com/docs/5.3/)
-- [RELEASE.md](RELEASE.md) - Detailed release notes and upgrade guide
+- [Spring Boot 3.0 Migration Guide](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.0-Migration-Guide)
+- [Jakarta EE Migration Guide](https://jakarta.ee/specifications/platform/9/)
+
+---
 
 ## Author
 
 **Rohtash Lakra**
-
----
-
-*Last Updated: November 2025*  
-*Spring Boot Version: 3.5.7*

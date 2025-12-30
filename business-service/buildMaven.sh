@@ -1,23 +1,14 @@
 #!/bin/bash
 # Author: Rohtash Lakra
+# Maven build script for Spring Boot application
+# 
+# This script builds the Maven/Java application.
+#
+# Source common version function
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${SCRIPT_DIR}/version.sh"
+
 clear
-VERSION="0.0"
-# Build Version Function
-function buildVersion() {
-  GIT_COMMIT_COUNT=$(git rev-list HEAD --count)
-  if [ $? -ne 0 ]; then
-    VERSION="${VERSION}.1"
-  else
-    VERSION="${VERSION}.${GIT_COMMIT_COUNT}"
-  fi
-  SNAPSHOT="${SNAPSHOT:-$!}"
-  if [[ ! -z ${SNAPSHOT} ]]; then
-      VERSION="${VERSION}-SNAPSHOT"
-  fi
-
-  echo "${VERSION}";
-}
-
 echo
 #JAVA_VERSION=11
 #export JAVA_HOME=$(/usr/libexec/java_home -v $JAVA_VERSION)
